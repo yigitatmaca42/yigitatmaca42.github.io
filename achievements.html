@@ -249,6 +249,39 @@
             color: var(--secondary);
         }
 
+        .modal-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 255, 136, 0.2);
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            font-size: 2rem;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s;
+            display: none;
+            z-index: 2002;
+        }
+
+        .modal-nav:hover {
+            background: rgba(0, 255, 136, 0.4);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .modal-nav.show {
+            display: block;
+        }
+
+        .modal-prev {
+            left: 20px;
+        }
+
+        .modal-next {
+            right: 20px;
+        }
+
         .clickable-image {
             cursor: pointer;
             transition: transform 0.3s;
@@ -279,9 +312,9 @@
         <!-- Achievement -->
         <div class="achievement-container">
             <div class="achievement-content">
-                <h2>🥉 Türkiye Siber Güvenlik Kümelenmesi & GençTek</h2>
+                <h2>Türkiye Siber Güvenlik Kümelenmesi & GençTek</h2>
                 <p><strong>Liseler Arası Online Siber Güvenlik (CTF)</strong></p>
-                <p>4.'lük Başarısı</p>
+                <p>5.'lik Başarısı</p>
                 <div class="achievement-date">17 Aralık 2025</div>
             </div>
             <div class="achievement-image">
@@ -294,7 +327,9 @@
     <div class="modal" id="imageModal" onclick="closeModal(event)">
         <button class="modal-close" onclick="closeModal()">✕</button>
         <div class="modal-container" id="modalContainer">
+            <button class="modal-nav modal-prev" onclick="prevImage(event)">❮</button>
             <img src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/scoreboard.png" alt="Başarı Kanıtı" id="modalImage" class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-nav modal-next" onclick="nextImage(event)">❯</button>
         </div>
     </div>
 
@@ -319,6 +354,14 @@
         let isDragging = false;
         let dragStartX = 0;
         let dragStartY = 0;
+        let currentImageIndex = 0;
+        let autoSlideTimer = null;
+
+        // İki resim URL'si
+        const images = [
+            'https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/scoreboard.png',
+            'https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/top10.png'
+        ];
 
         function openModal() {
             document.getElementById('imageModal').classList.add('active');
@@ -326,6 +369,7 @@
             offsetX = 0;
             offsetY = 0;
             updateImageZoom();
+            startAutoSlide();
         }
 
         function closeModal(event) {
@@ -335,11 +379,61 @@
             zoomLevel = 1;
             offsetX = 0;
             offsetY = 0;
+            stopAutoSlide();
         }
 
         function updateImageZoom() {
             const image = document.getElementById('modalImage');
             image.style.transform = `scale(${zoomLevel}) translate(${offsetX}px, ${offsetY}px)`;
+            
+            // Ok butonlarını göster/gizle
+            const navButtons = document.querySelectorAll('.modal-nav');
+            if (zoomLevel > 1) {
+                navButtons.forEach(btn => btn.classList.add('show'));
+            } else {
+                navButtons.forEach(btn => btn.classList.remove('show'));
+            }
+        }
+
+        function changeImage(direction) {
+            if (direction === 'next') {
+                currentImageIndex = (currentImageIndex + 1) % images.length;
+            } else {
+                currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            }
+            
+            const image = document.getElementById('modalImage');
+            image.src = images[currentImageIndex];
+            
+            // Otomatik kaydırmayı sıfırla
+            stopAutoSlide();
+            startAutoSlide();
+        }
+
+        function nextImage(event) {
+            event.stopPropagation();
+            changeImage('next');
+        }
+
+        function prevImage(event) {
+            event.stopPropagation();
+            changeImage('prev');
+        }
+
+        function startAutoSlide() {
+            stopAutoSlide();
+            autoSlideTimer = setInterval(() => {
+                if (document.getElementById('imageModal').classList.contains('active')) {
+                    changeImage('next');
+                }
+            }, 4000); // 4 saniyede bir
+        }
+
+        function stopAutoSlide() {
+            if (autoSlideTimer) {
+                clearInterval(autoSlideTimer);
+                autoSlideTimer = null;
+            }
         }
 
         // Modal açıkken scroll zoom
@@ -382,6 +476,10 @@
         document.addEventListener('mouseup', function() {
             isDragging = false;
             modalContainer.classList.remove('dragging');
+            // Mouse bırakıldığında offset sıfırla
+            offsetX = 0;
+            offsetY = 0;
+            updateImageZoom();
         });
 
         // Ok tuşları ile hareket
@@ -402,13 +500,11 @@
                         break;
                     case 'ArrowLeft':
                         event.preventDefault();
-                        offsetX -= moveStep;
-                        updateImageZoom();
+                        prevImage(event);
                         break;
                     case 'ArrowRight':
                         event.preventDefault();
-                        offsetX += moveStep;
-                        updateImageZoom();
+                        nextImage(event);
                         break;
                     case 'Escape':
                         closeModal();
