@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yiğit Atmaca - Siber Güvenlik</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e1e2e 0%, #2d2d44 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 2px solid #00ff88;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            color: #00ff88;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: #888;
+            font-size: 1.1rem;
+        }
+        
+        nav {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        nav a {
+            color: #00ff88;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        
+        nav a:hover {
+            color: #fff;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 3rem;
+            background: rgba(0, 255, 136, 0.1);
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border: 1px solid #00ff88;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .section {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid #00ff88;
+        }
+        
+        .section h2 {
+            color: #00ff88;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .section ul {
+            list-style: none;
+            margin-left: 1rem;
+        }
+        
+        .section li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .section li:before {
+            content: "▸";
+            color: #00ff88;
+            position: absolute;
+            left: 0;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.5);
+            border-top: 1px solid #00ff88;
+            margin-top: 3rem;
+        }
+        
+        .contact-links {
+            margin-top: 1rem;
+        }
+        
+        .contact-links a {
+            display: inline-block;
+            margin: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: #00ff88;
+            color: #000;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        
+        .contact-links a:hover {
+            background: #00cc6f;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🛡️ Yiğit Atmaca</h1>
+        <p class="subtitle">Siber Güvenlik | Yazılım Geliştirme | CTF</p>
+    </header>
+    
+    <nav>
+        <a href="#hakkimda">Hakkımda</a>
+        <a href="#ilgi-alanlari">İlgi Alanlarım</a>
+        <a href="#projeler">Projeler</a>
+        <a href="#iletisim">İletişim</a>
+    </nav>
+    
+    <div class="container">
+        <section class="hero">
+            <p>Merhaba! Ben Yiğit Atmaca, Pendik İTO Bilişim bölümü 10. sınıf öğrencisiyim.</p>
+            <p>Siber güvenlik, yazılım geliştirme ve geleceğin teknolojilerine büyük ilgi duyuyorum.</p>
+        </section>
+        
+        <section class="section" id="hakkimda">
+            <h2>📋 Hakkımda</h2>
+            <p>Pendik İTO Ticaret Mesleki ve Teknik Anadolu Lisesi Bilişim bölümünde okuyan bir öğrenciyim. CTF yarışmalarına katılıyor, güvenlik araştırmaları yapıyor ve yazılım geliştirme konularında deneyim kazanıyorum.</p>
+        </section>
+        
+        <section class="section" id="ilgi-alanlari">
+            <h2>💡 İlgi Alanlarım</h2>
+            <ul>
+                <li><strong>Siber Güvenlik:</strong> PWN, Crypto, Forensics, Web, Reverse Engineering, Steganography, OSINT, Malware Analizi</li>
+                <li><strong>Yazılım Geliştirme:</strong> Uygulama ve sistem yazılımı</li>
+                <li><strong>Geleceğin Teknolojileri:</strong> Yapay zeka, blockchain, IoT</li>
+            </ul>
+        </section>
+        
+        <section class="section" id="projeler">
+            <h2>🚀 Projelerim</h2>
+            <ul>
+                <li>CTF yarışmalarına katılım</li>
+                <li>Güvenlik araştırmaları</li>
+                <li>Yazılım projeleri</li>
+            </ul>
+        </section>
+        
+        <section class="section" id="iletisim">
+            <h2>📫 İletişim</h2>
+            <p>Benimle iletişime geçmek için:</p>
+            <div class="contact-links">
+                <a href="https://discord.com/users/nuirmo">Discord</a>
+                <a href="mailto:yigitatmaca42@gmail.com">E-posta</a>
+                <a href="https://github.com/yigitatmaca42">GitHub</a>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Yiğit Atmaca. Tüm hakları saklıdır.</p>
+        <p>"Aklına birşey geldiyse yap, tereddütte kalma yoksa keşke dersin." - Yiğit Atmaca 🔥</p>
+    </footer>
+</body>
+</html>
