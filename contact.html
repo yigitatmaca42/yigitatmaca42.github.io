@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İletişim - TYA Cyber</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00ff88;
+            --secondary: #ff006e;
+            --dark-bg: #0a0e27;
+            --card-bg: #1a1f3a;
+            --text: #e0e0e0;
+            --text-light: #999;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(10, 14, 39, 0.9) 100%);
+            border-bottom: 2px solid var(--primary);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            line-height: 1;
+        }
+
+        .header-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .page-header {
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        /* Contact Section */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .contact-info {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 8px;
+            padding: 2rem;
+        }
+
+        .contact-info h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .contact-method {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(0, 255, 136, 0.1);
+        }
+
+        .contact-method:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .contact-method h3 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-method p {
+            color: var(--text-light);
+        }
+
+        .contact-method a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-method a:hover {
+            color: var(--secondary);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 8px;
+            padding: 2rem;
+        }
+
+        .contact-form h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            color: var(--text);
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(0, 255, 136, 0.1);
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary);
+            color: var(--dark-bg);
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #00cc6f;
+            transform: translateY(-2px);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .form-message {
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .form-message.success {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            display: block;
+        }
+
+        .form-message.error {
+            background: rgba(255, 0, 110, 0.1);
+            border: 1px solid var(--secondary);
+            color: var(--secondary);
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.5);
+            border-top: 1px solid var(--primary);
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        @media (max-width: 768px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            nav {
+                gap: 1rem;
+            }
+
+            nav a {
+                font-size: 0.85rem;
+            }
+
+            .header-content {
+                padding: 0 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="/" class="logo">
+                <img src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/logo.png" alt="TYA Cyber Logo" class="logo-img">
+                TYA Cyber
+            </a>
+            <nav>
+                <a href="/">Ana Sayfa</a>
+                <a href="/achievements.html">Başarılar</a>
+                <a href="/contact.html">İletişim</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="page-header">
+            <h1>📧 İletişim</h1>
+            <p>Benimle iletişime geçmek için bana ulaş</p>
+        </div>
+
+        <div class="contact-wrapper">
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <h2>İletişim Bilgileri</h2>
+                
+                <div class="contact-method">
+                    <h3>📧 E-posta</h3>
+                    <p>
+                        <a href="mailto:yigitatmaca42@gmail.com">yigitatmaca42@gmail.com</a>
+                    </p>
+                </div>
+
+                <div class="contact-method">
+                    <h3>💬 Discord</h3>
+                    <p>
+                        <a href="https://discord.com/users/nuirmo">@nuirmo</a>
+                    </p>
+                </div>
+
+                <div class="contact-method">
+                    <h3>🐙 GitHub</h3>
+                    <p>
+                        <a href="https://github.com/yigitatmaca42">github.com/yigitatmaca42</a>
+                    </p>
+                </div>
+
+                <div class="contact-method">
+                    <h3>📍 Lokasyon</h3>
+                    <p>Pendik, İstanbul, Türkiye</p>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h2>Bana Mesaj Gönder</h2>
+                
+                <div class="form-message" id="formMessage"></div>
+
+                <form id="contactForm" action="https://formspree.io/f/xwveqzdy" method="POST">
+                    <div class="form-group">
+                        <label for="name">Adınız *</label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            required
+                            placeholder="Adınız"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-posta *</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            required
+                            placeholder="email@example.com"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Konu *</label>
+                        <input 
+                            type="text" 
+                            id="subject" 
+                            name="subject" 
+                            required
+                            placeholder="Mesaj konusu"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Mesaj *</label>
+                        <textarea 
+                            id="message" 
+                            name="message" 
+                            required
+                            placeholder="Mesajınız..."
+                        ></textarea>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <div class="g-recaptcha" data-sitekey="6Lf77zIsAAAAAH2pje6uLsw_kOtaIHG8Xs_JChpX"></div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Gönder</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="/">Ana Sayfa</a>
+                <a href="/blog.html">Blog</a>
+                <a href="https://github.com/yigitatmaca42">GitHub</a>
+            </div>
+            <p>&copy; 2025 Yiğit Atmaca. Tüm hakları saklıdır.</p>
+            <p style="margin-top: 0.5rem; color: #00ff88;">"Aklına birşey geldiyse yap, tereddütte kalma yoksa keşke dersin."</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            const formMessage = document.getElementById('formMessage');
+            
+            // reCAPTCHA'yı kontrol et
+            const recaptchaResponse = grecaptcha.getResponse();
+            if (!recaptchaResponse) {
+                formMessage.textContent = 'Lütfen reCAPTCHA\'yı işaretleyin.';
+                formMessage.className = 'form-message error';
+                e.preventDefault();
+                return false;
+            }
+            
+            formMessage.textContent = '✓ Mesaj gönderiliyor...';
+            formMessage.className = 'form-message success';
+        });
+    </script>
+</body>
+</html>
