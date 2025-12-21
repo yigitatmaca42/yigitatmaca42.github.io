@@ -217,11 +217,6 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            cursor: grab;
-        }
-
-        .modal-container.dragging {
-            cursor: grabbing;
         }
 
         .modal-content {
@@ -253,21 +248,24 @@
             position: fixed;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0, 255, 136, 0.2);
+            background: rgba(0, 255, 136, 0.3);
             border: 2px solid var(--primary);
             color: var(--primary);
-            font-size: 2rem;
-            padding: 1rem 1.5rem;
+            font-size: 2.5rem;
+            padding: 1.5rem 2rem;
             cursor: pointer;
-            border-radius: 5px;
+            border-radius: 8px;
             transition: all 0.3s;
             display: none;
             z-index: 2002;
+            font-weight: bold;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
         }
 
         .modal-nav:hover {
-            background: rgba(0, 255, 136, 0.4);
-            transform: translateY(-50%) scale(1.1);
+            background: rgba(0, 255, 136, 0.5);
+            transform: translateY(-50%) scale(1.2);
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.6);
         }
 
         .modal-nav.show {
@@ -275,11 +273,11 @@
         }
 
         .modal-prev {
-            left: 20px;
+            left: 30px;
         }
 
         .modal-next {
-            right: 20px;
+            right: 30px;
         }
 
         .clickable-image {
@@ -351,9 +349,6 @@
         const zoomStep = 0.2;
         let offsetX = 0;
         let offsetY = 0;
-        let isDragging = false;
-        let dragStartX = 0;
-        let dragStartY = 0;
         let currentImageIndex = 0;
         let autoSlideTimer = null;
 
@@ -426,7 +421,7 @@
                 if (document.getElementById('imageModal').classList.contains('active')) {
                     changeImage('next');
                 }
-            }, 4000); // 4 saniyede bir
+            }, 3500); // 3.5 saniyede bir
         }
 
         function stopAutoSlide() {
@@ -436,51 +431,34 @@
             }
         }
 
-        // Modal açıkken scroll zoom
+        // Modal açıkken scroll zoom - scroll yönüne doğru hareket
         document.getElementById('imageModal').addEventListener('wheel', function(event) {
             if (this.classList.contains('active')) {
                 event.preventDefault();
                 
-                // Scroll yukarı = zoom in, scroll aşağı = zoom out
+                const moveStep = 30;
+                
+                // Scroll yukarı = zoom in + yukarı git
                 if (event.deltaY < 0) {
                     zoomLevel = Math.min(zoomLevel + zoomStep, maxZoom);
-                } else {
+                    offsetY -= moveStep; // Yukarı doğru hareket
+                } 
+                // Scroll aşağı = zoom out + aşağı git
+                else {
                     zoomLevel = Math.max(zoomLevel - zoomStep, minZoom);
+                    offsetY += moveStep; // Aşağı doğru hareket
+                }
+                
+                // Zoom 1'e yaklaştığında offset sıfırla
+                if (Math.abs(zoomLevel - 1) < 0.05) {
+                    zoomLevel = 1;
+                    offsetX = 0;
+                    offsetY = 0;
                 }
                 
                 updateImageZoom();
             }
         }, { passive: false });
-
-        // Mouse drag
-        const image = document.getElementById('modalImage');
-        const modalContainer = document.getElementById('modalContainer');
-
-        image.addEventListener('mousedown', function(event) {
-            if (zoomLevel > 1) {
-                isDragging = true;
-                dragStartX = event.clientX - offsetX;
-                dragStartY = event.clientY - offsetY;
-                modalContainer.classList.add('dragging');
-            }
-        });
-
-        document.addEventListener('mousemove', function(event) {
-            if (isDragging && zoomLevel > 1) {
-                offsetX = event.clientX - dragStartX;
-                offsetY = event.clientY - dragStartY;
-                updateImageZoom();
-            }
-        });
-
-        document.addEventListener('mouseup', function() {
-            isDragging = false;
-            modalContainer.classList.remove('dragging');
-            // Mouse bırakıldığında offset sıfırla
-            offsetX = 0;
-            offsetY = 0;
-            updateImageZoom();
-        });
 
         // Ok tuşları ile hareket
         document.addEventListener('keydown', function(event) {
