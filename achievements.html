@@ -202,10 +202,21 @@
             z-index: 2000;
             justify-content: center;
             align-items: center;
+            overflow: hidden;
         }
 
         .modal.active {
             display: flex;
+        }
+
+        .modal-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: auto;
         }
 
         .modal-content {
@@ -213,10 +224,12 @@
             max-width: 90%;
             max-height: 90vh;
             object-fit: contain;
+            transform-origin: center;
+            transition: transform 0.2s ease;
         }
 
         .modal-close {
-            position: absolute;
+            position: fixed;
             top: 20px;
             right: 30px;
             color: var(--primary);
@@ -275,7 +288,9 @@
     <!-- Modal -->
     <div class="modal" id="imageModal" onclick="closeModal(event)">
         <button class="modal-close" onclick="closeModal()">✕</button>
-        <img src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/scoreboard.png" alt="Başarı Kanıtı" class="modal-content" onclick="event.stopPropagation()">
+        <div class="modal-container" id="modalContainer">
+            <img src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/scoreboard.png" alt="Başarı Kanıtı" id="modalImage" class="modal-content" onclick="event.stopPropagation()">
+        </div>
     </div>
 
     <footer>
@@ -290,15 +305,44 @@
     </footer>
 
     <script>
+        let zoomLevel = 1;
+        const minZoom = 0.5;
+        const maxZoom = 3;
+        const zoomStep = 0.2;
+
         function openModal() {
             document.getElementById('imageModal').classList.add('active');
+            zoomLevel = 1;
+            updateImageZoom();
         }
 
         function closeModal(event) {
             // Eğer boş alana tıklanırsa kapat
             if (event && event.target.id !== 'imageModal') return;
             document.getElementById('imageModal').classList.remove('active');
+            zoomLevel = 1;
         }
+
+        function updateImageZoom() {
+            const image = document.getElementById('modalImage');
+            image.style.transform = `scale(${zoomLevel})`;
+        }
+
+        // Modal açıkken scroll zoom
+        document.getElementById('imageModal').addEventListener('wheel', function(event) {
+            if (this.classList.contains('active')) {
+                event.preventDefault();
+                
+                // Scroll yukarı = zoom in, scroll aşağı = zoom out
+                if (event.deltaY < 0) {
+                    zoomLevel = Math.min(zoomLevel + zoomStep, maxZoom);
+                } else {
+                    zoomLevel = Math.max(zoomLevel - zoomStep, minZoom);
+                }
+                
+                updateImageZoom();
+            }
+        }, { passive: false });
 
         // ESC tuşu ile kapatma
         document.addEventListener('keydown', function(event) {
