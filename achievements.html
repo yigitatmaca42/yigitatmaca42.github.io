@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Başarılar - TYA Cyber</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00ff88;
+            --secondary: #ff006e;
+            --dark-bg: #0a0e27;
+            --card-bg: #1a1f3a;
+            --text: #e0e0e0;
+            --text-light: #999;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(10, 14, 39, 0.9) 100%);
+            border-bottom: 1px solid var(--primary);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .page-header {
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        /* Achievements Grid */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .achievement-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .achievement-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .achievement-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .achievement-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .achievement-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .achievement-date {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0, 255, 136, 0.1);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--primary), transparent);
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: 0;
+            margin-right: auto;
+            width: 48%;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: auto;
+            margin-right: 0;
+            width: 48%;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border: 3px solid var(--dark-bg);
+            border-radius: 50%;
+            transform: translateX(-50%);
+        }
+
+        .timeline-content {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .timeline-content h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.5);
+            border-top: 1px solid var(--primary);
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .timeline::before {
+                left: 10px;
+            }
+
+            .timeline-dot {
+                left: 10px;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                width: 100%;
+                margin-left: 40px;
+                margin-right: 0;
+            }
+
+            nav {
+                gap: 1rem;
+            }
+
+            nav a {
+                font-size: 0.85rem;
+            }
+
+            .header-content {
+                padding: 0 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .achievements-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="/" class="logo">⚡ TYA Cyber</a>
+            <nav>
+                <a href="/">Ana Sayfa</a>
+                <a href="/achievements.html">Başarılar</a>
+                <a href="/contact.html">İletişim</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="page-header">
+            <h1>🏆 Başarılarım</h1>
+            <p>Yolculuğumda elde ettiğim başarılar ve milestones</p>
+        </div>
+
+        <!-- Achievements Grid -->
+        <div class="achievements-grid">
+            <div class="achievement-card">
+                <div class="achievement-icon">🥉</div>
+                <h3>Türkiye Siber Güvenlik Kümelenmesi & GençTek</h3>
+                <p>Siber güvenlik alanında ulusal yarışmada 5. sıra başarısı</p>
+                <div class="achievement-date">17 Aralık 2025</div>
+            </div>
+
+            <div class="achievement-card">
+                <div class="achievement-icon">🎯</div>
+                <h3>CTF Yarışmalarına Aktif Katılım</h3>
+                <p>Çeşitli CTF yarışmalarında başarıyla yer alma ve deneyim kazanımı</p>
+                <div class="achievement-date">2024 - Devam ediyor</div>
+            </div>
+
+            <div class="achievement-card">
+                <div class="achievement-icon">🔍</div>
+                <h3>Siber Güvenlik Araştırmaları</h3>
+                <p>Vulnerability analizi, penetrasyon testi ve PoC geliştirme çalışmaları</p>
+                <div class="achievement-date">2024 - Devam ediyor</div>
+            </div>
+
+            <div class="achievement-card">
+                <div class="achievement-icon">💻</div>
+                <h3>Yazılım Geliştirme Projeleri</h3>
+                <p>Python, C++, C# kullanarak çeşitli uygulamalar ve araçlar geliştirme</p>
+                <div class="achievement-date">2023 - Devam ediyor</div>
+            </div>
+
+            <div class="achievement-card">
+                <div class="achievement-icon">🎓</div>
+                <h3>Pendik İTO - Bilişim Bölümü</h3>
+                <p>Mesleki ve teknik eğitim alan öğrenci olarak başarılı ilerleyiş</p>
+                <div class="achievement-date">2023 - Devam ediyor</div>
+            </div>
+
+            <div class="achievement-card">
+                <div class="achievement-icon">🚀</div>
+                <h3>Teknoloji Projelerim</h3>
+                <p>IoT, Yapay Zeka ve Blockchain alanlarında araştırma ve denemeler</p>
+                <div class="achievement-date">2024 - Devam ediyor</div>
+            </div>
+        </div>
+
+        <!-- Timeline -->
+        <h2 style="color: var(--primary); margin-top: 4rem; margin-bottom: 2rem; text-align: center; font-size: 1.8rem;">
+            📅 Zaman Çizelgesi
+        </h2>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>Siber Güvenliğe Başlangıç</h4>
+                    <p>İlk CTF yarışmamıza katılım ve siber güvenlik alanında yolculuğumun başlaması</p>
+                    <p style="margin-top: 0.5rem; font-size: 0.8rem;">Eylül 2023</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>İlk Başarılar ve Öğrenmeler</h4>
+                    <p>Çeşitli CTF kategorilerinde (PWN, Crypto, Web) daha derinlemesine deneyim kazanımı</p>
+                    <p style="margin-top: 0.5rem; font-size: 0.8rem;">2024 Baharı</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>Yazılım Projeleri</h4>
+                    <p>Python ve C# kullanarak çeşitli güvenlik araçları ve uygulamalar geliştirmeye başlama</p>
+                    <p style="margin-top: 0.5rem; font-size: 0.8rem;">2024 Yazı</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>Ulusal Yarışmada Başarı</h4>
+                    <p>Türkiye Siber Güvenlik Kümelenmesi & GençTek yarışmasında 5. sıra başarısı</p>
+                    <p style="margin-top: 0.5rem; font-size: 0.8rem;">17 Aralık 2025</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>Web Sayfası ve İletişim</h4>
+                    <p>Kişisel web sayfası ve iletişim platformu oluşturma</p>
+                    <p style="margin-top: 0.5rem; font-size: 0.8rem;">Aralık 2025</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="/">Ana Sayfa</a>
+                <a href="/contact.html">İletişim</a>
+                <a href="https://github.com/yigitatmaca42">GitHub</a>
+            </div>
+            <p>&copy; 2025 Yiğit Atmaca. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+</body>
+</html>
