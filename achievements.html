@@ -21,10 +21,9 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background-color: var(--dark-bg);
             color: var(--text);
-            line-height: 1.6;
         }
 
         header {
@@ -61,7 +60,6 @@
             color: var(--text);
             text-decoration: none;
             transition: color 0.3s;
-            font-size: 0.95rem;
         }
 
         nav a:hover {
@@ -71,32 +69,20 @@
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 2rem;
         }
 
-        .page-header {
-            padding: 2rem 0;
-            text-align: center;
-        }
-
-        .page-header h1 {
+        h1 {
             font-size: 2.5rem;
             color: var(--primary);
-            margin-bottom: 0.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
         }
 
-        .page-header p {
-            color: var(--text-light);
-            font-size: 1.1rem;
-        }
-
-        /* Achievement Container */
         .achievement-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 2rem;
-            align-items: center;
-            margin: 3rem 0;
             background: var(--card-bg);
             border: 1px solid rgba(0, 255, 136, 0.2);
             border-radius: 8px;
@@ -113,84 +99,26 @@
             color: var(--text-light);
             font-size: 1.05rem;
             margin-bottom: 0.8rem;
-            line-height: 1.8;
         }
 
         .achievement-date {
             color: var(--primary);
             font-weight: bold;
             margin-top: 1rem;
-            font-size: 1.1rem;
         }
 
-        .achievement-image {
-            text-align: center;
-        }
-
-        .achievement-image img {
-            max-width: 100%;
-            height: auto;
+        .clickable-image {
+            cursor: pointer;
             border-radius: 8px;
             border: 2px solid var(--primary);
+            max-width: 100%;
+            transition: transform 0.3s;
         }
 
-        /* Footer */
-        footer {
-            background: rgba(0, 0, 0, 0.5);
-            border-top: 1px solid var(--primary);
-            padding: 2rem 0;
-            margin-top: 4rem;
+        .clickable-image:hover {
+            transform: scale(1.02);
         }
 
-        .footer-content {
-            text-align: center;
-            color: var(--text-light);
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .footer-links a {
-            color: var(--primary);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: var(--secondary);
-        }
-
-        @media (max-width: 768px) {
-            .page-header h1 {
-                font-size: 1.8rem;
-            }
-
-            .achievement-container {
-                grid-template-columns: 1fr;
-            }
-
-            nav {
-                gap: 1rem;
-            }
-
-            nav a {
-                font-size: 0.85rem;
-            }
-
-            .header-content {
-                padding: 0 1rem;
-            }
-
-            .container {
-                padding: 0 1rem;
-            }
-        }
-
-        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -198,45 +126,25 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.95);
             z-index: 2000;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
         }
 
         .modal.active {
             display: flex;
         }
 
-        .modal-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        .modal-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90vh;
-            object-fit: contain;
-            transform-origin: center;
-            transition: transform 0.2s ease;
-        }
-
         .modal-close {
             position: fixed;
             top: 20px;
             right: 30px;
+            background: none;
+            border: none;
             color: var(--primary);
             font-size: 2rem;
             cursor: pointer;
-            background: none;
-            border: none;
             z-index: 2001;
         }
 
@@ -256,20 +164,13 @@
             cursor: pointer;
             border-radius: 8px;
             transition: all 0.3s;
-            display: none;
             z-index: 2002;
             font-weight: bold;
-            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
         }
 
         .modal-nav:hover {
             background: rgba(0, 255, 136, 0.5);
             transform: translateY(-50%) scale(1.2);
-            box-shadow: 0 0 30px rgba(0, 255, 136, 0.6);
-        }
-
-        .modal-nav.show {
-            display: block;
         }
 
         .modal-prev {
@@ -280,17 +181,52 @@
             right: 30px;
         }
 
-        .modal.active .modal-nav {
-            display: block;
+        .modal-image {
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
         }
 
-        .clickable-image {
-            cursor: pointer;
-            transition: transform 0.3s;
+        footer {
+            background: rgba(0, 0, 0, 0.5);
+            border-top: 1px solid var(--primary);
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--text-light);
         }
 
-        .clickable-image:hover {
-            transform: scale(1.02);
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .achievement-container {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                gap: 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
         }
     </style>
 </head>
@@ -307,11 +243,8 @@
     </header>
 
     <main class="container">
-        <div class="page-header">
-            <h1>Başarılarım</h1>
-        </div>
+        <h1>Başarılarım</h1>
 
-        <!-- Achievement -->
         <div class="achievement-container">
             <div class="achievement-content">
                 <h2>Türkiye Siber Güvenlik Kümelenmesi & GençTek</h2>
@@ -319,31 +252,26 @@
                 <p>5.'lik Başarısı</p>
                 <div class="achievement-date">17 Aralık 2025</div>
             </div>
-            <div class="achievement-image">
-                <img src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/scoreboard.png" alt="Başarı Kanıtı" class="clickable-image" onclick="openModal()" style="max-width: 100%; border-radius: 8px; cursor: pointer;">
+            <div>
+                <img src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/scoreboard.png" alt="Başarı Kanıtı" class="clickable-image" onclick="openModal()">
             </div>
         </div>
     </main>
 
-    <!-- Modal -->
     <div class="modal" id="imageModal" onclick="closeModal(event)">
         <button class="modal-close" onclick="closeModal()">✕</button>
-        <div class="modal-container" id="modalContainer">
-            <button class="modal-nav modal-prev" onclick="prevImage(event)">❮</button>
-            <img src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/scoreboard.png" alt="Başarı Kanıtı" id="modalImage" class="modal-content" onclick="event.stopPropagation()">
-            <button class="modal-nav modal-next" onclick="nextImage(event)">❯</button>
-        </div>
+        <button class="modal-nav modal-prev" onclick="prevImage(event)">❮</button>
+        <img src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/scoreboard.png" id="modalImage" class="modal-image" onclick="event.stopPropagation()">
+        <button class="modal-nav modal-next" onclick="nextImage(event)">❯</button>
     </div>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="/">Ana Sayfa</a>
-                <a href="/contact.html">İletişim</a>
-                <a href="https://github.com/yigitatmaca42">GitHub</a>
-            </div>
-            <p>&copy; 2025 Yiğit Atmaca. Tüm hakları saklıdır.</p>
+        <div class="footer-links">
+            <a href="/">Ana Sayfa</a>
+            <a href="/contact.html">İletişim</a>
+            <a href="https://github.com/yigitatmaca42">GitHub</a>
         </div>
+        <p>&copy; 2025 Yiğit Atmaca. Tüm hakları saklıdır.</p>
     </footer>
 
     <script>
@@ -352,125 +280,48 @@
             'https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/top10.png'
         ];
 
-        let currentDisplayImageIndex = 0;
-        let displayAutoSlideTimer = null;
-        let zoomLevel = 1;
         let currentImageIndex = 0;
-        let autoSlideTimer = null;
 
-        // Ana sayfa - resim carousel
-        function rotateDisplayImage() {
-            const displayImage = document.querySelector('.clickable-image');
-            if (displayImage) {
-                displayImage.src = images[currentDisplayImageIndex];
-                currentDisplayImageIndex = (currentDisplayImageIndex + 1) % images.length;
-            }
-        }
-
-        function startDisplayAutoSlide() {
-            stopDisplayAutoSlide();
-            displayAutoSlideTimer = setInterval(rotateDisplayImage, 3000);
-        }
-
-        function stopDisplayAutoSlide() {
-            if (displayAutoSlideTimer) {
-                clearInterval(displayAutoSlideTimer);
-                displayAutoSlideTimer = null;
-            }
-        }
-
-        // Modal açılması
         function openModal() {
             document.getElementById('imageModal').classList.add('active');
-            zoomLevel = 1;
             currentImageIndex = 0;
-            updateImageZoom();
-            startAutoSlide();
+            updateModalImage();
         }
 
-        // Modal kapatılması
         function closeModal(event) {
             if (event && event.target.id !== 'imageModal') return;
             document.getElementById('imageModal').classList.remove('active');
-            zoomLevel = 1;
-            stopAutoSlide();
         }
 
-        // Resim zoom ve butonları güncelle
-        function updateImageZoom() {
-            const image = document.getElementById('modalImage');
-            image.style.transform = `scale(${zoomLevel})`;
-            
-            const navButtons = document.querySelectorAll('.modal-nav');
-            navButtons.forEach(btn => btn.classList.add('show'));
-        }
-
-        // Resim değiştirme
-        function changeImage(direction) {
-            if (direction === 'next') {
-                currentImageIndex = (currentImageIndex + 1) % images.length;
-            } else {
-                currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-            }
-            
+        function updateModalImage() {
             document.getElementById('modalImage').src = images[currentImageIndex];
-            
-            if (zoomLevel > 1) {
-                stopAutoSlide();
-            } else {
-                stopAutoSlide();
-                startAutoSlide();
-            }
         }
 
         function nextImage(event) {
             event.stopPropagation();
-            changeImage('next');
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            updateModalImage();
         }
 
         function prevImage(event) {
             event.stopPropagation();
-            changeImage('prev');
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            updateModalImage();
         }
 
-        // Otomatik geçiş modal'da
-        function stopAutoSlide() {
-            if (autoSlideTimer) {
-                clearInterval(autoSlideTimer);
-                autoSlideTimer = null;
-            }
-        }
-
-        function startAutoSlide() {
-            stopAutoSlide();
-            autoSlideTimer = setInterval(() => {
-                if (document.getElementById('imageModal').classList.contains('active') && zoomLevel === 1) {
-                    changeImage('next');
-                }
-            }, 3000);
-        }
-
-        // Ok tuşları
         document.addEventListener('keydown', function(event) {
             if (!document.getElementById('imageModal').classList.contains('active')) return;
-            
-            switch(event.key) {
-                case 'ArrowLeft':
-                    event.preventDefault();
-                    prevImage(event);
-                    break;
-                case 'ArrowRight':
-                    event.preventDefault();
-                    nextImage(event);
-                    break;
-                case 'Escape':
-                    closeModal();
-                    break;
+
+            if (event.key === 'ArrowRight') {
+                event.preventDefault();
+                nextImage(event);
+            } else if (event.key === 'ArrowLeft') {
+                event.preventDefault();
+                prevImage(event);
+            } else if (event.key === 'Escape') {
+                closeModal();
             }
         });
-
-        // Sayfa yüklenince başlat
-        window.addEventListener('load', startDisplayAutoSlide);
     </script>
 </body>
 </html>
