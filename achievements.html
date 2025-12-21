@@ -367,8 +367,9 @@
             zoomLevel = 1;
             offsetX = 0;
             offsetY = 0;
+            currentImageIndex = 0;
             updateImageZoom();
-            // Otomatik geçiş KALDIRIYORUZ - sadece manuel kontrol
+            startAutoSlide();
         }
 
         function closeModal(event) {
@@ -378,7 +379,7 @@
             zoomLevel = 1;
             offsetX = 0;
             offsetY = 0;
-            // Otomatik geçiş zaten kapalı
+            stopAutoSlide();
         }
 
         function updateImageZoom() {
@@ -399,7 +400,15 @@
             
             const image = document.getElementById('modalImage');
             image.src = images[currentImageIndex];
-            // Otomatik geçiş yok
+            
+            // Eğer zoom > 1 ise otomatik geçişi durdur
+            if (zoomLevel > 1) {
+                stopAutoSlide();
+            } else {
+                // Zoom normal ise otomatik geçişi yeniden başlat
+                stopAutoSlide();
+                startAutoSlide();
+            }
         }
 
         function nextImage(event) {
@@ -417,6 +426,15 @@
                 clearInterval(autoSlideTimer);
                 autoSlideTimer = null;
             }
+        }
+
+        function startAutoSlide() {
+            stopAutoSlide();
+            autoSlideTimer = setInterval(() => {
+                if (document.getElementById('imageModal').classList.contains('active') && zoomLevel === 1) {
+                    changeImage('next');
+                }
+            }, 3000); // 3 saniyede bir
         }
 
         // Ok tuşları ile hareket
