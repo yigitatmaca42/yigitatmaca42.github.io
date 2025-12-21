@@ -216,7 +216,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: auto;
+            overflow: hidden;
+            cursor: grab;
+        }
+
+        .modal-container.dragging {
+            cursor: grabbing;
         }
 
         .modal-content {
@@ -309,10 +314,17 @@
         const minZoom = 0.5;
         const maxZoom = 3;
         const zoomStep = 0.2;
+        let offsetX = 0;
+        let offsetY = 0;
+        let isDragging = false;
+        let dragStartX = 0;
+        let dragStartY = 0;
 
         function openModal() {
             document.getElementById('imageModal').classList.add('active');
             zoomLevel = 1;
+            offsetX = 0;
+            offsetY = 0;
             updateImageZoom();
         }
 
@@ -321,11 +333,13 @@
             if (event && event.target.id !== 'imageModal') return;
             document.getElementById('imageModal').classList.remove('active');
             zoomLevel = 1;
+            offsetX = 0;
+            offsetY = 0;
         }
 
         function updateImageZoom() {
             const image = document.getElementById('modalImage');
-            image.style.transform = `scale(${zoomLevel})`;
+            image.style.transform = `scale(${zoomLevel}) translate(${offsetX}px, ${offsetY}px)`;
         }
 
         // Modal açıkken scroll zoom
@@ -344,10 +358,62 @@
             }
         }, { passive: false });
 
-        // ESC tuşu ile kapatma
+        // Mouse drag
+        const image = document.getElementById('modalImage');
+        const modalContainer = document.getElementById('modalContainer');
+
+        image.addEventListener('mousedown', function(event) {
+            if (zoomLevel > 1) {
+                isDragging = true;
+                dragStartX = event.clientX - offsetX;
+                dragStartY = event.clientY - offsetY;
+                modalContainer.classList.add('dragging');
+            }
+        });
+
+        document.addEventListener('mousemove', function(event) {
+            if (isDragging && zoomLevel > 1) {
+                offsetX = event.clientX - dragStartX;
+                offsetY = event.clientY - dragStartY;
+                updateImageZoom();
+            }
+        });
+
+        document.addEventListener('mouseup', function() {
+            isDragging = false;
+            modalContainer.classList.remove('dragging');
+        });
+
+        // Ok tuşları ile hareket
         document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeModal();
+            if (document.getElementById('imageModal').classList.contains('active')) {
+                const moveStep = 20;
+                
+                switch(event.key) {
+                    case 'ArrowUp':
+                        event.preventDefault();
+                        offsetY -= moveStep;
+                        updateImageZoom();
+                        break;
+                    case 'ArrowDown':
+                        event.preventDefault();
+                        offsetY += moveStep;
+                        updateImageZoom();
+                        break;
+                    case 'ArrowLeft':
+                        event.preventDefault();
+                        offsetX -= moveStep;
+                        updateImageZoom();
+                        break;
+                    case 'ArrowRight':
+                        event.preventDefault();
+                        offsetX += moveStep;
+                        updateImageZoom();
+                        break;
+                    case 'Escape':
+                        closeModal();
+                        break;
+                }
             }
         });
     </script>
