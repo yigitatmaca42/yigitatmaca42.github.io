@@ -93,6 +93,24 @@
             font-size: 2.5rem;
             color: var(--primary);
             margin-bottom: 0.5rem;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5),
+                         0 0 40px rgba(0, 255, 136, 0.3),
+                         0 0 60px rgba(0, 255, 136, 0.2);
+            font-weight: 600;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 0 0 20px rgba(0, 255, 136, 0.5),
+                             0 0 40px rgba(0, 255, 136, 0.3),
+                             0 0 60px rgba(0, 255, 136, 0.2);
+            }
+            50% {
+                text-shadow: 0 0 30px rgba(0, 255, 136, 0.8),
+                             0 0 60px rgba(0, 255, 136, 0.5),
+                             0 0 90px rgba(0, 255, 136, 0.3);
+            }
         }
 
         .page-header p {
@@ -324,7 +342,7 @@
 
     <main class="container">
         <div class="page-header">
-            <h1>📧 İletişim</h1>
+            <h1>İletişim Adresim</h1>
             <p>Benimle iletişime geçmek için bana ulaş</p>
         </div>
 
@@ -355,7 +373,7 @@
 
                 <div class="contact-method">
                     <h3>📍 Lokasyon</h3>
-                    <p>Pendik, İstanbul, Türkiye</p>
+                    <p>İstanbul, Türkiye</p>
                 </div>
             </div>
 
