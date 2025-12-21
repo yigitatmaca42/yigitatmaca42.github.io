@@ -31,11 +31,12 @@
         /* Header & Navigation */
         header {
             background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(10, 14, 39, 0.9) 100%);
-            border-bottom: 1px solid var(--primary);
+            border-bottom: 2px solid var(--primary);
             padding: 1.5rem 0;
             position: sticky;
             top: 0;
             z-index: 1000;
+            line-height: 1;
         }
 
         .header-content {
@@ -52,6 +53,15 @@
             font-weight: bold;
             color: var(--primary);
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-img {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
         }
 
         nav {
@@ -270,7 +280,10 @@
 <body>
     <header>
         <div class="header-content">
-            <a href="/" class="logo">TYA Cyber</a>
+            <a href="/" class="logo">
+                <img src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/logo.png" alt="TYA Cyber Logo" class="logo-img">
+                TYA Cyber
+            </a>
             <nav>
                 <a href="/">Ana Sayfa</a>
                 <a href="/achievements.html">Başarılar</a>
@@ -295,6 +308,8 @@
             <div class="quick-links">
                 <a href="/achievements.html">🏆 Başarılarım</a>
                 <a href="/contact.html">📧 İletişim</a>
+                <a href="https://github.com/yigitatmaca42">🐙 GitHub</a>
+                <a href="https://discord.com/users/nuirmo">💬 Discord</a>
             </div>
         </section>
     </main>
