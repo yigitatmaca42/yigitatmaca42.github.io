@@ -280,6 +280,10 @@
             right: 30px;
         }
 
+        .modal.active .modal-nav {
+            display: block;
+        }
+
         .clickable-image {
             cursor: pointer;
             transition: transform 0.3s;
@@ -304,7 +308,7 @@
 
     <main class="container">
         <div class="page-header">
-            <h1>🏆 Başarılarım</h1>
+            <h1>Başarılarım</h1>
         </div>
 
         <!-- Achievement -->
@@ -364,7 +368,7 @@
             offsetX = 0;
             offsetY = 0;
             updateImageZoom();
-            startAutoSlide();
+            // Otomatik geçiş KALDIRIYORUZ - sadece manuel kontrol
         }
 
         function closeModal(event) {
@@ -374,20 +378,16 @@
             zoomLevel = 1;
             offsetX = 0;
             offsetY = 0;
-            stopAutoSlide();
+            // Otomatik geçiş zaten kapalı
         }
 
         function updateImageZoom() {
             const image = document.getElementById('modalImage');
             image.style.transform = `scale(${zoomLevel}) translate(${offsetX}px, ${offsetY}px)`;
             
-            // Ok butonlarını göster/gizle
+            // Ok butonları her zaman görünür (zoom seviyesinden bağımsız)
             const navButtons = document.querySelectorAll('.modal-nav');
-            if (zoomLevel > 1) {
-                navButtons.forEach(btn => btn.classList.add('show'));
-            } else {
-                navButtons.forEach(btn => btn.classList.remove('show'));
-            }
+            navButtons.forEach(btn => btn.classList.add('show'));
         }
 
         function changeImage(direction) {
@@ -399,10 +399,7 @@
             
             const image = document.getElementById('modalImage');
             image.src = images[currentImageIndex];
-            
-            // Otomatik kaydırmayı sıfırla
-            stopAutoSlide();
-            startAutoSlide();
+            // Otomatik geçiş yok
         }
 
         function nextImage(event) {
@@ -415,50 +412,12 @@
             changeImage('prev');
         }
 
-        function startAutoSlide() {
-            stopAutoSlide();
-            autoSlideTimer = setInterval(() => {
-                if (document.getElementById('imageModal').classList.contains('active')) {
-                    changeImage('next');
-                }
-            }, 3500); // 3.5 saniyede bir
-        }
-
         function stopAutoSlide() {
             if (autoSlideTimer) {
                 clearInterval(autoSlideTimer);
                 autoSlideTimer = null;
             }
         }
-
-        // Modal açıkken scroll zoom - scroll yönüne doğru hareket
-        document.getElementById('imageModal').addEventListener('wheel', function(event) {
-            if (this.classList.contains('active')) {
-                event.preventDefault();
-                
-                const moveStep = 30;
-                
-                // Scroll yukarı = zoom in + yukarı git
-                if (event.deltaY < 0) {
-                    zoomLevel = Math.min(zoomLevel + zoomStep, maxZoom);
-                    offsetY -= moveStep; // Yukarı doğru hareket
-                } 
-                // Scroll aşağı = zoom out + aşağı git
-                else {
-                    zoomLevel = Math.max(zoomLevel - zoomStep, minZoom);
-                    offsetY += moveStep; // Aşağı doğru hareket
-                }
-                
-                // Zoom 1'e yaklaştığında offset sıfırla
-                if (Math.abs(zoomLevel - 1) < 0.05) {
-                    zoomLevel = 1;
-                    offsetX = 0;
-                    offsetY = 0;
-                }
-                
-                updateImageZoom();
-            }
-        }, { passive: false });
 
         // Ok tuşları ile hareket
         document.addEventListener('keydown', function(event) {
