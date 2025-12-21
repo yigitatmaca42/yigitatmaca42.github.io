@@ -347,50 +347,65 @@
     </footer>
 
     <script>
-        let zoomLevel = 1;
-        const minZoom = 0.5;
-        const maxZoom = 3;
-        const zoomStep = 0.2;
-        let offsetX = 0;
-        let offsetY = 0;
-        let currentImageIndex = 0;
-        let autoSlideTimer = null;
-
-        // İki resim URL'si
         const images = [
             'https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/scoreboard.png',
             'https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/top10.png'
         ];
 
+        let currentDisplayImageIndex = 0;
+        let displayAutoSlideTimer = null;
+        let zoomLevel = 1;
+        let currentImageIndex = 0;
+        let autoSlideTimer = null;
+
+        // Ana sayfa - resim carousel
+        function rotateDisplayImage() {
+            const displayImage = document.querySelector('.clickable-image');
+            if (displayImage) {
+                displayImage.src = images[currentDisplayImageIndex];
+                currentDisplayImageIndex = (currentDisplayImageIndex + 1) % images.length;
+            }
+        }
+
+        function startDisplayAutoSlide() {
+            stopDisplayAutoSlide();
+            displayAutoSlideTimer = setInterval(rotateDisplayImage, 3000);
+        }
+
+        function stopDisplayAutoSlide() {
+            if (displayAutoSlideTimer) {
+                clearInterval(displayAutoSlideTimer);
+                displayAutoSlideTimer = null;
+            }
+        }
+
+        // Modal açılması
         function openModal() {
             document.getElementById('imageModal').classList.add('active');
             zoomLevel = 1;
-            offsetX = 0;
-            offsetY = 0;
             currentImageIndex = 0;
             updateImageZoom();
             startAutoSlide();
         }
 
+        // Modal kapatılması
         function closeModal(event) {
-            // Eğer boş alana tıklanırsa kapat
             if (event && event.target.id !== 'imageModal') return;
             document.getElementById('imageModal').classList.remove('active');
             zoomLevel = 1;
-            offsetX = 0;
-            offsetY = 0;
             stopAutoSlide();
         }
 
+        // Resim zoom ve butonları güncelle
         function updateImageZoom() {
             const image = document.getElementById('modalImage');
-            image.style.transform = `scale(${zoomLevel}) translate(${offsetX}px, ${offsetY}px)`;
+            image.style.transform = `scale(${zoomLevel})`;
             
-            // Ok butonları her zaman görünür (zoom seviyesinden bağımsız)
             const navButtons = document.querySelectorAll('.modal-nav');
             navButtons.forEach(btn => btn.classList.add('show'));
         }
 
+        // Resim değiştirme
         function changeImage(direction) {
             if (direction === 'next') {
                 currentImageIndex = (currentImageIndex + 1) % images.length;
@@ -398,14 +413,11 @@
                 currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
             }
             
-            const image = document.getElementById('modalImage');
-            image.src = images[currentImageIndex];
+            document.getElementById('modalImage').src = images[currentImageIndex];
             
-            // Eğer zoom > 1 ise otomatik geçişi durdur
             if (zoomLevel > 1) {
                 stopAutoSlide();
             } else {
-                // Zoom normal ise otomatik geçişi yeniden başlat
                 stopAutoSlide();
                 startAutoSlide();
             }
@@ -421,6 +433,7 @@
             changeImage('prev');
         }
 
+        // Otomatik geçiş modal'da
         function stopAutoSlide() {
             if (autoSlideTimer) {
                 clearInterval(autoSlideTimer);
@@ -434,39 +447,30 @@
                 if (document.getElementById('imageModal').classList.contains('active') && zoomLevel === 1) {
                     changeImage('next');
                 }
-            }, 3000); // 3 saniyede bir
+            }, 3000);
         }
 
-        // Ok tuşları ile hareket
+        // Ok tuşları
         document.addEventListener('keydown', function(event) {
-            if (document.getElementById('imageModal').classList.contains('active')) {
-                const moveStep = 20;
-                
-                switch(event.key) {
-                    case 'ArrowUp':
-                        event.preventDefault();
-                        offsetY -= moveStep;
-                        updateImageZoom();
-                        break;
-                    case 'ArrowDown':
-                        event.preventDefault();
-                        offsetY += moveStep;
-                        updateImageZoom();
-                        break;
-                    case 'ArrowLeft':
-                        event.preventDefault();
-                        prevImage(event);
-                        break;
-                    case 'ArrowRight':
-                        event.preventDefault();
-                        nextImage(event);
-                        break;
-                    case 'Escape':
-                        closeModal();
-                        break;
-                }
+            if (!document.getElementById('imageModal').classList.contains('active')) return;
+            
+            switch(event.key) {
+                case 'ArrowLeft':
+                    event.preventDefault();
+                    prevImage(event);
+                    break;
+                case 'ArrowRight':
+                    event.preventDefault();
+                    nextImage(event);
+                    break;
+                case 'Escape':
+                    closeModal();
+                    break;
             }
         });
+
+        // Sayfa yüklenince başlat
+        window.addEventListener('load', startDisplayAutoSlide);
     </script>
 </body>
 </html>
