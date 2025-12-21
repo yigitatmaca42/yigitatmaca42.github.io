@@ -189,6 +189,56 @@
                 padding: 0 1rem;
             }
         }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: var(--primary);
+            font-size: 2rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            z-index: 2001;
+        }
+
+        .modal-close:hover {
+            color: var(--secondary);
+        }
+
+        .clickable-image {
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .clickable-image:hover {
+            transform: scale(1.02);
+        }
     </style>
 </head>
 <body>
@@ -211,16 +261,22 @@
         <!-- Achievement -->
         <div class="achievement-container">
             <div class="achievement-content">
-                <h2>Türkiye Siber Güvenlik Kümelenmesi & GençTek</h2>
+                <h2>🥉 Türkiye Siber Güvenlik Kümelenmesi & GençTek</h2>
                 <p><strong>Liseler Arası Online Siber Güvenlik (CTF)</strong></p>
-                <p>5.'lik Başarısı</p>
+                <p>4.'lük Başarısı</p>
                 <div class="achievement-date">17 Aralık 2025</div>
             </div>
             <div class="achievement-image">
-                <img src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/scoreboard.png" alt="Başarı Kanıtı" style="max-width: 100%; border-radius: 8px;">
+                <img src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/scoreboard.png" alt="Başarı Kanıtı" class="clickable-image" onclick="openModal()" style="max-width: 100%; border-radius: 8px; cursor: pointer;">
             </div>
         </div>
     </main>
+
+    <!-- Modal -->
+    <div class="modal" id="imageModal" onclick="closeModal(event)">
+        <button class="modal-close" onclick="closeModal()">✕</button>
+        <img src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/scoreboard.png" alt="Başarı Kanıtı" class="modal-content" onclick="event.stopPropagation()">
+    </div>
 
     <footer>
         <div class="footer-content">
@@ -232,5 +288,24 @@
             <p>&copy; 2025 Yiğit Atmaca. Tüm hakları saklıdır.</p>
         </div>
     </footer>
+
+    <script>
+        function openModal() {
+            document.getElementById('imageModal').classList.add('active');
+        }
+
+        function closeModal(event) {
+            // Eğer boş alana tıklanırsa kapat
+            if (event && event.target.id !== 'imageModal') return;
+            document.getElementById('imageModal').classList.remove('active');
+        }
+
+        // ESC tuşu ile kapatma
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>
