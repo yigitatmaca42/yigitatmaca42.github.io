@@ -196,6 +196,52 @@
             color: var(--primary);
         }
 
+        .page-hidden {
+            display: none;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin: 3rem 0;
+        }
+
+        .pagination button {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            color: var(--text);
+            padding: 0.7rem 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .pagination button:hover:not(:disabled) {
+            background: rgba(0, 255, 136, 0.1);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .pagination button.active {
+            background: var(--primary);
+            color: var(--dark-bg);
+            border-color: var(--primary);
+            font-weight: 600;
+        }
+
+        .pagination button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .page-info {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
         footer {
             background: rgba(0, 0, 0, 0.5);
             border-top: 1px solid var(--primary);
@@ -236,6 +282,16 @@
             .container {
                 padding: 1rem;
             }
+
+            .pagination {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .pagination button {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.85rem;
+            }
         }
     </style>
 </head>
@@ -262,7 +318,8 @@
             🔒 Kişisel bilgi güvenliği nedeniyle sertifika detayları talep üzerine paylaşılabilir
         </div>
 
-        <div class="certificates-grid">
+        <!-- Sayfa 1 -->
+        <div class="certificates-grid page-1">
             <div class="certificate-card">
                 <div class="certificate-icon">🌐</div>
                 <h3>Web Uygulama Güvenliği ve Sızma Testi</h3>
@@ -335,6 +392,70 @@
                 </div>
             </div>
         </div>
+
+        <!-- Sayfa 2 -->
+        <div class="certificates-grid page-2 page-hidden">
+            <div class="certificate-card">
+                <div class="certificate-icon">🔌</div>
+                <h3>Nesnelerin İnterneti (IoT) ve Güvenliği</h3>
+                <div class="certificate-info">
+                    <div class="platform">BTK Akademi</div>
+                    <a href="/contact.html" class="availability-note">📧 Talep üzerine paylaşılabilir</a>
+                </div>
+            </div>
+
+            <div class="certificate-card">
+                <div class="certificate-icon">⚖️</div>
+                <h3>Patent ve Faydalı Modellerin Korunması</h3>
+                <div class="certificate-info">
+                    <div class="platform">BTK Akademi</div>
+                    <a href="/contact.html" class="availability-note">📧 Talep üzerine paylaşılabilir</a>
+                </div>
+            </div>
+
+            <div class="certificate-card">
+                <div class="certificate-icon">🎨</div>
+                <h3>Tasarımların Korunması</h3>
+                <div class="certificate-info">
+                    <div class="platform">BTK Akademi</div>
+                    <a href="/contact.html" class="availability-note">📧 Talep üzerine paylaşılabilir</a>
+                </div>
+            </div>
+
+            <div class="certificate-card">
+                <div class="certificate-icon">🏔️</div>
+                <h3>Coğrafi İşaretlerin Korunması</h3>
+                <div class="certificate-info">
+                    <div class="platform">BTK Akademi</div>
+                    <a href="/contact.html" class="availability-note">📧 Talep üzerine paylaşılabilir</a>
+                </div>
+            </div>
+
+            <div class="certificate-card">
+                <div class="certificate-icon">®️</div>
+                <h3>Markaların Korunması</h3>
+                <div class="certificate-info">
+                    <div class="platform">BTK Akademi</div>
+                    <a href="/contact.html" class="availability-note">📧 Talep üzerine paylaşılabilir</a>
+                </div>
+            </div>
+
+            <div class="certificate-card">
+                <div class="certificate-icon">🔍</div>
+                <h3>SIEM Temelleri</h3>
+                <div class="certificate-info">
+                    <div class="platform">BTK Akademi</div>
+                    <a href="/contact.html" class="availability-note">📧 Talep üzerine paylaşılabilir</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <button id="prevBtn" onclick="changePage(-1)">← Önceki</button>
+            <span class="page-info">Sayfa <span id="currentPage">1</span> / <span id="totalPages">2</span></span>
+            <button id="nextBtn" onclick="changePage(1)">Sonraki →</button>
+        </div>
     </main>
 
     <footer>
@@ -350,5 +471,47 @@
             <p style="margin-top: 0.5rem; color: #00ff88;">"Aklına birşey geldiyse yap, tereddütte kalma yoksa keşke dersin."</p>
         </div>
     </footer>
+
+    <script>
+        let currentPage = 1;
+        const totalPages = 2;
+
+        function showPage(page) {
+            // Tüm sayfaları gizle
+            document.querySelectorAll('[class^="page-"]').forEach(el => {
+                if (el.classList.contains('page-info')) return;
+                el.classList.add('page-hidden');
+            });
+
+            // İstenen sayfayı göster
+            const targetPage = document.querySelector(`.page-${page}`);
+            if (targetPage) {
+                targetPage.classList.remove('page-hidden');
+            }
+
+            // Sayfa bilgisini güncelle
+            document.getElementById('currentPage').textContent = page;
+
+            // Butonları güncelle
+            document.getElementById('prevBtn').disabled = (page === 1);
+            document.getElementById('nextBtn').disabled = (page === totalPages);
+
+            // Sayfayı en üste kaydır
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function changePage(direction) {
+            const newPage = currentPage + direction;
+            if (newPage >= 1 && newPage <= totalPages) {
+                currentPage = newPage;
+                showPage(currentPage);
+            }
+        }
+
+        // Sayfa yüklendiğinde ilk sayfayı göster
+        document.addEventListener('DOMContentLoaded', () => {
+            showPage(1);
+        });
+    </script>
 </body>
 </html>
