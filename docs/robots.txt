@@ -1,1 +1,5 @@
-/extra/batman.txt
+User-agent: *
+Disallow: /extra/
+
+# TODO: batman'i çok seviyorum
+# Developer note: Yolu takip Et
