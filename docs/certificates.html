@@ -127,11 +127,79 @@
             border-radius: 8px;
         }
 
+        .certificates-container {
+            position: relative;
+            overflow: hidden;
+            min-height: 600px;
+        }
+
         .certificates-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
             margin-bottom: 3rem;
+            opacity: 1;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .certificates-grid.slide-out-left {
+            animation: slideOutLeft 0.3s ease forwards;
+        }
+
+        .certificates-grid.slide-out-right {
+            animation: slideOutRight 0.3s ease forwards;
+        }
+
+        .certificates-grid.slide-in-left {
+            animation: slideInLeft 0.3s ease forwards;
+        }
+
+        .certificates-grid.slide-in-right {
+            animation: slideInRight 0.3s ease forwards;
+        }
+
+        @keyframes slideOutLeft {
+            from {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+        }
+
+        @keyframes slideOutRight {
+            from {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .certificate-card {
@@ -196,39 +264,41 @@
             color: var(--primary);
         }
 
-        .page-hidden {
-            display: none;
-        }
-
         .pagination {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 1rem;
+            gap: 0.5rem;
             margin: 3rem 0;
+            flex-wrap: wrap;
         }
 
-        .pagination button {
-            background: var(--card-bg);
-            border: 1px solid rgba(0, 255, 136, 0.2);
+        .pagination button,
+        .pagination .page-number {
+            background: transparent;
+            border: none;
             color: var(--text);
-            padding: 0.7rem 1.2rem;
-            border-radius: 5px;
+            padding: 0.5rem 0.8rem;
+            border-radius: 50%;
             cursor: pointer;
             transition: all 0.3s;
-            font-size: 0.95rem;
+            font-size: 1rem;
+            min-width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .pagination button:hover:not(:disabled) {
+        .pagination button:hover:not(:disabled),
+        .pagination .page-number:hover {
             background: rgba(0, 255, 136, 0.1);
-            border-color: var(--primary);
             color: var(--primary);
         }
 
-        .pagination button.active {
+        .pagination .page-number.active {
             background: var(--primary);
             color: var(--dark-bg);
-            border-color: var(--primary);
             font-weight: 600;
         }
 
@@ -237,9 +307,8 @@
             cursor: not-allowed;
         }
 
-        .page-info {
-            color: var(--text-light);
-            font-size: 0.95rem;
+        .pagination .arrow {
+            font-size: 1.2rem;
         }
 
         footer {
@@ -283,14 +352,12 @@
                 padding: 1rem;
             }
 
-            .pagination {
-                flex-wrap: wrap;
-                gap: 0.5rem;
-            }
-
-            .pagination button {
-                padding: 0.5rem 0.8rem;
-                font-size: 0.85rem;
+            .pagination button,
+            .pagination .page-number {
+                min-width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+                padding: 0.4rem 0.6rem;
             }
         }
     </style>
@@ -318,143 +385,14 @@
             🔒 Kişisel bilgi güvenliği nedeniyle sertifika detayları talep üzerine paylaşılabilir
         </div>
 
-        <!-- Sayfa 1 -->
-        <div class="certificates-grid page-1">
-            <div class="certificate-card">
-                <div class="certificate-icon">🌐</div>
-                <h3>Web Uygulama Güvenliği ve Sızma Testi</h3>
-                <div class="certificate-info">
-                    <div class="platform">BTK Akademi</div>
-                    <a href="/contact.html" class="availability-note">📧 Talep üzerine paylaşılabilir</a>
-                </div>
-            </div>
-
-            <div class="certificate-card">
-                <div class="certificate-icon">🐍</div>
-                <h3>Python ile Siber Güvenlik Uygulamaları</h3>
-                <div class="certificate-info">
-                    <div class="platform">BTK Akademi</div>
-                    <a href="/contact.html" class="availability-note">📧 Talep üzerine paylaşılabilir</a>
-                </div>
-            </div>
-
-            <div class="certificate-card">
-                <div class="certificate-icon">🛡️</div>
-                <h3>Güvenlik Duvarına Giriş</h3>
-                <div class="certificate-info">
-                    <div class="platform">BTK Akademi</div>
-                    <a href="/contact.html" class="availability-note">📧 Talep üzerine paylaşılabilir</a>
-                </div>
-            </div>
-
-            <div class="certificate-card">
-                <div class="certificate-icon">🐍</div>
-                <h3>Python Programlama Dili</h3>
-                <div class="certificate-info">
-                    <div class="platform">BTK Akademi</div>
-                    <a href="/contact.html" class="availability-note">📧 Talep üzerine paylaşılabilir</a>
-                </div>
-            </div>
-
-            <div class="certificate-card">
-                <div class="certificate-icon">🐧</div>
-                <h3>Kali Linux</h3>
-                <div class="certificate-info">
-                    <div class="platform">BTK Akademi</div>
-                    <a href="/contact.html" class="availability-note">📧 Talep üzerine paylaşılabilir</a>
-                </div>
-            </div>
-
-            <div class="certificate-card">
-                <div class="certificate-icon">🔐</div>
-                <h3>Siber Güvenliğe Giriş</h3>
-                <div class="certificate-info">
-                    <div class="platform">BTK Akademi</div>
-                    <a href="/contact.html" class="availability-note">📧 Talep üzerine paylaşılabilir</a>
-                </div>
-            </div>
-
-            <div class="certificate-card">
-                <div class="certificate-icon">📊</div>
-                <h3>Versiyon Kontrolleri: Git ve GitHub</h3>
-                <div class="certificate-info">
-                    <div class="platform">BTK Akademi</div>
-                    <a href="/contact.html" class="availability-note">📧 Talep üzerine paylaşılabilir</a>
-                </div>
-            </div>
-
-            <div class="certificate-card">
-                <div class="certificate-icon">🚀</div>
-                <h3>Sıfırdan İleri Seviye Python Programlama</h3>
-                <div class="certificate-info">
-                    <div class="platform">BTK Akademi</div>
-                    <a href="/contact.html" class="availability-note">📧 Talep üzerine paylaşılabilir</a>
-                </div>
+        <div class="certificates-container">
+            <div id="certificatesGrid" class="certificates-grid">
+                <!-- Sertifikalar JavaScript ile yüklenecek -->
             </div>
         </div>
 
-        <!-- Sayfa 2 -->
-        <div class="certificates-grid page-2 page-hidden">
-            <div class="certificate-card">
-                <div class="certificate-icon">🔌</div>
-                <h3>Nesnelerin İnterneti (IoT) ve Güvenliği</h3>
-                <div class="certificate-info">
-                    <div class="platform">BTK Akademi</div>
-                    <a href="/contact.html" class="availability-note">📧 Talep üzerine paylaşılabilir</a>
-                </div>
-            </div>
-
-            <div class="certificate-card">
-                <div class="certificate-icon">⚖️</div>
-                <h3>Patent ve Faydalı Modellerin Korunması</h3>
-                <div class="certificate-info">
-                    <div class="platform">BTK Akademi</div>
-                    <a href="/contact.html" class="availability-note">📧 Talep üzerine paylaşılabilir</a>
-                </div>
-            </div>
-
-            <div class="certificate-card">
-                <div class="certificate-icon">🎨</div>
-                <h3>Tasarımların Korunması</h3>
-                <div class="certificate-info">
-                    <div class="platform">BTK Akademi</div>
-                    <a href="/contact.html" class="availability-note">📧 Talep üzerine paylaşılabilir</a>
-                </div>
-            </div>
-
-            <div class="certificate-card">
-                <div class="certificate-icon">🏔️</div>
-                <h3>Coğrafi İşaretlerin Korunması</h3>
-                <div class="certificate-info">
-                    <div class="platform">BTK Akademi</div>
-                    <a href="/contact.html" class="availability-note">📧 Talep üzerine paylaşılabilir</a>
-                </div>
-            </div>
-
-            <div class="certificate-card">
-                <div class="certificate-icon">®️</div>
-                <h3>Markaların Korunması</h3>
-                <div class="certificate-info">
-                    <div class="platform">BTK Akademi</div>
-                    <a href="/contact.html" class="availability-note">📧 Talep üzerine paylaşılabilir</a>
-                </div>
-            </div>
-
-            <div class="certificate-card">
-                <div class="certificate-icon">🔍</div>
-                <h3>SIEM Temelleri</h3>
-                <div class="certificate-info">
-                    <div class="platform">BTK Akademi</div>
-                    <a href="/contact.html" class="availability-note">📧 Talep üzerine paylaşılabilir</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Pagination -->
-        <div class="pagination">
-            <button id="prevBtn" onclick="changePage(-1)">← Önceki</button>
-            <span class="page-info">Sayfa <span id="currentPage">1</span> / <span id="totalPages">2</span></span>
-            <button id="nextBtn" onclick="changePage(1)">Sonraki →</button>
+        <div class="pagination" id="pagination">
+            <!-- Pagination JavaScript ile oluşturulacak -->
         </div>
     </main>
 
@@ -473,44 +411,143 @@
     </footer>
 
     <script>
+        // Tüm sertifikalar
+        const certificates = [
+            { icon: '🌐', title: 'Web Uygulama Güvenliği ve Sızma Testi', platform: 'BTK Akademi' },
+            { icon: '🐍', title: 'Python ile Siber Güvenlik Uygulamaları', platform: 'BTK Akademi' },
+            { icon: '🛡️', title: 'Güvenlik Duvarına Giriş', platform: 'BTK Akademi' },
+            { icon: '🐍', title: 'Python Programlama Dili', platform: 'BTK Akademi' },
+            { icon: '🐧', title: 'Kali Linux', platform: 'BTK Akademi' },
+            { icon: '🔐', title: 'Siber Güvenliğe Giriş', platform: 'BTK Akademi' },
+            { icon: '📊', title: 'Versiyon Kontrolleri: Git ve GitHub', platform: 'BTK Akademi' },
+            { icon: '🚀', title: 'Sıfırdan İleri Seviye Python Programlama', platform: 'BTK Akademi' },
+            { icon: '🔌', title: 'Nesnelerin İnterneti (IoT) ve Güvenliği', platform: 'BTK Akademi' },
+            { icon: '⚖️', title: 'Patent ve Faydalı Modellerin Korunması', platform: 'BTK Akademi' },
+            { icon: '🎨', title: 'Tasarımların Korunması', platform: 'BTK Akademi' },
+            { icon: '🏔️', title: 'Coğrafi İşaretlerin Korunması', platform: 'BTK Akademi' },
+            { icon: '®️', title: 'Markaların Korunması', platform: 'BTK Akademi' },
+            { icon: '🔍', title: 'SIEM Temelleri', platform: 'BTK Akademi' }
+        ];
+
+        const ITEMS_PER_PAGE = 4;
+        const MAX_VISIBLE_PAGES = 5;
         let currentPage = 1;
-        const totalPages = 2;
+        let totalPages = Math.ceil(certificates.length / ITEMS_PER_PAGE);
+        let animating = false;
 
-        function showPage(page) {
-            // Tüm sayfaları gizle
-            document.querySelectorAll('[class^="page-"]').forEach(el => {
-                if (el.classList.contains('page-info')) return;
-                el.classList.add('page-hidden');
-            });
+        function renderCertificates(page, direction = null) {
+            if (animating) return;
+            
+            const grid = document.getElementById('certificatesGrid');
+            const startIndex = (page - 1) * ITEMS_PER_PAGE;
+            const endIndex = Math.min(startIndex + ITEMS_PER_PAGE, certificates.length);
+            const pageCertificates = certificates.slice(startIndex, endIndex);
 
-            // İstenen sayfayı göster
-            const targetPage = document.querySelector(`.page-${page}`);
-            if (targetPage) {
-                targetPage.classList.remove('page-hidden');
+            if (direction) {
+                animating = true;
+                const outClass = direction === 'next' ? 'slide-out-left' : 'slide-out-right';
+                grid.classList.add(outClass);
+
+                setTimeout(() => {
+                    grid.innerHTML = '';
+                    pageCertificates.forEach(cert => {
+                        const card = document.createElement('div');
+                        card.className = 'certificate-card';
+                        card.innerHTML = `
+                            <div class="certificate-icon">${cert.icon}</div>
+                            <h3>${cert.title}</h3>
+                            <div class="certificate-info">
+                                <div class="platform">${cert.platform}</div>
+                                <a href="/contact.html" class="availability-note">📧 Talep üzerine paylaşılabilir</a>
+                            </div>
+                        `;
+                        grid.appendChild(card);
+                    });
+
+                    grid.classList.remove(outClass);
+                    const inClass = direction === 'next' ? 'slide-in-right' : 'slide-in-left';
+                    grid.classList.add(inClass);
+
+                    setTimeout(() => {
+                        grid.classList.remove(inClass);
+                        animating = false;
+                    }, 300);
+                }, 300);
+            } else {
+                grid.innerHTML = '';
+                pageCertificates.forEach(cert => {
+                    const card = document.createElement('div');
+                    card.className = 'certificate-card';
+                    card.innerHTML = `
+                        <div class="certificate-icon">${cert.icon}</div>
+                        <h3>${cert.title}</h3>
+                        <div class="certificate-info">
+                            <div class="platform">${cert.platform}</div>
+                            <a href="/contact.html" class="availability-note">📧 Talep üzerine paylaşılabilir</a>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            }
+        }
+
+        function renderPagination() {
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = '';
+
+            // Sol ok
+            const prevBtn = document.createElement('button');
+            prevBtn.className = 'arrow';
+            prevBtn.innerHTML = '‹';
+            prevBtn.disabled = currentPage === 1;
+            prevBtn.onclick = () => goToPage(currentPage - 1, 'prev');
+            pagination.appendChild(prevBtn);
+
+            // Sayfa numaraları
+            let startPage = 1;
+            let endPage = totalPages;
+
+            if (totalPages > MAX_VISIBLE_PAGES) {
+                const halfVisible = Math.floor(MAX_VISIBLE_PAGES / 2);
+                startPage = Math.max(1, currentPage - halfVisible);
+                endPage = Math.min(totalPages, startPage + MAX_VISIBLE_PAGES - 1);
+                
+                if (endPage - startPage < MAX_VISIBLE_PAGES - 1) {
+                    startPage = Math.max(1, endPage - MAX_VISIBLE_PAGES + 1);
+                }
             }
 
-            // Sayfa bilgisini güncelle
-            document.getElementById('currentPage').textContent = page;
+            for (let i = startPage; i <= endPage; i++) {
+                const pageBtn = document.createElement('div');
+                pageBtn.className = 'page-number' + (i === currentPage ? ' active' : '');
+                pageBtn.textContent = i;
+                pageBtn.onclick = () => goToPage(i);
+                pagination.appendChild(pageBtn);
+            }
 
-            // Butonları güncelle
-            document.getElementById('prevBtn').disabled = (page === 1);
-            document.getElementById('nextBtn').disabled = (page === totalPages);
+            // Sağ ok
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'arrow';
+            nextBtn.innerHTML = '›';
+            nextBtn.disabled = currentPage === totalPages;
+            nextBtn.onclick = () => goToPage(currentPage + 1, 'next');
+            pagination.appendChild(nextBtn);
+        }
 
-            // Sayfayı en üste kaydır
+        function goToPage(page, direction = null) {
+            if (page < 1 || page > totalPages || page === currentPage || animating) return;
+            
+            const dir = direction || (page > currentPage ? 'next' : 'prev');
+            currentPage = page;
+            renderCertificates(currentPage, dir);
+            renderPagination();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function changePage(direction) {
-            const newPage = currentPage + direction;
-            if (newPage >= 1 && newPage <= totalPages) {
-                currentPage = newPage;
-                showPage(currentPage);
-            }
-        }
-
-        // Sayfa yüklendiğinde ilk sayfayı göster
+        // İlk yükleme
         document.addEventListener('DOMContentLoaded', () => {
-            showPage(1);
+            renderCertificates(1);
+            renderPagination();
         });
     </script>
 </body>
