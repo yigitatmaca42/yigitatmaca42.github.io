@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sertifikalar - TYA Cyber</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00ff88;
+            --secondary: #ff006e;
+            --dark-bg: #0a0e27;
+            --card-bg: #1a1f3a;
+            --text: #e0e0e0;
+            --text-light: #999;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text);
+            font-weight: 400;
+        }
+
+        header {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(10, 14, 39, 0.9) 100%);
+            border-bottom: 2px solid var(--primary);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            line-height: 1;
+        }
+
+        .header-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5),
+                         0 0 40px rgba(0, 255, 136, 0.3),
+                         0 0 60px rgba(0, 255, 136, 0.2);
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 0 0 20px rgba(0, 255, 136, 0.5),
+                             0 0 40px rgba(0, 255, 136, 0.3),
+                             0 0 60px rgba(0, 255, 136, 0.2);
+            }
+            50% {
+                text-shadow: 0 0 30px rgba(0, 255, 136, 0.8),
+                             0 0 60px rgba(0, 255, 136, 0.5),
+                             0 0 90px rgba(0, 255, 136, 0.3);
+            }
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .privacy-note {
+            text-align: center;
+            color: var(--primary);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 8px;
+        }
+
+
+
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .certificate-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 8px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .certificate-card:hover {
+            background: rgba(0, 255, 136, 0.1);
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.2);
+        }
+
+        .certificate-icon {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .certificate-card h3 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .certificate-info {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .certificate-info .platform {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+
+
+        .availability-note {
+            display: block;
+            margin-top: 1rem;
+            padding: 0.7rem;
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            color: var(--text-light);
+            text-align: center;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .availability-note:hover {
+            background: rgba(0, 255, 136, 0.1);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.5);
+            border-top: 1px solid var(--primary);
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .certificates-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                gap: 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="/" class="logo">
+                <img src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/logo.png" alt="TYA Cyber Logo" class="logo-img">
+                TYA Cyber
+            </a>
+            <nav>
+                <a href="/">Ana Sayfa</a>
+                <a href="/achievements.html">Başarılar</a>
+                <a href="/certificates.html">Sertifikalar</a>
+                <a href="/contact.html">İletişim</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>🎓 Sertifikalarım</h1>
+        <p class="page-subtitle">Profesyonel gelişim yolculuğumda aldığım sertifikalar</p>
+        <div class="privacy-note">
+            🔒 Kişisel bilgi güvenliği nedeniyle sertifika detayları talep üzerine paylaşılabilir
+        </div>
+
+
+
+        <div class="certificates-grid">
+            <div class="certificate-card">
+                <div class="certificate-icon">🛡️</div>
+                <h3>Güvenlik Duvarına Giriş</h3>
+                <div class="certificate-info">
+                    <div class="platform">BTK Akademi</div>
+                    <a href="/contact.html" class="availability-note">📧 Talep üzerine paylaşılabilir</a>
+                </div>
+            </div>
+
+            <div class="certificate-card">
+                <div class="certificate-icon">🐍</div>
+                <h3>Python Programlama Dili</h3>
+                <div class="certificate-info">
+                    <div class="platform">BTK Akademi</div>
+                    <a href="/contact.html" class="availability-note">📧 Talep üzerine paylaşılabilir</a>
+                </div>
+            </div>
+
+            <div class="certificate-card">
+                <div class="certificate-icon">🐧</div>
+                <h3>Kali Linux</h3>
+                <div class="certificate-info">
+                    <div class="platform">BTK Akademi</div>
+                    <a href="/contact.html" class="availability-note">📧 Talep üzerine paylaşılabilir</a>
+                </div>
+            </div>
+
+            <div class="certificate-card">
+                <div class="certificate-icon">🔐</div>
+                <h3>Siber Güvenliğe Giriş</h3>
+                <div class="certificate-info">
+                    <div class="platform">BTK Akademi</div>
+                    <a href="/contact.html" class="availability-note">📧 Talep üzerine paylaşılabilir</a>
+                </div>
+            </div>
+
+            <div class="certificate-card">
+                <div class="certificate-icon">📊</div>
+                <h3>Versiyon Kontrolleri: Git ve GitHub</h3>
+                <div class="certificate-info">
+                    <div class="platform">BTK Akademi</div>
+                    <a href="/contact.html" class="availability-note">📧 Talep üzerine paylaşılabilir</a>
+                </div>
+            </div>
+
+            <div class="certificate-card">
+                <div class="certificate-icon">🚀</div>
+                <h3>Sıfırdan İleri Seviye Python Programlama</h3>
+                <div class="certificate-info">
+                    <div class="platform">BTK Akademi</div>
+                    <a href="/contact.html" class="availability-note">📧 Talep üzerine paylaşılabilir</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="/">Ana Sayfa</a>
+            <a href="/achievements.html">Başarılar</a>
+            <a href="/contact.html">İletişim</a>
+            <a href="https://github.com/yigitatmaca42">GitHub</a>
+        </div>
+        <p>&copy; 2025 Yiğit Atmaca. Tüm hakları saklıdır.</p>
+        <p style="margin-top: 0.5rem; color: #00ff88;">"Aklına birşey geldiyse yap, tereddütte kalma yoksa keşke dersin."</p>
+    </footer>
+</body>
+</html>
