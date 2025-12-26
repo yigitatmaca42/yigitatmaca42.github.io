@@ -113,7 +113,49 @@
             text-align: center;
             color: var(--text-light);
             font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Stats Bar Styles */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem auto 2rem;
+            padding: 0;
+            max-width: 800px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem 2rem;
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 12px;
+            flex: 1;
+            transition: all 0.3s;
+            cursor: default;
+        }
+
+        .stat-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
             margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .privacy-note {
@@ -340,6 +382,20 @@
                 font-size: 1.8rem;
             }
 
+            .stats-bar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+
+            .stat-item {
+                padding: 1.2rem 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
             .certificates-grid {
                 grid-template-columns: 1fr;
             }
@@ -381,6 +437,15 @@
     <main class="container">
         <h1>🎓 Sertifikalarım</h1>
         <p class="page-subtitle">Profesyonel gelişim yolculuğumda aldığım sertifikalar</p>
+        
+        <!-- Stats Bar -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-number" id="totalCerts">16</div>
+                <div class="stat-label">Toplam Sertifika</div>
+            </div>
+        </div>
+
         <div class="privacy-note">
             🔒 Kişisel bilgi güvenliği nedeniyle sertifika detayları talep üzerine paylaşılabilir
         </div>
@@ -428,7 +493,7 @@
             { icon: '™️', title: 'Markaların Korunması', platform: 'BTK Akademi' },
             { icon: '🔍', title: 'SIEM Temelleri', platform: 'BTK Akademi' },
             { icon: '🎯', title: 'Siber Olay Tespit ve Müdahale', platform: 'BTK Akademi' },
-            { icon: '⚡', title: 'Siber Olaylara Müdahale', platform: 'BTK Akademi' }
+            { icon: '⚡', title: 'Siber Olaylara Müdahale', platform: 'BTK Akademi' 
         ];
 
         const ITEMS_PER_PAGE = 4;
@@ -548,6 +613,9 @@
 
         // İlk yükleme
         document.addEventListener('DOMContentLoaded', () => {
+            // Toplam sertifika sayısını güncelle
+            document.getElementById('totalCerts').textContent = certificates.length;
+            
             renderCertificates(1);
             renderPagination();
         });
