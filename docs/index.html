@@ -26,6 +26,75 @@
             color: var(--text);
             line-height: 1.6;
             font-weight: 400;
+            overflow-x: hidden;
+        }
+
+        /* Intro Animation */
+        #intro-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #0a0e27;
+            z-index: 10000;
+            pointer-events: none;
+        }
+
+        #intro-animation.hidden {
+            display: none;
+        }
+
+        #yigti-intro-text {
+            font-size: 8rem;
+            font-weight: bold;
+            color: var(--primary);
+            font-family: 'Courier New', monospace;
+            text-shadow: 0 0 30px rgba(0, 255, 136, 0.8),
+                         0 0 60px rgba(0, 255, 136, 0.5);
+            animation: fadeInOut 4s ease-in-out forwards;
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            30% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            70% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1.2);
+                filter: blur(10px);
+            }
+        }
+
+        #binary-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        #binary-canvas.active {
+            animation: binaryFadeIn 1.5s forwards;
+        }
+
+        @keyframes binaryFadeIn {
+            to { opacity: 0.3; }
         }
 
         /* Header & Navigation */
@@ -37,6 +106,12 @@
             top: 0;
             z-index: 1000;
             line-height: 1;
+            opacity: 0;
+            animation: headerFadeIn 0.5s ease 4.5s forwards;
+        }
+
+        @keyframes headerFadeIn {
+            to { opacity: 1; }
         }
 
         .header-content {
@@ -85,6 +160,14 @@
             max-width: 1000px;
             margin: 0 auto;
             padding: 0 2rem;
+            position: relative;
+            z-index: 10;
+            opacity: 0;
+            animation: contentFadeIn 0.8s ease 5s forwards;
+        }
+
+        @keyframes contentFadeIn {
+            to { opacity: 1; }
         }
 
         /* Hero Section */
@@ -257,35 +340,14 @@
             border-radius: 5px;
         }
 
-        /* Quick Links */
-        .quick-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .quick-links a {
-            padding: 0.7rem 1.5rem;
-            background: rgba(0, 255, 136, 0.1);
-            border: 1px solid var(--primary);
-            color: var(--primary);
-            text-decoration: none;
-            border-radius: 5px;
-            transition: all 0.3s;
-        }
-
-        .quick-links a:hover {
-            background: var(--primary);
-            color: var(--dark-bg);
-        }
-
         /* Footer */
         footer {
             background: rgba(0, 0, 0, 0.5);
             border-top: 1px solid var(--primary);
             padding: 2rem 0;
             margin-top: 4rem;
+            position: relative;
+            z-index: 10;
         }
 
         .footer-content {
@@ -312,6 +374,10 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            #yigti-intro-text {
+                font-size: 4rem;
+            }
+
             .hero h1 {
                 font-size: 2rem;
             }
@@ -339,6 +405,13 @@
     </style>
 </head>
 <body>
+    <!-- Intro Animation -->
+    <div id="intro-animation">
+        <div id="yigti-intro-text">YigTi</div>
+    </div>
+    
+    <canvas id="binary-canvas"></canvas>
+
     <header>
         <div class="header-content">
             <a href="/" class="logo">
@@ -416,7 +489,6 @@
             </div>
         </section>
 
-        
         <section class="section">
             <div class="quote">
                 "Zaman Durmuyor, Siz de Yerinizde Durmayın! ~ TYA Cyber"
@@ -437,5 +509,80 @@
             <p style="margin-top: 0.5rem; color: #00ff88;">"Aklına birşey geldiyse yap, tereddütte kalma yoksa keşke dersin."</p>
         </div>
     </footer>
+
+    <script>
+        const introAnimation = document.getElementById('intro-animation');
+        const canvas = document.getElementById('binary-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Start binary animation after intro
+        setTimeout(() => {
+            canvas.classList.add('active');
+            setTimeout(() => {
+                introAnimation.classList.add('hidden');
+                startBinary();
+            }, 1500);
+        }, 4000);
+
+        // Binary code rain
+        class BinaryStream {
+            constructor(x, speed) {
+                this.x = x;
+                this.y = Math.random() * -500;
+                this.speed = speed;
+                this.binary = Math.random() > 0.5 ? '1' : '0';
+                this.opacity = Math.random() * 0.5 + 0.5;
+            }
+
+            update() {
+                this.y += this.speed;
+                if (this.y > canvas.height) {
+                    this.y = -50;
+                    this.binary = Math.random() > 0.5 ? '1' : '0';
+                }
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(0, 255, 136, ${this.opacity})`;
+                ctx.font = '20px monospace';
+                ctx.fillText(this.binary, this.x, this.y);
+            }
+        }
+
+        const streams = [];
+        const streamCount = Math.floor(canvas.width / 30);
+
+        for (let i = 0; i < streamCount; i++) {
+            const x = i * 30;
+            const speed = Math.random() * 3 + 2;
+            
+            for (let j = 0; j < 20; j++) {
+                streams.push(new BinaryStream(x, speed));
+            }
+        }
+
+        function startBinary() {
+            function animate() {
+                ctx.fillStyle = 'rgba(10, 14, 39, 0.15)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                streams.forEach(stream => {
+                    stream.update();
+                    stream.draw();
+                });
+
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
 </body>
 </html>
