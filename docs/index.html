@@ -1,10 +1,521 @@
-// Binary code rain with "By YigTi"
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ana Sayfa - TYA Cyber</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00ff88;
+            --secondary: #ff006e;
+            --dark-bg: #0a0e27;
+            --card-bg: #1a1f3a;
+            --text: #e0e0e0;
+            --text-light: #999;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-weight: 400;
+            overflow-x: hidden;
+        }
+
+        #intro-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #0a0e27;
+            z-index: 10000;
+            pointer-events: none;
+        }
+
+        #intro-animation.hidden {
+            display: none;
+        }
+
+        #yigti-intro-text {
+            font-size: 8rem;
+            font-weight: bold;
+            color: var(--primary);
+            font-family: 'Courier New', monospace;
+            text-shadow: 0 0 30px rgba(0, 255, 136, 0.8),
+                         0 0 60px rgba(0, 255, 136, 0.5);
+            animation: fadeInOut 4s ease-in-out forwards;
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            30% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            70% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1.2);
+                filter: blur(10px);
+            }
+        }
+
+        #binary-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        #binary-canvas.active {
+            animation: binaryFadeIn 1.5s forwards;
+        }
+
+        @keyframes binaryFadeIn {
+            to { opacity: 0.3; }
+        }
+
+        header {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(10, 14, 39, 0.9) 100%);
+            border-bottom: 2px solid var(--primary);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            line-height: 1;
+            opacity: 0;
+            animation: headerFadeIn 0.5s ease 4.5s forwards;
+        }
+
+        @keyframes headerFadeIn {
+            to { opacity: 1; }
+        }
+
+        .header-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 10;
+            opacity: 0;
+            animation: contentFadeIn 0.8s ease 5s forwards;
+        }
+
+        @keyframes contentFadeIn {
+            to { opacity: 1; }
+        }
+
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5),
+                         0 0 40px rgba(0, 255, 136, 0.3),
+                         0 0 60px rgba(0, 255, 136, 0.2);
+            font-weight: 600;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 0 0 20px rgba(0, 255, 136, 0.5),
+                             0 0 40px rgba(0, 255, 136, 0.3),
+                             0 0 60px rgba(0, 255, 136, 0.2);
+            }
+            50% {
+                text-shadow: 0 0 30px rgba(0, 255, 136, 0.8),
+                             0 0 60px rgba(0, 255, 136, 0.5),
+                             0 0 90px rgba(0, 255, 136, 0.3);
+            }
+        }
+
+        .hero .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        .section {
+            margin: 3rem 0;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .about-content {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .about-content h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .about-content p {
+            color: var(--text);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .about-content ul li {
+            color: var(--text);
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .about-content ul li:before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .interest-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .interest-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 8px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .interest-card:hover {
+            background: rgba(0, 255, 136, 0.1);
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.2);
+        }
+
+        .interest-card h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .interest-card p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .goals-section {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .goals-section h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .goals-section p {
+            color: var(--text);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .quote {
+            text-align: center;
+            font-style: italic;
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(0, 255, 136, 0.05);
+            border-left: 3px solid var(--primary);
+            border-radius: 5px;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.5);
+            border-top: 1px solid var(--primary);
+            padding: 2rem 0;
+            margin-top: 4rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-content {
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        @media (max-width: 768px) {
+            #yigti-intro-text {
+                font-size: 4rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            nav {
+                gap: 1rem;
+            }
+
+            nav a {
+                font-size: 0.85rem;
+            }
+
+            .header-content {
+                padding: 0 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .interest-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="intro-animation">
+        <div id="yigti-intro-text">YigTi</div>
+    </div>
+    
+    <canvas id="binary-canvas"></canvas>
+
+    <header>
+        <div class="header-content">
+            <a href="/" class="logo">
+                <img src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/logo.png" alt="TYA Cyber Logo" class="logo-img">
+                TYA Cyber
+            </a>
+            <nav>
+                <a href="/">Ana Sayfa</a>
+                <a href="achievements.html">Başarılar</a>
+                <a href="certificates.html">Sertifikalar</a>
+                <a href="contact.html">İletişim</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h1>Merhaba, Ben YigTi 👋</h1>
+            <p class="subtitle">Siber Güvenlik | CTF | Yazılım Geliştirme</p>
+            <p>
+                Pendik İTO Ticaret Mesleki ve Teknik Anadolu Lisesi Bilişim bölümü 10. sınıf öğrencisiyim. Henüz lise yıllarımda olsam da, teknoloji dünyasına olan tutkum beni her gün yeni şeyler öğrenmeye ve kendimi geliştirmeye itiyor.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Hakkımda</h2>
+            <div class="about-content">
+                <h3>🔐 Siber Güvenlik Tutkum</h3>
+                <p>
+                    Siber güvenlik, benim için sadece bir ilgi alanı değil, aynı zamanda gelecekte profesyonel kariyerimi inşa etmek istediğim bir alan. Dijital dünyanın giderek daha karmaşık hale geldiği şu dönemde, sistemleri korumak ve güvenlik açıklarını keşfetmek bana hem heyecan verici hem de anlamlı bir hedef sunuyor.
+                </p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>İlgi Alanlarım</h2>
+            <div class="interest-grid">
+                <div class="interest-card">
+                    <h4>🚩 CTF Yarışmaları</h4>
+                    <p>
+                        CTF (Capture The Flag) yarışmaları, teorik bilgilerimi pratiğe dökebileceğim en iyi platformlardan biri. Farklı güvenlik açıklarını keşfediyor, problem çözme becerilerimi geliştiriyor ve gerçek dünya senaryolarına benzer zorluklarla karşılaşıyorum.
+                    </p>
+                </div>
+                <div class="interest-card">
+                    <h4>🔍 Güvenlik Araştırmaları</h4>
+                    <p>
+                        Kendi başıma güvenlik araştırmaları yaparak, sistemlerin nasıl çalıştığını ve nasıl korunabileceğini öğrenmeye çalışıyorum. Her keşif, bana yeni bir bakış açısı kazandırıyor.
+                    </p>
+                </div>
+                <div class="interest-card">
+                    <h4>💻 Yazılım Geliştirme</h4>
+                    <p>
+                        Güvenli yazılımlar geliştirebilmek için kodlamanın temellerini sağlam bir şekilde öğrenmenin önemli olduğuna inanıyorum. Bu nedenle çeşitli projeler üzerinde çalışıyor ve deneyim kazanıyorum.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Hedeflerim</h2>
+            <div class="goals-section">
+                <p>
+                    Önümde uzun bir yol olduğunun farkındayım, ancak her gün attığım küçük adımların beni hedeflerime yaklaştırdığına inanıyorum. Teknoloji dünyasında iz bırakmak, güvenli sistemler oluşturmaya katkıda bulunmak ve sürekli öğrenmeye devam etmek en büyük motivasyonum.
+                </p>
+                <p>
+                    Bu yolculukta edindiğim bilgileri paylaşmayı, benzer ilgi alanlarına sahip insanlarla iletişim kurmayı ve birlikte büyümeyi hedefliyorum.
+                </p>
+                <div class="quote">
+                    "Güvenlik, bir hedef değil, sürekli bir yolculuktur."
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="quote">
+                "Zaman Durmuyor, Siz de Yerinizde Durmayın! ~ TYA Cyber"
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="./">Ana Sayfa</a>
+                <a href="achievements.html">Başarılar</a>
+                <a href="certificates.html">Sertifikalar</a>
+                <a href="contact.html">İletişim</a>
+                <a href="https://github.com/yigitatmaca42">GitHub</a>
+            </div>
+            <p>&copy; 2025 Yiğit Atmaca. Tüm hakları saklıdır.</p>
+            <p style="margin-top: 0.5rem; color: #00ff88;">"Aklına birşey geldiyse yap, tereddütte kalma yoksa keşke dersin."</p>
+        </div>
+    </footer>
+
+    <script>
+        const introAnimation = document.getElementById('intro-animation');
+        const canvas = document.getElementById('binary-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        setTimeout(() => {
+            canvas.classList.add('active');
+            setTimeout(() => {
+                introAnimation.classList.add('hidden');
+                startBinary();
+            }, 1500);
+        }, 4000);
+
         class BinaryStream {
             constructor(x, speed) {
                 this.x = x;
                 this.y = Math.random() * -800;
                 this.speed = speed;
-                // Daha sık "By YigTi" yazsın
                 const rand = Math.random();
                 if (rand > 0.85) {
                     this.text = 'By YigTi';
@@ -20,7 +531,6 @@
                 this.y += this.speed;
                 if (this.y > canvas.height + 50) {
                     this.y = -50;
-                    // Yeniden random olarak belirle
                     const rand = Math.random();
                     if (rand > 0.85) {
                         this.text = 'By YigTi';
@@ -58,3 +568,36 @@
                 streams.push(new BinaryStream(x, speed));
             }
         }
+
+        let lastTime = 0;
+        const fps = 60;
+        const frameDelay = 1000 / fps;
+
+        function startBinary() {
+            function animate(currentTime) {
+                if (currentTime - lastTime < frameDelay) {
+                    requestAnimationFrame(animate);
+                    return;
+                }
+                lastTime = currentTime;
+
+                ctx.fillStyle = 'rgba(10, 14, 39, 0.15)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                streams.forEach(stream => {
+                    stream.update();
+                    stream.draw();
+                });
+
+                requestAnimationFrame(animate);
+            }
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
