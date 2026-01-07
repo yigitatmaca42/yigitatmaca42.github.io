@@ -470,12 +470,14 @@
                 <a href="contact.html">İletişim</a>
                 <a href="https://github.com/yigitatmaca42">GitHub</a>
             </div>
-            <p>&copy; 2025 Yiğit Atmaca. Tüm hakları saklıdır.</p>
+            <p>&copy; <span id="current-year"></span> Yiğit Atmaca. Tüm hakları saklıdır.</p>
             <p style="margin-top: 0.5rem; color: #00ff88;">"Aklına birşey geldiyse yap, tereddütte kalma yoksa keşke dersin."</p>
         </div>
     </footer>
-
     <script>
+        // Otomatik yıl güncelleme
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
         // Tüm sertifikalar
         const certificates = [
             { icon: '🌐', title: 'Web Uygulama Güvenliği ve Sızma Testi', platform: 'BTK Akademi' },
