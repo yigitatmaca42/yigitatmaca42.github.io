@@ -433,9 +433,12 @@
                 <a href="contact.html">İletişim</a>
                 <a href="https://github.com/yigitatmaca42">GitHub</a>
             </div>
-            <p>&copy; 2025 Yiğit Atmaca. Tüm hakları saklıdır.</p>
+            <p>&copy; <span id="current-year"></span> Yiğit Atmaca. Tüm hakları saklıdır.</p>
             <p style="margin-top: 0.5rem; color: #00ff88;">"Aklına birşey geldiyse yap, tereddütte kalma yoksa keşke dersin."</p>
         </div>
     </footer>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
