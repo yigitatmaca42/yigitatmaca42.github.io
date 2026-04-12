@@ -117,6 +117,7 @@
             border: 1px solid rgba(0, 255, 136, 0.2);
             border-radius: 8px;
             padding: 2rem;
+            margin-bottom: 2rem;
         }
 
         .achievement-content h2 {
@@ -201,7 +202,7 @@
 
         .modal-nav:hover {
             background: rgba(0, 255, 136, 0.5);
-            transform: translateY(-50%) scale(1.2);
+            transform: translateY(-50%) scale(1.1);
         }
 
         .modal-prev {
@@ -216,6 +217,7 @@
             max-width: 90%;
             max-height: 90vh;
             object-fit: contain;
+            border-radius: 8px;
         }
 
         footer {
@@ -231,6 +233,7 @@
             justify-content: center;
             gap: 2rem;
             margin-bottom: 1rem;
+            flex-wrap: wrap;
         }
 
         .footer-links a {
@@ -253,10 +256,34 @@
 
             nav {
                 gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: flex-end;
             }
 
             .container {
                 padding: 1rem;
+            }
+
+            .header-content {
+                padding: 0 1rem;
+            }
+
+            .modal-nav {
+                font-size: 2rem;
+                padding: 1rem 1.2rem;
+            }
+
+            .modal-prev {
+                left: 10px;
+            }
+
+            .modal-next {
+                right: 10px;
+            }
+
+            .modal-close {
+                top: 10px;
+                right: 15px;
             }
         }
     </style>
@@ -282,13 +309,36 @@
 
         <div class="achievement-container">
             <div class="achievement-content">
-                <h2>Türkiye Siber Güvenlik Kümelenmesi & GençTek</h2>
+                <h2>Türkiye Siber Güvenlik Kümelenmesi &amp; GençTek</h2>
                 <p><strong>Liseler Arası Online Siber Güvenlik (CTF)</strong></p>
                 <p>5.'lik Başarısı</p>
                 <div class="achievement-date">17 Aralık 2025</div>
             </div>
             <div>
-                <img src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/TSGKCTF25/scoreboard.png" alt="Başarı Kanıtı" class="clickable-image" onclick="openModal()">
+                <img
+                    src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/TSGKCTF25/scoreboard.png"
+                    alt="TSGK CTF Başarı Kanıtı"
+                    class="clickable-image"
+                    onclick="openModal('tsgk')"
+                >
+            </div>
+        </div>
+
+        <div class="achievement-container">
+            <div class="achievement-content">
+                <h2>Karadeniz Teknik Üniversitesi - BEiNG-WISE CTF</h2>
+                <p><strong>Ulusal Siber Güvenlik Yarışması</strong></p>
+                <p>Karadeniz Teknik Üniversitesi tarafından düzenlenen ulusal bir yarışmaydı.</p>
+                <p>Organizasyonda KTU, KTUSEC, Kosova Siber Ekibi, RISE &amp; BEiNG-WISE ekipleri yer aldı.</p>
+                <div class="achievement-date">28-29 Kasım 2025</div>
+            </div>
+            <div>
+                <img
+                    src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/KTUBW25/scoreboard.png"
+                    alt="KTU BEiNG-WISE CTF Başarı Kanıtı"
+                    class="clickable-image"
+                    onclick="openModal('ktu')"
+                >
             </div>
         </div>
     </main>
@@ -296,7 +346,13 @@
     <div class="modal" id="imageModal" onclick="closeModal(event)">
         <button class="modal-close" onclick="closeModal()">✕</button>
         <button class="modal-nav modal-prev" onclick="prevImage(event)">❮</button>
-        <img src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/TSGKCTF25/scoreboard.png" id="modalImage" class="modal-image" onclick="event.stopPropagation()">
+        <img
+            src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/TSGKCTF25/scoreboard.png"
+            id="modalImage"
+            class="modal-image"
+            alt="Başarı Görseli"
+            onclick="event.stopPropagation()"
+        >
         <button class="modal-nav modal-next" onclick="nextImage(event)">❯</button>
     </div>
 
@@ -313,21 +369,28 @@
             <p style="margin-top: 0.5rem; color: #00ff88;">"Aklına birşey geldiyse yap, tereddütte kalma yoksa keşke dersin."</p>
         </div>
     </footer>
+
     <script>
-        // Otomatik yıl güncelleme
         document.getElementById('current-year').textContent = new Date().getFullYear();
 
-        // Başarı Resimleri
-        const images = [
-            'https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/TSGKCTF25/scoreboard.png',
-            'https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/TSGKCTF25/top10.png'
-        ];
+        const galleries = {
+            tsgk: [
+                "https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/TSGKCTF25/scoreboard.png",
+                "https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/TSGKCTF25/top10.png"
+            ],
+            ktu: [
+                "https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/KTUBW25/scoreboard.png",
+                "https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/KTUBW25/team.png"
+            ]
+        };
 
+        let currentGallery = [];
         let currentImageIndex = 0;
 
-        function openModal() {
-            document.getElementById('imageModal').classList.add('active');
+        function openModal(galleryName) {
+            currentGallery = galleries[galleryName];
             currentImageIndex = 0;
+            document.getElementById('imageModal').classList.add('active');
             updateModalImage();
         }
 
@@ -337,23 +400,24 @@
         }
 
         function updateModalImage() {
-            document.getElementById('modalImage').src = images[currentImageIndex];
+            document.getElementById('modalImage').src = currentGallery[currentImageIndex];
         }
 
         function nextImage(event) {
             event.stopPropagation();
-            currentImageIndex = (currentImageIndex + 1) % images.length;
+            currentImageIndex = (currentImageIndex + 1) % currentGallery.length;
             updateModalImage();
         }
 
         function prevImage(event) {
             event.stopPropagation();
-            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            currentImageIndex = (currentImageIndex - 1 + currentGallery.length) % currentGallery.length;
             updateModalImage();
         }
 
         document.addEventListener('keydown', function(event) {
-            if (!document.getElementById('imageModal').classList.contains('active')) return;
+            const modal = document.getElementById('imageModal');
+            if (!modal.classList.contains('active')) return;
 
             if (event.key === 'ArrowRight') {
                 event.preventDefault();
