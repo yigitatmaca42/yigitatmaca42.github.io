@@ -118,6 +118,16 @@
             border-radius: 8px;
             padding: 2rem;
             margin-bottom: 2rem;
+            align-items: center;
+        }
+
+        .achievement-content {
+            position: relative;
+            min-height: 320px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-top: 2rem;
         }
 
         .achievement-content h2 {
@@ -131,12 +141,43 @@
             color: var(--text-light);
             font-size: 1.05rem;
             margin-bottom: 0.8rem;
+            line-height: 1.5;
         }
 
         .achievement-date {
             color: var(--primary);
             font-weight: bold;
-            margin-top: 1rem;
+        }
+
+        .top-left {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 0.95rem;
+        }
+
+        .rank {
+            color: var(--primary) !important;
+            font-weight: bold;
+            margin-top: -0.2rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .desc {
+            margin: 1.5rem 0;
+            line-height: 1.6;
+        }
+
+        .org {
+            margin-top: 2rem;
+            border-top: 1px solid rgba(0, 255, 136, 0.2);
+            padding-top: 1rem;
+        }
+
+        .org strong {
+            display: block;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
         }
 
         .clickable-image {
@@ -144,7 +185,9 @@
             border-radius: 8px;
             border: 2px solid var(--primary);
             max-width: 100%;
+            width: 100%;
             transition: transform 0.3s;
+            display: block;
         }
 
         .clickable-image:hover {
@@ -254,6 +297,11 @@
                 grid-template-columns: 1fr;
             }
 
+            .achievement-content {
+                min-height: auto;
+                padding-top: 2rem;
+            }
+
             nav {
                 gap: 1rem;
                 flex-wrap: wrap;
@@ -309,11 +357,22 @@
 
         <div class="achievement-container">
             <div class="achievement-content">
-                <h2>Türkiye Siber Güvenlik Kümelenmesi &amp; GençTek</h2>
-                <p><strong>Liseler Arası Online Siber Güvenlik (CTF)</strong></p>
-                <p>5.'lik Başarısı</p>
-                <div class="achievement-date">17 Aralık 2025</div>
+                <div class="achievement-date top-left">17 Aralık 2025</div>
+
+                <div>
+                    <h2>Türkiye Siber Güvenlik Kümelenmesi &amp; GençTek</h2>
+                    <p><strong>Liseler Arası Siber Güvenlik Yarışması</strong></p>
+                    <p class="rank">5.'lik başarısı</p>
+
+                    <p class="desc">2 saatlik bir CTF yarışmasıydı.</p>
+                </div>
+
+                <div class="org">
+                    <strong>Organizasyon</strong>
+                    <p>Türkiye Siber Güvenlik Kümelenmesi &amp; GençTek</p>
+                </div>
             </div>
+
             <div>
                 <img
                     src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/TSGKCTF25/scoreboard.png"
@@ -326,12 +385,22 @@
 
         <div class="achievement-container">
             <div class="achievement-content">
-                <h2>Karadeniz Teknik Üniversitesi - BEiNG-WISE CTF</h2>
-                <p><strong>Ulusal Siber Güvenlik Yarışması</strong></p>
-                <p>Karadeniz Teknik Üniversitesi tarafından düzenlenen ulusal bir yarışmaydı.</p>
-                <p>Organizasyonda KTU, KTUSEC, Kosova Siber Ekibi, RISE &amp; BEiNG-WISE ekipleri yer aldı.</p>
-                <div class="achievement-date">28-29 Kasım 2025</div>
+                <div class="achievement-date top-left">28-29 Kasım 2025</div>
+
+                <div>
+                    <h2>Karadeniz Teknik Üniversitesi - BEiNG-WISE CTF</h2>
+                    <p><strong>Ulusal Siber Güvenlik Yarışması</strong></p>
+                    <p class="rank">2.'lik başarısı</p>
+
+                    <p class="desc">24 saatlik bir CTF yarışmasıydı.</p>
+                </div>
+
+                <div class="org">
+                    <strong>Organizasyon</strong>
+                    <p>KTU, KTUSEC, Kosova Siber Ekibi, RISE &amp; BEiNG-WISE</p>
+                </div>
             </div>
+
             <div>
                 <img
                     src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/KTUBW25/scoreboard.png"
