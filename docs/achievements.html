@@ -363,7 +363,6 @@
                     <h2>Türkiye Siber Güvenlik Kümelenmesi &amp; GençTek</h2>
                     <p><strong>Liseler Arası Siber Güvenlik Yarışması</strong></p>
                     <p class="rank">5.'lik başarısı</p>
-
                     <p class="desc">2 saatlik bir CTF yarışmasıydı.</p>
                 </div>
 
@@ -375,7 +374,7 @@
 
             <div>
                 <img
-                    src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/TSGKCTF25/scoreboard.png"
+                    src="pictures/TSGKCTF25/scoreboard.png"
                     alt="TSGK CTF Başarı Kanıtı"
                     class="clickable-image"
                     onclick="openModal('tsgk')"
@@ -391,7 +390,6 @@
                     <h2>Karadeniz Teknik Üniversitesi - BEiNG-WISE CTF</h2>
                     <p><strong>Ulusal Siber Güvenlik Yarışması</strong></p>
                     <p class="rank">2.'lik başarısı</p>
-
                     <p class="desc">24 saatlik bir CTF yarışmasıydı.</p>
                 </div>
 
@@ -403,10 +401,37 @@
 
             <div>
                 <img
-                    src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/KTUBW25/scoreboard.png"
+                    src="pictures/KTUBW25/scoreboard.png"
                     alt="KTU BEiNG-WISE CTF Başarı Kanıtı"
                     class="clickable-image"
                     onclick="openModal('ktu')"
+                >
+            </div>
+        </div>
+
+        <div class="achievement-container">
+            <div class="achievement-content">
+                <div class="achievement-date top-left">27-28 Mart 2026</div>
+
+                <div>
+                    <h2>SKYDAYS: TÜRKİYE'NİN EN BÜYÜK SİBER GÜVENLİK ETKİNLİĞİ</h2>
+                    <p><strong>Yıldız Teknik Üniversitesi CTF Yarışması</strong></p>
+                    <p class="rank">3.'lük başarısı</p>
+                    <p class="desc">20 saatlik bir takım CTF yarışmasıydı.</p>
+                </div>
+
+                <div class="org">
+                    <strong>Organizasyon</strong>
+                    <p>SKYSEC &amp; Yıldız Teknik Üniversitesi</p>
+                </div>
+            </div>
+
+            <div>
+                <img
+                    src="pictures/SKYDAYS26/prize.jpeg"
+                    alt="SKYDAYS CTF Başarı Kanıtı"
+                    class="clickable-image"
+                    onclick="openModal('skydays')"
                 >
             </div>
         </div>
@@ -416,7 +441,7 @@
         <button class="modal-close" onclick="closeModal()">✕</button>
         <button class="modal-nav modal-prev" onclick="prevImage(event)">❮</button>
         <img
-            src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/TSGKCTF25/scoreboard.png"
+            src="pictures/TSGKCTF25/scoreboard.png"
             id="modalImage"
             class="modal-image"
             alt="Başarı Görseli"
@@ -444,12 +469,16 @@
 
         const galleries = {
             tsgk: [
-                "https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/TSGKCTF25/scoreboard.png",
-                "https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/TSGKCTF25/top10.png"
+                "pictures/TSGKCTF25/scoreboard.png",
+                "pictures/TSGKCTF25/top10.png"
             ],
             ktu: [
-                "https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/KTUBW25/scoreboard.png",
-                "https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/KTUBW25/team.png"
+                "pictures/KTUBW25/scoreboard.png",
+                "pictures/KTUBW25/team.png"
+            ],
+            skydays: [
+                "pictures/SKYDAYS26/prize.jpeg",
+                "pictures/SKYDAYS26/team.jpeg"
             ]
         };
 
