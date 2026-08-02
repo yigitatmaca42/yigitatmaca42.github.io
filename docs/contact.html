@@ -3,7 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Taha Yiğit Atmaca ile iletişime geçin - e-posta, Discord, GitHub ve LinkedIn üzerinden ulaşabilirsiniz.">
+    <link rel="icon" type="image/png" href="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/logo.png">
+    <meta property="og:title" content="İletişim - TYA Cyber">
+    <meta property="og:description" content="Taha Yiğit Atmaca ile iletişime geçin - e-posta, Discord, GitHub ve LinkedIn üzerinden ulaşabilirsiniz.">
+    <meta property="og:image" content="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/logo.png">
+    <meta property="og:url" content="https://yigitatmaca42.github.io/contact.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+    <link rel="canonical" href="https://yigitatmaca42.github.io/contact.html">
     <title>İletişim - TYA Cyber</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,17 +24,28 @@
         }
 
         :root {
-            --primary: #00ff88;
-            --secondary: #ff006e;
-            --dark-bg: #0a0e27;
-            --card-bg: #1a1f3a;
-            --text: #e0e0e0;
-            --text-light: #999;
+            --primary: #6d5dfc;
+            --secondary: #8b5cf6;
+            --danger: #ff3b5c;
+            --dark-bg: #05060f;
+            --card-bg: #10122a;
+            --text: #e4e2f5;
+            --text-light: #837fa3;
+            --font-display: 'Space Mono', 'Courier New', monospace;
+            --font-body: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: var(--font-body);
             background-color: var(--dark-bg);
+            background-image: repeating-linear-gradient(
+                0deg,
+                rgba(109, 93, 252, 0.035) 0px,
+                rgba(109, 93, 252, 0.035) 1px,
+                transparent 1px,
+                transparent 3px
+            );
+            background-attachment: fixed;
             color: var(--text);
             line-height: 1.6;
         }
@@ -47,13 +70,15 @@
         }
 
         .logo {
+            font-family: var(--font-display);
             font-size: 1.5rem;
-            font-weight: bold;
+            font-weight: 700;
             color: var(--primary);
             text-decoration: none;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            letter-spacing: -0.02em;
         }
 
         .logo-img {
@@ -78,6 +103,56 @@
             color: var(--primary);
         }
 
+        nav a.active {
+            color: var(--primary);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 26px;
+            height: 18px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1002;
+        }
+
+        .menu-toggle span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background: var(--primary);
+            border-radius: 2px;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        .nav-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 999;
+        }
+
+        .nav-overlay.active {
+            display: block;
+        }
+
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -90,26 +165,27 @@
         }
 
         .page-header h1 {
+            font-family: var(--font-display);
             font-size: 2.5rem;
             color: var(--primary);
             margin-bottom: 0.5rem;
-            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5),
-                         0 0 40px rgba(0, 255, 136, 0.3),
-                         0 0 60px rgba(0, 255, 136, 0.2);
+            text-shadow: 0 0 20px rgba(109, 93, 252, 0.5),
+                         0 0 40px rgba(109, 93, 252, 0.3),
+                         0 0 60px rgba(109, 93, 252, 0.2);
             font-weight: 600;
             animation: glow 2s ease-in-out infinite;
         }
 
         @keyframes glow {
             0%, 100% {
-                text-shadow: 0 0 20px rgba(0, 255, 136, 0.5),
-                             0 0 40px rgba(0, 255, 136, 0.3),
-                             0 0 60px rgba(0, 255, 136, 0.2);
+                text-shadow: 0 0 20px rgba(109, 93, 252, 0.5),
+                             0 0 40px rgba(109, 93, 252, 0.3),
+                             0 0 60px rgba(109, 93, 252, 0.2);
             }
             50% {
-                text-shadow: 0 0 30px rgba(0, 255, 136, 0.8),
-                             0 0 60px rgba(0, 255, 136, 0.5),
-                             0 0 90px rgba(0, 255, 136, 0.3);
+                text-shadow: 0 0 30px rgba(109, 93, 252, 0.8),
+                             0 0 60px rgba(109, 93, 252, 0.5),
+                             0 0 90px rgba(109, 93, 252, 0.3);
             }
         }
 
@@ -127,10 +203,36 @@
 
         .contact-info {
             background: var(--card-bg);
-            border: 1px solid rgba(0, 255, 136, 0.2);
-            border-radius: 8px;
+            border: 1px solid rgba(109, 93, 252, 0.2);
             padding: 2rem;
         }
+
+        .contact-info {
+            position: relative;
+        }
+
+        .contact-info::before,
+        .contact-info::after {
+            content: '';
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            border: var(--primary) 2px solid;
+            pointer-events: none;
+        }
+
+        .contact-info::before {
+            top: -1px;
+            left: -1px;
+            border-width: 2px 0 0 2px;
+        }
+
+        .contact-info::after {
+            bottom: -1px;
+            right: -1px;
+            border-width: 0 2px 2px 0;
+        }
+
 
         .contact-info h2 {
             color: var(--primary);
@@ -147,7 +249,7 @@
         .contact-method {
             margin-bottom: 1.5rem;
             padding-bottom: 1.5rem;
-            border-bottom: 1px solid rgba(0, 255, 136, 0.1);
+            border-bottom: 1px solid rgba(109, 93, 252, 0.1);
         }
 
         .contact-method:last-child {
@@ -178,10 +280,36 @@
 
         .contact-form {
             background: var(--card-bg);
-            border: 1px solid rgba(0, 255, 136, 0.2);
-            border-radius: 8px;
+            border: 1px solid rgba(109, 93, 252, 0.2);
             padding: 2rem;
         }
+
+        .contact-form {
+            position: relative;
+        }
+
+        .contact-form::before,
+        .contact-form::after {
+            content: '';
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            border: var(--secondary) 2px solid;
+            pointer-events: none;
+        }
+
+        .contact-form::before {
+            top: -1px;
+            left: -1px;
+            border-width: 2px 0 0 2px;
+        }
+
+        .contact-form::after {
+            bottom: -1px;
+            right: -1px;
+            border-width: 0 2px 2px 0;
+        }
+
 
         .contact-form h2 {
             color: var(--primary);
@@ -204,8 +332,8 @@
         .form-group textarea {
             width: 100%;
             padding: 0.8rem;
-            background: rgba(0, 255, 136, 0.05);
-            border: 1px solid rgba(0, 255, 136, 0.3);
+            background: rgba(109, 93, 252, 0.05);
+            border: 1px solid rgba(109, 93, 252, 0.3);
             color: var(--text);
             border-radius: 5px;
             font-family: inherit;
@@ -217,8 +345,8 @@
         .form-group textarea:focus {
             outline: none;
             border-color: var(--primary);
-            background: rgba(0, 255, 136, 0.1);
-            box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+            background: rgba(109, 93, 252, 0.1);
+            box-shadow: 0 0 10px rgba(109, 93, 252, 0.2);
         }
 
         .form-group textarea {
@@ -233,6 +361,7 @@
             color: var(--dark-bg);
             border: none;
             border-radius: 5px;
+            font-family: var(--font-display);
             font-weight: bold;
             font-size: 1rem;
             cursor: pointer;
@@ -240,7 +369,7 @@
         }
 
         .submit-btn:hover {
-            background: #00cc6f;
+            background: #5744d1;
             transform: translateY(-2px);
         }
 
@@ -262,16 +391,16 @@
         }
 
         .form-message.success {
-            background: rgba(0, 255, 136, 0.1);
+            background: rgba(109, 93, 252, 0.1);
             border: 1px solid var(--primary);
             color: var(--primary);
             display: block;
         }
 
         .form-message.error {
-            background: rgba(255, 0, 110, 0.1);
-            border: 1px solid var(--secondary);
-            color: var(--secondary);
+            background: rgba(255, 59, 92, 0.1);
+            border: 1px solid var(--danger);
+            color: var(--danger);
             display: block;
         }
 
@@ -313,12 +442,37 @@
                 font-size: 1.8rem;
             }
 
+            .menu-toggle {
+                display: flex;
+            }
+
             nav {
-                gap: 1rem;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                max-width: 300px;
+                height: 100vh;
+                margin: 0;
+                background: linear-gradient(180deg, rgba(10, 14, 39, 0.98) 0%, rgba(26, 31, 58, 0.98) 100%);
+                border-left: 1px solid rgba(109, 93, 252, 0.2);
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0;
+                padding: 6rem 2rem 2rem;
+                transition: right 0.3s ease;
+                z-index: 1001;
+            }
+
+            nav.active {
+                right: 0;
             }
 
             nav a {
-                font-size: 0.85rem;
+                width: 100%;
+                padding: 1rem 0;
+                font-size: 1.1rem;
+                border-bottom: 1px solid rgba(109, 93, 252, 0.1);
             }
 
             .header-content {
@@ -334,6 +488,15 @@
                 gap: 1rem;
             }
         }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -343,14 +506,18 @@
                 <img src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/logo.png" alt="TYA Cyber Logo" class="logo-img">
                 TYA Cyber
             </a>
-            <nav>
+            <nav id="mainNav">
                 <a href="/">Ana Sayfa</a>
                 <a href="achievements.html">Başarılar</a>
                 <a href="certificates.html">Sertifikalar</a>
-                <a href="contact.html">İletişim</a>
+                <a href="contact.html" class="active">İletişim</a>
             </nav>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menüyü aç/kapat" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </header>
+    <div class="nav-overlay" id="navOverlay"></div>
 
     <main class="container">
         <div class="page-header">
@@ -375,21 +542,21 @@
                 <div class="contact-method">
                     <h3>💬 Discord</h3>
                     <p>
-                        <a href="https://discord.com/users/nuirmo" target="_blank">@nuirmo</a>
+                        <a href="https://discord.com/users/nuirmo" target="_blank" rel="noopener noreferrer">@nuirmo</a>
                     </p>
                 </div>
 
                 <div class="contact-method">
                     <h3>🐙 GitHub</h3>
                     <p>
-                        <a href="https://github.com/yigitatmaca42" target="_blank">github.com/yigitatmaca42</a>
+                        <a href="https://github.com/yigitatmaca42" target="_blank" rel="noopener noreferrer">github.com/yigitatmaca42</a>
                     </p>
                 </div>
 
                 <div class="contact-method">
                     <h3>💼 LinkedIn</h3>
                     <p>
-                        <a href="https://www.linkedin.com/in/yi%C4%9Fit-atmaca-89844839a/" target="_blank">linkedin.com/in/yigit-atmaca</a>
+                        <a href="https://www.linkedin.com/in/yi%C4%9Fit-atmaca-89844839a/" target="_blank" rel="noopener noreferrer">linkedin.com/in/yigit-atmaca</a>
                     </p>
                 </div>
 
@@ -407,12 +574,12 @@
                 <form id="contactForm" action="https://formspree.io/f/xwveqzdy" method="POST">
                     <div class="form-group">
                         <label for="name">Adınız *</label>
-                        <input type="text" id="name" name="name" required placeholder="Adınız">
+                        <input type="text" id="name" name="name" required placeholder="Adınız" autocomplete="name">
                     </div>
 
                     <div class="form-group">
                         <label for="email">E-posta *</label>
-                        <input type="email" id="email" name="email" required placeholder="email@example.com">
+                        <input type="email" id="email" name="email" required placeholder="email@example.com" autocomplete="email">
                     </div>
 
                     <div class="form-group">
@@ -434,18 +601,48 @@
     <footer>
         <div class="footer-content">
             <div class="footer-links">
-                <a href="./">Ana Sayfa</a>
+                <a href="/">Ana Sayfa</a>
                 <a href="achievements.html">Başarılar</a>
                 <a href="certificates.html">Sertifikalar</a>
                 <a href="contact.html">İletişim</a>
             </div>
             <p>&copy; <span id="current-year"></span> Yiğit Atmaca. Tüm hakları saklıdır.</p>
-            <p style="margin-top: 0.5rem; color: #00ff88;">"Aklına birşey geldiyse yap, tereddütte kalma yoksa keşke dersin."</p>
+            <p style="margin-top: 0.5rem; color: #6d5dfc;">"Aklına birşey geldiyse yap, tereddütte kalma yoksa keşke dersin."</p>
         </div>
     </footer>
 
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        const menuToggle = document.getElementById('menuToggle');
+        const mainNav = document.getElementById('mainNav');
+        const navOverlay = document.getElementById('navOverlay');
+
+        function closeMenu() {
+            menuToggle.classList.remove('active');
+            mainNav.classList.remove('active');
+            navOverlay.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        }
+
+        function toggleMenu() {
+            const isActive = mainNav.classList.toggle('active');
+            menuToggle.classList.toggle('active', isActive);
+            navOverlay.classList.toggle('active', isActive);
+            menuToggle.setAttribute('aria-expanded', String(isActive));
+            document.body.style.overflow = isActive ? 'hidden' : '';
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        navOverlay.addEventListener('click', closeMenu);
+        document.querySelectorAll('#mainNav a').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeMenu();
+        });
+
 
         const form = document.getElementById('contactForm');
         const formMessage = document.getElementById('formMessage');
