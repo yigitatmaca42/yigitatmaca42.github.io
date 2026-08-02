@@ -1,5 +1,7 @@
 User-agent: *
 Disallow: /extra/
+ 
+Sitemap: https://yigitatmaca42.github.io/sitemap.xml
 
 # TODO: batman'i çok seviyorum
 # Developer note: Yolu takip Et
