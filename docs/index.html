@@ -3,821 +3,350 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Taha Yiğit Atmaca - Siber güvenlik, CTF yarışmaları ve yazılım geliştirme alanında çalışan bir öğrencinin kişisel portföy sitesi.">
-    <link rel="icon" type="image/png" href="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/logo.png">
-    <meta property="og:title" content="TYA Cyber - Taha Yiğit Atmaca">
-    <meta property="og:description" content="Taha Yiğit Atmaca - Siber güvenlik, CTF yarışmaları ve yazılım geliştirme alanında çalışan bir öğrencinin kişisel portföy sitesi.">
-    <meta property="og:image" content="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/logo.png">
+    <meta name="description" content="Taha Yiğit Atmaca (YigTi) — siber güvenlik, CTF yarışmaları ve yazılım geliştirme üzerine çalışan bir lise öğrencisinin kişisel portfolyosu.">
+    <meta name="theme-color" content="#07080b">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+    <meta property="og:title" content="Yiğit Atmaca — Cybersecurity · CTF · Software">
+    <meta property="og:description" content="Siber güvenlik, CTF yarışmaları ve yazılım geliştirme üzerine çalışan bir öğrencinin kişisel portfolyosu.">
+    <meta property="og:image" content="https://yigitatmaca42.github.io/assets/images/logo.png">
     <meta property="og:url" content="https://yigitatmaca42.github.io/">
     <meta property="og:type" content="website">
+    <meta property="og:locale" content="tr_TR">
     <meta name="twitter:card" content="summary">
     <link rel="canonical" href="https://yigitatmaca42.github.io/">
-    <title>Ana Sayfa - TYA Cyber</title>
+    <title>Yiğit Atmaca — Cybersecurity · CTF · Software</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #6d5dfc;
-            --secondary: #8b5cf6;
-            --danger: #ff3b5c;
-            --dark-bg: #05060f;
-            --card-bg: #10122a;
-            --text: #e4e2f5;
-            --text-light: #837fa3;
-            --font-display: 'Space Mono', 'Courier New', monospace;
-            --font-body: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
-
-        body {
-            font-family: var(--font-body);
-            background-color: var(--dark-bg);
-            background-image: repeating-linear-gradient(
-                0deg,
-                rgba(109, 93, 252, 0.035) 0px,
-                rgba(109, 93, 252, 0.035) 1px,
-                transparent 1px,
-                transparent 3px
-            );
-            background-attachment: fixed;
-            color: var(--text);
-            line-height: 1.6;
-            font-weight: 400;
-        }
-
-        /* Header & Navigation */
-        header {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(10, 14, 39, 0.9) 100%);
-            border-bottom: 2px solid var(--primary);
-            padding: 1.5rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            line-height: 1;
-        }
-
-        .header-content {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            letter-spacing: -0.02em;
-        }
-
-        .logo-img {
-            width: 60px;
-            height: 60px;
-            object-fit: contain;
-        }
-
-        nav {
-            display: flex;
-            gap: 2rem;
-        }
-
-        nav a {
-            color: var(--text);
-            text-decoration: none;
-            transition: color 0.3s;
-            font-size: 0.95rem;
-        }
-
-        nav a:hover {
-            color: var(--primary);
-        }
-
-        nav a.active {
-            color: var(--primary);
-        }
-
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 26px;
-            height: 18px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            z-index: 1002;
-        }
-
-        .menu-toggle span {
-            display: block;
-            height: 2px;
-            width: 100%;
-            background: var(--primary);
-            border-radius: 2px;
-            transition: transform 0.3s, opacity 0.3s;
-        }
-
-        .menu-toggle.active span:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
-        }
-
-        .menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .menu-toggle.active span:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
-        }
-
-        .nav-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 999;
-        }
-
-        .nav-overlay.active {
-            display: block;
-        }
-
-        /* Main Container */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 3rem 0 4rem;
-            text-align: center;
-        }
-
-        .terminal-window {
-            background: var(--card-bg);
-            border: 1px solid rgba(109, 93, 252, 0.25);
-            border-radius: 10px;
-            overflow: hidden;
-            text-align: left;
-            margin-bottom: 2.5rem;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-        }
-
-        .terminal-titlebar {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.8rem 1rem;
-            background: rgba(109, 93, 252, 0.06);
-            border-bottom: 1px solid rgba(109, 93, 252, 0.2);
-        }
-
-        .terminal-dot {
-            width: 11px;
-            height: 11px;
-            border-radius: 50%;
-            display: inline-block;
-        }
-
-        .terminal-dot.red { background: #ff5f56; }
-        .terminal-dot.yellow { background: #ffbd2e; }
-        .terminal-dot.green { background: #27c93f; }
-
-        .terminal-titlebar span.label {
-            margin-left: 0.5rem;
-            font-family: var(--font-display);
-            font-size: 0.8rem;
-            color: var(--text-light);
-        }
-
-        .terminal-body {
-            padding: 2rem 2rem 2.2rem;
-        }
-
-        .hero h1 {
-            font-family: var(--font-display);
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            text-shadow: 0 0 20px rgba(109, 93, 252, 0.5),
-                         0 0 40px rgba(109, 93, 252, 0.3),
-                         0 0 60px rgba(109, 93, 252, 0.2);
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            animation: glow 2s ease-in-out infinite;
-        }
-
-        @keyframes glow {
-            0%, 100% {
-                text-shadow: 0 0 20px rgba(109, 93, 252, 0.5),
-                             0 0 40px rgba(109, 93, 252, 0.3),
-                             0 0 60px rgba(109, 93, 252, 0.2);
-            }
-            50% {
-                text-shadow: 0 0 30px rgba(109, 93, 252, 0.8),
-                             0 0 60px rgba(109, 93, 252, 0.5),
-                             0 0 90px rgba(109, 93, 252, 0.3);
-            }
-        }
-
-        .hero .subtitle {
-            font-family: var(--font-display);
-            font-size: 1.15rem;
-            color: var(--text-light);
-            margin-bottom: 2rem;
-        }
-
-        .hero .subtitle .prompt {
-            color: var(--secondary);
-            font-weight: 600;
-        }
-
-        .hero .subtitle .path {
-            color: var(--primary);
-        }
-
-        .cursor {
-            display: inline-block;
-            width: 0.55em;
-            background: var(--primary);
-            margin-left: 2px;
-            animation: blink 1s step-end infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: var(--text);
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            line-height: 1.8;
-        }
-
-        /* Section */
-        .section {
-            margin: 3rem 0;
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .section h2 {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        /* About Me Content */
-        .about-content {
-            background: var(--card-bg);
-            border: 1px solid rgba(109, 93, 252, 0.2);
-            padding: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .about-content {
-            position: relative;
-        }
-
-        .about-content::before,
-        .about-content::after {
-            content: '';
-            position: absolute;
-            width: 14px;
-            height: 14px;
-            border: var(--primary) 2px solid;
-            pointer-events: none;
-        }
-
-        .about-content::before {
-            top: -1px;
-            left: -1px;
-            border-width: 2px 0 0 2px;
-        }
-
-        .about-content::after {
-            bottom: -1px;
-            right: -1px;
-            border-width: 0 2px 2px 0;
-        }
-
-
-        .about-content h3 {
-            font-family: var(--font-display);
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .about-content p {
-            color: var(--text);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .about-content ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .about-content ul li {
-            color: var(--text);
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .about-content ul li:before {
-            content: "▹";
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-            font-weight: bold;
-        }
-
-        /* Interest Cards */
-        .interest-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .interest-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(109, 93, 252, 0.2);
-            padding: 2rem;
-            transition: all 0.3s;
-        }
-
-        .interest-card {
-            position: relative;
-        }
-
-        .interest-card::before,
-        .interest-card::after {
-            content: '';
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            border: var(--secondary) 2px solid;
-            pointer-events: none;
-        }
-
-        .interest-card::before {
-            top: -1px;
-            left: -1px;
-            border-width: 2px 0 0 2px;
-        }
-
-        .interest-card::after {
-            bottom: -1px;
-            right: -1px;
-            border-width: 0 2px 2px 0;
-        }
-
-
-        .interest-card:hover {
-            background: rgba(109, 93, 252, 0.1);
-            border-color: var(--primary);
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(109, 93, 252, 0.2);
-        }
-
-        .interest-card h4 {
-            font-family: var(--font-display);
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .interest-card p {
-            font-size: 0.95rem;
-            color: var(--text-light);
-            line-height: 1.7;
-        }
-
-        /* Skills Cloud */
-        .skills-cloud {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-        }
-
-        .skill-tag {
-            font-family: var(--font-display);
-            font-size: 0.9rem;
-            color: var(--text);
-            background: var(--card-bg);
-            border: 1px solid rgba(109, 93, 252, 0.25);
-            border-radius: 999px;
-            padding: 0.6rem 1.2rem;
-            transition: all 0.3s;
-            cursor: default;
-        }
-
-        .skill-tag:hover {
-            border-color: var(--primary);
-            background: rgba(109, 93, 252, 0.1);
-            color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        /* Goals Section */
-        .goals-section {
-            background: var(--card-bg);
-            border: 1px solid rgba(109, 93, 252, 0.2);
-            padding: 2rem;
-            margin-top: 2rem;
-        }
-
-        .goals-section {
-            position: relative;
-        }
-
-        .goals-section::before,
-        .goals-section::after {
-            content: '';
-            position: absolute;
-            width: 14px;
-            height: 14px;
-            border: var(--primary) 2px solid;
-            pointer-events: none;
-        }
-
-        .goals-section::before {
-            top: -1px;
-            left: -1px;
-            border-width: 2px 0 0 2px;
-        }
-
-        .goals-section::after {
-            bottom: -1px;
-            right: -1px;
-            border-width: 0 2px 2px 0;
-        }
-
-
-        .goals-section h3 {
-            font-family: var(--font-display);
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-        }
-
-        .goals-section p {
-            color: var(--text);
-            line-height: 1.8;
-            margin-bottom: 1rem;
-        }
-
-        .quote {
-            text-align: center;
-            font-style: italic;
-            color: var(--primary);
-            font-size: 1.1rem;
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background: rgba(109, 93, 252, 0.05);
-            border-left: 3px solid var(--primary);
-            border-radius: 5px;
-        }
-
-        /* Quick Links */
-        .quick-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .quick-links a {
-            padding: 0.7rem 1.5rem;
-            background: rgba(109, 93, 252, 0.1);
-            border: 1px solid var(--primary);
-            color: var(--primary);
-            text-decoration: none;
-            border-radius: 5px;
-            transition: all 0.3s;
-        }
-
-        .quick-links a:hover {
-            background: var(--primary);
-            color: var(--dark-bg);
-        }
-
-        /* Footer */
-        footer {
-            background: rgba(0, 0, 0, 0.5);
-            border-top: 1px solid var(--primary);
-            padding: 2rem 0;
-            margin-top: 4rem;
-        }
-
-        .footer-content {
-            text-align: center;
-            color: var(--text-light);
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .footer-links a {
-            color: var(--primary);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: var(--secondary);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-
-            nav {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 75%;
-                max-width: 300px;
-                height: 100vh;
-                margin: 0;
-                background: linear-gradient(180deg, rgba(10, 14, 39, 0.98) 0%, rgba(26, 31, 58, 0.98) 100%);
-                border-left: 1px solid rgba(109, 93, 252, 0.2);
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0;
-                padding: 6rem 2rem 2rem;
-                transition: right 0.3s ease;
-                z-index: 1001;
-            }
-
-            nav.active {
-                right: 0;
-            }
-
-            nav a {
-                width: 100%;
-                padding: 1rem 0;
-                font-size: 1.1rem;
-                border-bottom: 1px solid rgba(109, 93, 252, 0.1);
-            }
-
-            .header-content {
-                padding: 0 1rem;
-            }
-
-            .container {
-                padding: 0 1rem;
-            }
-
-            .interest-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-        }
-    </style>
-    <noscript>
-        <style>
-            .reveal {
-                opacity: 1 !important;
-                transform: none !important;
-            }
-        </style>
-    </noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Taha Yiğit Atmaca",
+      "alternateName": "YigTi",
+      "url": "https://yigitatmaca42.github.io/",
+      "image": "https://yigitatmaca42.github.io/assets/images/logo.png",
+      "jobTitle": "Cybersecurity Student & CTF Player",
+      "sameAs": [
+        "https://github.com/yigitatmaca42",
+        "https://www.linkedin.com/in/yi%C4%9Fit-atmaca-89844839a/"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "İstanbul",
+        "addressCountry": "TR"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Yiğit Atmaca — TYA Cyber",
+      "url": "https://yigitatmaca42.github.io/"
+    }
+    </script>
 </head>
-<body>
-    <header>
-        <div class="header-content">
-            <a href="/" class="logo">
-                <img src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/logo.png" alt="TYA Cyber Logo" class="logo-img">
-                TYA Cyber
+<body class="noscript-fallback">
+    <a href="#main" class="skip-link">İçeriğe geç</a>
+    <div class="scroll-progress" aria-hidden="true"></div>
+
+    <header class="site-header">
+        <div class="container header-row">
+            <a href="index.html" class="brand" aria-label="Anasayfa">
+                <img src="assets/images/favicon.png" alt="" width="30" height="30">
+                TYA <span class="brand-tag">Cyber</span>
             </a>
-            <nav id="mainNav">
-                <a href="/" class="active">Ana Sayfa</a>
-                <a href="achievements.html">Başarılar</a>
-                <a href="certificates.html">Sertifikalar</a>
-                <a href="contact.html">İletişim</a>
+            <nav class="nav-desktop" aria-label="Ana menü">
+                <div class="nav-links">
+                    <a href="index.html" class="is-active">Ana Sayfa</a>
+                    <a href="achievements.html">Başarılar</a>
+                    <a href="projects.html">Projeler</a>
+                    <a href="certificates.html">Sertifikalar</a>
+                    <a href="writeups.html">Writeups</a>
+                </div>
+                <a href="contact.html" class="btn btn-primary btn-sm">İletişim</a>
             </nav>
-            <button class="menu-toggle" id="menuToggle" aria-label="Menüyü aç/kapat" aria-expanded="false">
+            <button class="menu-toggle" id="menuToggle" aria-label="Menüyü aç" aria-expanded="false" aria-controls="navMobile">
                 <span></span><span></span><span></span>
             </button>
         </div>
     </header>
-    <div class="nav-overlay" id="navOverlay"></div>
 
-    <main class="container">
-        <!-- Hero Section -->
+    <nav class="nav-mobile" id="navMobile" aria-label="Mobil menü">
+        <ul>
+            <li><a href="index.html" class="is-active">Ana Sayfa</a></li>
+            <li><a href="achievements.html">Başarılar</a></li>
+            <li><a href="projects.html">Projeler</a></li>
+            <li><a href="certificates.html">Sertifikalar</a></li>
+            <li><a href="writeups.html">Writeups</a></li>
+            <li><a href="contact.html">İletişim</a></li>
+        </ul>
+        <div class="nav-mobile-footer">
+            <a href="https://github.com/yigitatmaca42" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://www.linkedin.com/in/yi%C4%9Fit-atmaca-89844839a/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="mailto:yigitatmaca42@gmail.com">E-posta</a>
+        </div>
+    </nav>
+
+    <main id="main">
         <section class="hero">
-            <div class="terminal-window">
-                <div class="terminal-titlebar">
-                    <span class="terminal-dot red"></span>
-                    <span class="terminal-dot yellow"></span>
-                    <span class="terminal-dot green"></span>
-                    <span class="label">yigti@tya-cyber: ~</span>
-                </div>
-                <div class="terminal-body">
-                    <h1>Merhaba, Ben YigTi 👋</h1>
-                    <p class="subtitle"><span class="prompt">yigti@tya-cyber</span><span class="path">:~$</span> whoami<br><span class="prompt">&gt;</span> Siber Güvenlik | CTF | Yazılım Geliştirme<span class="cursor">&nbsp;</span></p>
-                    <p>
-                        Pendik İTO Ticaret Mesleki ve Teknik Anadolu Lisesi Bilişim bölümü 11. sınıf öğrencisiyim. Henüz lise yıllarımda olsam da, teknoloji dünyasına olan tutkum beni her gün yeni şeyler öğrenmeye ve kendimi geliştirmeye itiyor.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section class="section reveal">
-            <h2>Hakkımda</h2>
-            <div class="about-content">
-                <h3>🔐 Siber Güvenlik Tutkum</h3>
-                <p>
-                    Siber güvenlik, benim için sadece bir ilgi alanı değil, aynı zamanda gelecekte profesyonel kariyerimi inşa etmek istediğim bir alan. Dijital dünyanın giderek daha karmaşık hale geldiği şu dönemde, sistemleri korumak ve güvenlik açıklarını keşfetmek bana hem heyecan verici hem de anlamlı bir hedef sunuyor.
+            <div class="hero-spotlight" aria-hidden="true"></div>
+            <div class="container">
+                <span class="eyebrow"><span class="dot"></span>İstanbul, TR — 11. Sınıf, Bilişim</span>
+                <h1>Yiğit Atmaca</h1>
+                <p class="role-line mono">
+                    <span class="prompt">$</span> whoami →
+                    <span class="role-text" data-role-text>CTF Player</span><span class="cursor"></span>
                 </p>
-            </div>
-        </section>
-
-        <!-- Interests Section -->
-        <section class="section reveal">
-            <h2>İlgi Alanlarım</h2>
-            <div class="interest-grid">
-                <div class="interest-card">
-                    <h4>🚩 CTF Yarışmaları</h4>
-                    <p>
-                        CTF (Capture The Flag) yarışmaları, teorik bilgilerimi pratiğe dökebileceğim en iyi platformlardan biri. Farklı güvenlik açıklarını keşfediyor, problem çözme becerilerimi geliştiriyor ve gerçek dünya senaryolarına benzer zorluklarla karşılaşıyorum.
-                    </p>
-                </div>
-                <div class="interest-card">
-                    <h4>🔍 Güvenlik Araştırmaları</h4>
-                    <p>
-                        Kendi başıma güvenlik araştırmaları yaparak, sistemlerin nasıl çalıştığını ve nasıl korunabileceğini öğrenmeye çalışıyorum. Her keşif, bana yeni bir bakış açısı kazandırıyor.
-                    </p>
-                </div>
-                <div class="interest-card">
-                    <h4>💻 Yazılım Geliştirme</h4>
-                    <p>
-                        Güvenli yazılımlar geliştirebilmek için kodlamanın temellerini sağlam bir şekilde öğrenmenin önemli olduğuna inanıyorum. Bu nedenle çeşitli projeler üzerinde çalışıyor ve deneyim kazanıyorum.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section class="section reveal">
-            <h2>Yetenekler</h2>
-            <div class="skills-cloud">
-                <span class="skill-tag">🌐 Web Güvenliği</span>
-                <span class="skill-tag">🎯 Sızma Testi</span>
-                <span class="skill-tag">🐍 Python</span>
-                <span class="skill-tag">🐧 Kali Linux</span>
-                <span class="skill-tag">🛡️ Ağ Güvenliği</span>
-                <span class="skill-tag">🚩 CTF</span>
-                <span class="skill-tag">⚔️ Offensive Security</span>
-                <span class="skill-tag">🔰 Defensive Security</span>
-                <span class="skill-tag">🔍 SIEM</span>
-                <span class="skill-tag">⚡ Olay Müdahale</span>
-                <span class="skill-tag">🔌 IoT Güvenliği</span>
-                <span class="skill-tag">🔀 Git &amp; GitHub</span>
-            </div>
-        </section>
-
-        <!-- Goals Section -->
-        <section class="section reveal">
-            <h2>Hedeflerim</h2>
-            <div class="goals-section">
-                <p>
-                    Önümde uzun bir yol olduğunun farkındayım, ancak her gün attığım küçük adımların beni hedeflerime yaklaştırdığına inanıyorum. Teknoloji dünyasında iz bırakmak, güvenli sistemler oluşturmaya katkıda bulunmak ve sürekli öğrenmeye devam etmek en büyük motivasyonum.
+                <p class="hero-lede">
+                    Siber güvenlik ve yazılım geliştirme üzerine çalışıyorum. CTF yarışmalarında elde ettiğim
+                    sonuçları ve üzerinde çalıştığım projeleri gerçek verilerle bu sitede paylaşıyorum.
                 </p>
-                <p>
-                    Bu yolculukta edindiğim bilgileri paylaşmayı, benzer ilgi alanlarına sahip insanlarla iletişim kurmayı ve birlikte büyümeyi hedefliyorum.
-                </p>
-                <div class="quote">
-                    "Güvenlik, bir hedef değil, sürekli bir yolculuktur."
+                <div class="hero-actions">
+                    <a href="achievements.html" class="btn btn-primary">Başarılarımı Gör</a>
+                    <a href="contact.html" class="btn btn-ghost">İletişime Geç</a>
+                </div>
+                <div class="hero-meta">
+                    <span><strong>Konum</strong> · İstanbul, Türkiye</span>
+                    <span><strong>Saat Dilimi</strong> · UTC+3</span>
+                    <span><strong>Odak</strong> · Offensive &amp; Defensive Security</span>
                 </div>
             </div>
         </section>
 
-        
-        <section class="section reveal">
-            <div class="quote">
-                "Zaman Durmuyor, Siz de Yerinizde Durmayın! ~ TYA Cyber"
+        <section class="section container">
+            <div class="stats-strip reveal-stagger">
+                <div class="stat-block">
+                    <span class="stat-number">10<span class="accent">+</span></span>
+                    <span class="stat-label">CTF Yarışması</span>
+                </div>
+                <div class="stat-block">
+                    <span class="stat-number">Top <span class="accent">%1.4</span></span>
+                    <span class="stat-label">HTB Cyber Apocalypse · 6744 takım</span>
+                </div>
+                <div class="stat-block">
+                    <span class="stat-number"><span class="accent">#1</span> TR</span>
+                    <span class="stat-label">Holmes CTF, Türk takımları arası</span>
+                </div>
+                <div class="stat-block">
+                    <span class="stat-number">28<span class="accent">+</span></span>
+                    <span class="stat-label">Tamamlanan Eğitim / Sertifika</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section container reveal" id="about">
+            <div class="section-head">
+                <div>
+                    <span class="section-index">01 — Profil</span>
+                    <h2>Merhaba, ben Yiğit.</h2>
+                </div>
+            </div>
+            <p class="hero-lede" style="max-width: 68ch;">
+                Pendik İTO Ticaret Mesleki ve Teknik Anadolu Lisesi, Bilişim bölümünde 11. sınıf öğrencisiyim.
+                Siber güvenlik benim için bir hobiden öte; sistemlerin nasıl kırıldığını ve nasıl korunduğunu
+                anlamaya çalışarak profesyonel bir kariyer inşa etmeyi hedefliyorum. CTF yarışmaları, teorik
+                bilgiyi pratiğe döktüğüm asıl alan — her yarışma bana yeni bir açık, yeni bir bakış açısı
+                kazandırıyor. Bunun yanında güvenli yazılım geliştirebilmek için kodlama temellerimi de
+                sürekli güçlendiriyorum.
+            </p>
+            <blockquote class="quote-block" style="margin-top: var(--space-6);">
+                "Güvenlik, bir hedef değil, sürekli bir yolculuktur."
+            </blockquote>
+        </section>
+
+        <section class="section container reveal">
+            <div class="section-head">
+                <div>
+                    <span class="section-index">02 — Uzmanlık</span>
+                    <h2>Odaklandığım Alanlar</h2>
+                </div>
+            </div>
+            <div class="grid grid-3 reveal-stagger">
+                <div class="card focus-card">
+                    <h3><span class="icon">🌐</span> Web &amp; Sızma Testi</h3>
+                    <p>Web uygulama güvenlik açıklarını keşfetmek ve sızma testi metodolojilerini CTF senaryolarında uygulamak.</p>
+                </div>
+                <div class="card focus-card">
+                    <h3><span class="icon">🛡️</span> Ağ Güvenliği</h3>
+                    <p>Güvenlik duvarı yapılandırmaları, ağ trafiği analizi ve altyapı güvenliği üzerine çalışıyorum.</p>
+                </div>
+                <div class="card focus-card">
+                    <h3><span class="icon">🔍</span> SIEM &amp; Olay Müdahale</h3>
+                    <p>Güvenlik olaylarının tespiti, analizi ve müdahale süreçlerinin temellerini uyguluyorum.</p>
+                </div>
+                <div class="card focus-card">
+                    <h3><span class="icon">🕵️</span> Adli Bilişim &amp; OSINT</h3>
+                    <p>Dijital kanıt analizi ve açık kaynak istihbaratı gerektiren CTF kategorilerinde aktif olarak yarışıyorum.</p>
+                </div>
+                <div class="card focus-card">
+                    <h3><span class="icon">🔌</span> IoT Güvenliği</h3>
+                    <p>Nesnelerin interneti cihazlarının güvenlik zafiyetlerini ve korunma yöntemlerini araştırıyorum.</p>
+                </div>
+                <div class="card focus-card">
+                    <h3><span class="icon">🚩</span> CTF</h3>
+                    <p>Ulusal ve uluslararası CTF yarışmalarında bireysel ve takım halinde düzenli olarak yer alıyorum.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section container reveal">
+            <div class="section-head">
+                <div>
+                    <span class="section-index">03 — Öne Çıkanlar</span>
+                    <h2>Seçilmiş Başarılar</h2>
+                </div>
+                <a href="achievements.html" class="section-link">Tüm başarılar <span class="arrow">→</span></a>
+            </div>
+            <div class="grid grid-3 reveal-stagger">
+                <div class="card card-lift">
+                    <span class="project-year mono">2026 — HTB Cyber Apocalypse</span>
+                    <div class="rank-badge" style="margin-top: var(--space-3);"><span class="rank-num">95</span>/6744 takım</div>
+                    <p style="font-size: var(--text-sm);">5 günlük uluslararası CTF yarışmasında Top %1.4 dilimde yer aldım.</p>
+                </div>
+                <div class="card card-lift">
+                    <span class="project-year mono">2026 — Holmes CTF: Reichenbach</span>
+                    <div class="rank-badge" style="margin-top: var(--space-3);"><span class="rank-num">22</span>/5636 takım</div>
+                    <p style="font-size: var(--text-sm);">Türk takımları arasında 1. sıradaki sonucu Hack The Box üzerinde elde ettim.</p>
+                </div>
+                <div class="card card-lift">
+                    <span class="project-year mono">2025 — KTU BEiNG-WISE CTF</span>
+                    <div class="rank-badge" style="margin-top: var(--space-3);"><span class="rank-num">2.</span>lik</div>
+                    <p style="font-size: var(--text-sm);">24 saatlik ulusal siber güvenlik yarışmasında ikincilik derecesi elde ettim.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section container reveal">
+            <div class="section-head">
+                <div>
+                    <span class="section-index">04 — Geliştirdiklerim</span>
+                    <h2>Projeler</h2>
+                </div>
+                <a href="projects.html" class="section-link">Tüm projeler <span class="arrow">→</span></a>
+            </div>
+            <div class="grid grid-3 reveal-stagger">
+                <div class="card card-lift project-card">
+                    <span class="status-pill">Yayında</span>
+                    <span class="project-year mono" style="margin-top: var(--space-3);">2026</span>
+                    <h3>Bu Portfolyo Sitesi</h3>
+                    <p>Sıfırdan tasarlanmış, vanilla HTML/CSS/JS ile geliştirilmiş ve GitHub Pages üzerinde yayınlanan kişisel site.</p>
+                    <div class="project-tech">
+                        <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>GitHub Pages</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/yigitatmaca42/yigitatmaca42.github.io" target="_blank" rel="noopener noreferrer">Kaynak Kod ↗</a>
+                    </div>
+                </div>
+                <div class="card project-card" style="align-items: center; justify-content: center; text-align: center; color: var(--text-faint);">
+                    <span class="mono" style="font-size: var(--text-sm);">+ Yeni projeler yakında eklenecek</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section container reveal">
+            <div class="section-head">
+                <div>
+                    <span class="section-index">05 — Araçlar</span>
+                    <h2>Teknolojiler &amp; Beceriler</h2>
+                </div>
+            </div>
+            <div class="skill-group">
+                <h3>Security</h3>
+                <div class="tag-cloud">
+                    <span class="tag">Web Güvenliği</span>
+                    <span class="tag">Sızma Testi</span>
+                    <span class="tag">Ağ Güvenliği</span>
+                    <span class="tag">SIEM</span>
+                    <span class="tag">Olay Müdahalesi</span>
+                    <span class="tag">IoT Güvenliği</span>
+                    <span class="tag">CTF</span>
+                </div>
+            </div>
+            <div class="skill-group">
+                <h3>Development</h3>
+                <div class="tag-cloud">
+                    <span class="tag">Python</span>
+                    <span class="tag">Git &amp; GitHub</span>
+                    <span class="tag">HTML / CSS / JS</span>
+                </div>
+            </div>
+            <div class="skill-group">
+                <h3>Systems</h3>
+                <div class="tag-cloud">
+                    <span class="tag">Kali Linux</span>
+                    <span class="tag">Pardus</span>
+                    <span class="tag">Linux</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section container reveal">
+            <div class="cta-band">
+                <span class="eyebrow" style="justify-content:center;"><span class="dot"></span>06 — Sertifikalar</span>
+                <h2>28+ tamamlanmış eğitim ve sertifika</h2>
+                <p>BTK Akademi, Hack The Box, Siber Kulüpler Birliği ve daha fazlasından aldığım eğitimlerin tamamını inceleyebilirsin.</p>
+                <div class="hero-actions">
+                    <a href="certificates.html" class="btn btn-primary">Sertifikaları Gör</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section container reveal">
+            <div class="cta-band">
+                <span class="eyebrow" style="justify-content:center;"><span class="dot"></span>07 — İletişim</span>
+                <h2>Birlikte bir şeyler yapalım</h2>
+                <p>Sorularınız, iş birlikleri veya CTF takım önerileri için benimle iletişime geçebilirsiniz.</p>
+                <div class="hero-actions">
+                    <a href="contact.html" class="btn btn-primary">İletişime Geç</a>
+                    <a href="mailto:yigitatmaca42@gmail.com" class="btn btn-ghost">yigitatmaca42@gmail.com</a>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="/">Ana Sayfa</a>
-                <a href="achievements.html">Başarılar</a>
-                <a href="certificates.html">Sertifikalar</a>
-                <a href="contact.html">İletişim</a>
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="brand">
+                        <img src="assets/images/favicon.png" alt="" width="30" height="30">
+                        TYA <span class="brand-tag">Cyber</span>
+                    </a>
+                    <p>Siber güvenlik, CTF ve yazılım geliştirme üzerine çalışan bir öğrencinin kişisel portfolyosu.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Site</h4>
+                    <ul>
+                        <li><a href="achievements.html">Başarılar</a></li>
+                        <li><a href="projects.html">Projeler</a></li>
+                        <li><a href="certificates.html">Sertifikalar</a></li>
+                        <li><a href="writeups.html">Writeups</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Bağlantılar</h4>
+                    <ul>
+                        <li><a href="https://github.com/yigitatmaca42" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                        <li><a href="https://www.linkedin.com/in/yi%C4%9Fit-atmaca-89844839a/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                        <li><a href="mailto:yigitatmaca42@gmail.com">E-posta</a></li>
+                        <li><a href="contact.html">İletişim Formu</a></li>
+                    </ul>
+                </div>
             </div>
-            <p>&copy; <span id="current-year"></span> Yiğit Atmaca. Tüm hakları saklıdır.</p>
-            <p style="margin-top: 0.5rem; color: #6d5dfc;">"Aklına birşey geldiyse yap, tereddütte kalma yoksa keşke dersin."</p>
+            <div class="footer-bottom">
+                <span>© <span id="current-year"></span> Yiğit Atmaca — İstanbul, TR · UTC+3</span>
+                <span class="quote">"Güvenlik, bir hedef değil, sürekli bir yolculuktur."</span>
+            </div>
         </div>
     </footer>
-    <script>
-        document.getElementById('current-year').textContent = new Date().getFullYear();
 
-        const revealTargets = document.querySelectorAll('.reveal');
-        if ('IntersectionObserver' in window) {
-            const revealObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        revealObserver.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.15 });
-
-            revealTargets.forEach(el => revealObserver.observe(el));
-        } else {
-            revealTargets.forEach(el => el.classList.add('visible'));
-        }
-
-        const menuToggle = document.getElementById('menuToggle');
-        const mainNav = document.getElementById('mainNav');
-        const navOverlay = document.getElementById('navOverlay');
-
-        function closeMenu() {
-            menuToggle.classList.remove('active');
-            mainNav.classList.remove('active');
-            navOverlay.classList.remove('active');
-            menuToggle.setAttribute('aria-expanded', 'false');
-            document.body.style.overflow = '';
-        }
-
-        function toggleMenu() {
-            const isActive = mainNav.classList.toggle('active');
-            menuToggle.classList.toggle('active', isActive);
-            navOverlay.classList.toggle('active', isActive);
-            menuToggle.setAttribute('aria-expanded', String(isActive));
-            document.body.style.overflow = isActive ? 'hidden' : '';
-        }
-
-        menuToggle.addEventListener('click', toggleMenu);
-        navOverlay.addEventListener('click', closeMenu);
-        document.querySelectorAll('#mainNav a').forEach(link => {
-            link.addEventListener('click', closeMenu);
-        });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeMenu();
-        });
-    </script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

@@ -3,941 +3,318 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Taha Yiğit Atmaca'nın CTF yarışmalarında ve siber güvenlik etkinliklerinde elde ettiği başarılar.">
-    <link rel="icon" type="image/png" href="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/logo.png">
-    <meta property="og:title" content="Başarılar - TYA Cyber">
-    <meta property="og:description" content="Taha Yiğit Atmaca'nın CTF yarışmalarında ve siber güvenlik etkinliklerinde elde ettiği başarılar.">
-    <meta property="og:image" content="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/logo.png">
+    <meta name="description" content="Taha Yiğit Atmaca'nın CTF yarışmalarında ve siber güvenlik etkinliklerinde elde ettiği başarılar — tarih, sıralama ve kanıtlarıyla birlikte.">
+    <meta name="theme-color" content="#07080b">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+    <meta property="og:title" content="Başarılar — Yiğit Atmaca">
+    <meta property="og:description" content="CTF yarışmalarında ve siber güvenlik etkinliklerinde elde edilen sonuçlar.">
+    <meta property="og:image" content="https://yigitatmaca42.github.io/assets/images/logo.png">
     <meta property="og:url" content="https://yigitatmaca42.github.io/achievements.html">
     <meta property="og:type" content="website">
+    <meta property="og:locale" content="tr_TR">
     <meta name="twitter:card" content="summary">
     <link rel="canonical" href="https://yigitatmaca42.github.io/achievements.html">
-    <title>Başarılar - TYA Cyber</title>
+    <title>Başarılar — Yiğit Atmaca</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #6d5dfc;
-            --secondary: #8b5cf6;
-            --danger: #ff3b5c;
-            --dark-bg: #05060f;
-            --card-bg: #10122a;
-            --text: #e4e2f5;
-            --text-light: #837fa3;
-            --font-display: 'Space Mono', 'Courier New', monospace;
-            --font-body: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
-
-        body {
-            font-family: var(--font-body);
-            background-color: var(--dark-bg);
-            background-image: repeating-linear-gradient(
-                0deg,
-                rgba(109, 93, 252, 0.035) 0px,
-                rgba(109, 93, 252, 0.035) 1px,
-                transparent 1px,
-                transparent 3px
-            );
-            background-attachment: fixed;
-            color: var(--text);
-            font-weight: 400;
-        }
-
-        header {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(10, 14, 39, 0.9) 100%);
-            border-bottom: 2px solid var(--primary);
-            padding: 1.5rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            line-height: 1;
-        }
-
-        .header-content {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            letter-spacing: -0.02em;
-        }
-
-        .logo-img {
-            width: 60px;
-            height: 60px;
-            object-fit: contain;
-        }
-
-        nav {
-            display: flex;
-            gap: 2rem;
-        }
-
-        nav a {
-            color: var(--text);
-            text-decoration: none;
-            transition: color 0.3s;
-            font-size: 0.95rem;
-        }
-
-        nav a:hover {
-            color: var(--primary);
-        }
-
-        nav a.active {
-            color: var(--primary);
-        }
-
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 26px;
-            height: 18px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            z-index: 1002;
-        }
-
-        .menu-toggle span {
-            display: block;
-            height: 2px;
-            width: 100%;
-            background: var(--primary);
-            border-radius: 2px;
-            transition: transform 0.3s, opacity 0.3s;
-        }
-
-        .menu-toggle.active span:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
-        }
-
-        .menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .menu-toggle.active span:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
-        }
-
-        .nav-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 999;
-        }
-
-        .nav-overlay.active {
-            display: block;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        h1 {
-            font-family: var(--font-display);
-            font-size: 2.5rem;
-            color: var(--primary);
-            text-align: center;
-            margin-bottom: 3rem;
-            font-weight: 600;
-            text-shadow: 0 0 20px rgba(109, 93, 252, 0.5),
-                         0 0 40px rgba(109, 93, 252, 0.3),
-                         0 0 60px rgba(109, 93, 252, 0.2);
-            animation: glow 2s ease-in-out infinite;
-        }
-
-        @keyframes glow {
-            0%, 100% {
-                text-shadow: 0 0 20px rgba(109, 93, 252, 0.5),
-                             0 0 40px rgba(109, 93, 252, 0.3),
-                             0 0 60px rgba(109, 93, 252, 0.2);
-            }
-            50% {
-                text-shadow: 0 0 30px rgba(109, 93, 252, 0.8),
-                             0 0 60px rgba(109, 93, 252, 0.5),
-                             0 0 90px rgba(109, 93, 252, 0.3);
-            }
-        }
-
-        .achievement-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            background: var(--card-bg);
-            border: 1px solid rgba(109, 93, 252, 0.2);
-            padding: 2rem;
-            margin-bottom: 2rem;
-            align-items: center;
-        }
-
-        .achievement-container {
-            position: relative;
-        }
-
-        .achievement-container::before,
-        .achievement-container::after {
-            content: '';
-            position: absolute;
-            width: 14px;
-            height: 14px;
-            border: var(--primary) 2px solid;
-            pointer-events: none;
-        }
-
-        .achievement-container::before {
-            top: -1px;
-            left: -1px;
-            border-width: 2px 0 0 2px;
-        }
-
-        .achievement-container::after {
-            bottom: -1px;
-            right: -1px;
-            border-width: 0 2px 2px 0;
-        }
-
-
-        .achievement-content {
-            position: relative;
-            min-height: 320px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding-top: 2rem;
-        }
-
-        .achievement-content h2 {
-            color: var(--primary);
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .achievement-content p {
-            color: var(--text-light);
-            font-size: 1.05rem;
-            margin-bottom: 0.8rem;
-            line-height: 1.5;
-        }
-
-        .achievement-date {
-            color: var(--primary);
-            font-weight: bold;
-        }
-
-        .top-left {
-            position: absolute;
-            top: 0;
-            left: 0;
-            font-size: 0.95rem;
-        }
-
-        .rank {
-            color: var(--primary) !important;
-            font-weight: bold;
-            margin-top: -0.2rem;
-            margin-bottom: 1.2rem;
-        }
-
-        .desc {
-            margin: 1.5rem 0;
-            line-height: 1.6;
-        }
-
-        .org {
-            margin-top: 2rem;
-            border-top: 1px solid rgba(109, 93, 252, 0.2);
-            padding-top: 1rem;
-        }
-
-        .org strong {
-            display: block;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .clickable-image {
-            cursor: pointer;
-            border-radius: 8px;
-            border: 2px solid var(--primary);
-            width: 100%;
-            max-width: 100%;
-            transition: transform 0.3s;
-            display: block;
-            object-fit: contain;
-        }
-
-        .clickable-image:hover {
-            transform: scale(1.02);
-        }
-
-        .clickable-image:focus-visible {
-            outline: 3px solid var(--primary);
-            outline-offset: 3px;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal:focus {
-            outline: none;
-        }
-
-        .modal-close {
-            position: fixed;
-            top: 20px;
-            right: 30px;
-            background: none;
-            border: none;
-            color: var(--primary);
-            font-size: 2rem;
-            cursor: pointer;
-            z-index: 2001;
-        }
-
-        .modal-close:hover {
-            color: var(--secondary);
-        }
-
-        .modal-nav {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(109, 93, 252, 0.3);
-            border: 2px solid var(--primary);
-            color: var(--primary);
-            font-size: 2.5rem;
-            padding: 1.5rem 2rem;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: all 0.3s;
-            z-index: 2002;
-            font-weight: bold;
-        }
-
-        .modal-nav:hover {
-            background: rgba(109, 93, 252, 0.5);
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .modal-prev {
-            left: 30px;
-        }
-
-        .modal-next {
-            right: 30px;
-        }
-
-        .modal-image {
-            max-width: 90%;
-            max-height: 90vh;
-            object-fit: contain;
-            border-radius: 8px;
-        }
-
-        footer {
-            background: rgba(0, 0, 0, 0.5);
-            border-top: 1px solid var(--primary);
-            padding: 2rem 0;
-            text-align: center;
-            color: var(--text-light);
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        .footer-links a:hover {
-            color: var(--secondary);
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 1.8rem;
-            }
-
-            .achievement-container {
-                grid-template-columns: 1fr;
-            }
-
-            .achievement-content {
-                min-height: auto;
-                padding-top: 2rem;
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-
-            nav {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 75%;
-                max-width: 300px;
-                height: 100vh;
-                margin: 0;
-                background: linear-gradient(180deg, rgba(10, 14, 39, 0.98) 0%, rgba(26, 31, 58, 0.98) 100%);
-                border-left: 1px solid rgba(109, 93, 252, 0.2);
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0;
-                padding: 6rem 2rem 2rem;
-                transition: right 0.3s ease;
-                z-index: 1001;
-            }
-
-            nav.active {
-                right: 0;
-            }
-
-            nav a {
-                width: 100%;
-                padding: 1rem 0;
-                font-size: 1.1rem;
-                border-bottom: 1px solid rgba(109, 93, 252, 0.1);
-            }
-
-            .container {
-                padding: 1rem;
-            }
-
-            .header-content {
-                padding: 0 1rem;
-            }
-
-            .modal-nav {
-                font-size: 2rem;
-                padding: 1rem 1.2rem;
-            }
-
-            .modal-prev {
-                left: 10px;
-            }
-
-            .modal-next {
-                right: 10px;
-            }
-
-            .modal-close {
-                top: 10px;
-                right: 15px;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
 </head>
-<body>
-    <header>
-        <div class="header-content">
-            <a href="/" class="logo">
-                <img src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/logo.png" alt="TYA Cyber Logo" class="logo-img">
-                TYA Cyber
+<body class="noscript-fallback">
+    <a href="#main" class="skip-link">İçeriğe geç</a>
+    <div class="scroll-progress" aria-hidden="true"></div>
+
+    <header class="site-header">
+        <div class="container header-row">
+            <a href="index.html" class="brand" aria-label="Anasayfa">
+                <img src="assets/images/favicon.png" alt="" width="30" height="30">
+                TYA <span class="brand-tag">Cyber</span>
             </a>
-            <nav id="mainNav">
-                <a href="/">Ana Sayfa</a>
-                <a href="achievements.html" class="active">Başarılar</a>
-                <a href="certificates.html">Sertifikalar</a>
-                <a href="contact.html">İletişim</a>
+            <nav class="nav-desktop" aria-label="Ana menü">
+                <div class="nav-links">
+                    <a href="index.html">Ana Sayfa</a>
+                    <a href="achievements.html" class="is-active">Başarılar</a>
+                    <a href="projects.html">Projeler</a>
+                    <a href="certificates.html">Sertifikalar</a>
+                    <a href="writeups.html">Writeups</a>
+                </div>
+                <a href="contact.html" class="btn btn-primary btn-sm">İletişim</a>
             </nav>
-            <button class="menu-toggle" id="menuToggle" aria-label="Menüyü aç/kapat" aria-expanded="false">
+            <button class="menu-toggle" id="menuToggle" aria-label="Menüyü aç" aria-expanded="false" aria-controls="navMobile">
                 <span></span><span></span><span></span>
             </button>
         </div>
     </header>
-    <div class="nav-overlay" id="navOverlay"></div>
 
-    <main class="container">
-        <h1>🏆 Başarılarım</h1>
-
-        <div class="achievement-container">
-            <div class="achievement-content">
-                <div class="achievement-date top-left">17 Aralık 2025</div>
-
-                <div>
-                    <h2>Türkiye Siber Güvenlik Kümelenmesi &amp; GençTek</h2>
-                    <p><strong>Liseler Arası Siber Güvenlik Yarışması</strong></p>
-                    <p class="rank">5.'lik başarısı</p>
-                    <p class="desc">2 saatlik bir CTF yarışmasıydı.</p>
-                </div>
-
-                <div class="org">
-                    <strong>Organizasyon</strong>
-                    <p>Türkiye Siber Güvenlik Kümelenmesi &amp; GençTek</p>
-                </div>
-            </div>
-
-            <div>
-                <img
-                    src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/TSGKCTF25/scoreboard.png"
-                    alt="TSGK CTF Başarı Kanıtı"
-                    loading="lazy" class="clickable-image" tabindex="0" role="button"
-                    onclick="openModal('tsgk')"
-                >
-            </div>
+    <nav class="nav-mobile" id="navMobile" aria-label="Mobil menü">
+        <ul>
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="achievements.html" class="is-active">Başarılar</a></li>
+            <li><a href="projects.html">Projeler</a></li>
+            <li><a href="certificates.html">Sertifikalar</a></li>
+            <li><a href="writeups.html">Writeups</a></li>
+            <li><a href="contact.html">İletişim</a></li>
+        </ul>
+        <div class="nav-mobile-footer">
+            <a href="https://github.com/yigitatmaca42" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://www.linkedin.com/in/yi%C4%9Fit-atmaca-89844839a/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="mailto:yigitatmaca42@gmail.com">E-posta</a>
         </div>
+    </nav>
 
-        <div class="achievement-container">
-            <div class="achievement-content">
-                <div class="achievement-date top-left">28-29 Kasım 2025</div>
-
-                <div>
-                    <h2>Karadeniz Teknik Üniversitesi - BEiNG-WISE CTF</h2>
-                    <p><strong>Ulusal Siber Güvenlik Yarışması</strong></p>
-                    <p class="rank">2.'lik başarısı</p>
-                    <p class="desc">24 saatlik bir CTF yarışmasıydı.</p>
-                </div>
-
-                <div class="org">
-                    <strong>Organizasyon</strong>
-                    <p>KTU, KTUSEC, Kosova Siber Ekibi, RISE &amp; BEiNG-WISE</p>
-                </div>
+    <main id="main">
+        <div class="container">
+            <div class="page-header">
+                <span class="eyebrow"><span class="dot"></span>2025 — 2026</span>
+                <h1>Başarılarım</h1>
+                <p>CTF yarışmalarında ve siber güvenlik etkinliklerinde elde ettiğim sonuçlar — en güncelinden en eskisine.</p>
             </div>
 
-            <div>
-                <img
-                    src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/KTUBW25/scoreboard.png"
-                    alt="KTU BEiNG-WISE CTF Başarı Kanıtı"
-                    loading="lazy" class="clickable-image" tabindex="0" role="button"
-                    onclick="openModal('ktu')"
-                >
-            </div>
-        </div>
-
-        <div class="achievement-container">
-            <div class="achievement-content">
-                <div class="achievement-date top-left">27-28 Mart 2026</div>
-
-                <div>
-                    <h2>SKYDAYS: TÜRKİYE'NİN EN BÜYÜK SİBER GÜVENLİK ETKİNLİĞİ</h2>
-                    <p><strong>Yıldız Teknik Üniversitesi CTF Yarışması</strong></p>
-                    <p class="rank">3.'lük başarısı</p>
-                    <p class="desc">20 saatlik bir takım CTF yarışmasıydı.</p>
+            <div class="section">
+                <div class="timeline-item featured-item reveal">
+                    <div class="timeline-date mono">19–20 Eylül 2026</div>
+                    <div class="timeline-body">
+                        <div class="timeline-content">
+                            <h3>WATCHLIST CTF</h3>
+                            <p class="event-org">Digital Investigation CTF</p>
+                            <div class="rank-badge"><span class="rank-num">26.</span>lık (213 takım arasında)</div>
+                            <p class="event-desc">24 saatlik bir CTF yarışmasıydı.</p>
+                            <div class="event-hosts">
+                                <strong>Organizasyon</strong>
+                                XposedOrNot
+                            </div>
+                        </div>
+                        <button type="button" class="evidence-thumb" data-gallery="watchlist26" aria-label="WATCHLIST CTF kanıt galerisini aç">
+                            <img src="pictures/WATCHLIST26/rank.webp" alt="WATCHLIST CTF sıralama kanıtı" loading="lazy" width="640" height="480">
+                        </button>
+                    </div>
                 </div>
 
-                <div class="org">
-                    <strong>Organizasyon</strong>
-                    <p>SKYSEC &amp; Yıldız Teknik Üniversitesi</p>
-                </div>
-            </div>
-
-            <div>
-                <img
-                    src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/SKYDAYS26/prize.jpeg"
-                    alt="SKYDAYS CTF Başarı Kanıtı"
-                    loading="lazy" class="clickable-image" tabindex="0" role="button"
-                    onclick="openModal('skydays')"
-                >
-            </div>
-        </div>
-
-        <div class="achievement-container">
-            <div class="achievement-content">
-                <div class="achievement-date top-left">23 Haziran 2026</div>
-
-                <div>
-                    <h2>ITUCTF'26</h2>
-                    <p><strong>İstanbul Teknik Üniversitesi CTF Yarışması</strong></p>
-                    <p class="rank">8.'lik başarısı</p>
-                    <p class="desc">8 saatlik bir CTF yarışmasıydı.</p>
+                <div class="timeline-item featured-item reveal">
+                    <div class="timeline-date mono">17–21 Eylül 2026</div>
+                    <div class="timeline-body">
+                        <div class="timeline-content">
+                            <h3>Hack The Box — Holmes CTF 2026</h3>
+                            <p class="event-org">The Reichenbach Directive · Uluslararası Siber Güvenlik Yarışması</p>
+                            <div class="rank-badge"><span class="rank-num">22.</span>lik (5636 takım) — 🇹🇷 Türk takımları arasında 1.</div>
+                            <p class="event-desc">5 günlük bir CTF yarışmasıydı.</p>
+                            <div class="event-hosts">
+                                <strong>Organizasyon</strong>
+                                Hack The Box
+                            </div>
+                        </div>
+                        <button type="button" class="evidence-thumb" data-gallery="htbholmes26" aria-label="Holmes CTF 2026 kanıt galerisini aç">
+                            <img src="pictures/HTBHolmes26/rank.webp" alt="Holmes CTF 2026 sıralama kanıtı" loading="lazy" width="640" height="480">
+                        </button>
+                    </div>
                 </div>
 
-                <div class="org">
-                    <strong>Organizasyon</strong>
-                    <p>İstanbul Teknik Üniversitesi, ITU InfoSec, Sekur &amp; Siber Havadis</p>
-                </div>
-            </div>
-
-            <div>
-                <img
-                    src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/ITUCTF26/scoreboard.png"
-                    alt="ITUCTF'26 Başarı Kanıtı"
-                    loading="lazy" class="clickable-image" tabindex="0" role="button"
-                    onclick="openModal('ituctf')"
-                >
-            </div>
-        </div>
-
-        <div class="achievement-container">
-            <div class="achievement-content">
-                <div class="achievement-date top-left">23 Haziran 2026</div>
-
-                <div>
-                    <h2>WOLFCTF'26</h2>
-                    <p><strong>Teknopark Ankara ve İvedik OSB Yönetim Kurulu Başkanlığı CTF Yarışması</strong></p>
-                    <p class="rank">11.'lik başarısı</p>
-                    <p class="desc">3 saatlik bir CTF yarışmasıydı.</p>
+                <div class="timeline-item reveal">
+                    <div class="timeline-date mono">4–6 Eylül 2026</div>
+                    <div class="timeline-body">
+                        <div class="timeline-content">
+                            <h3>NNS CTF 2026</h3>
+                            <p class="event-org">Uluslararası Siber Güvenlik Yarışması</p>
+                            <div class="rank-badge"><span class="rank-num">21.</span>lik (887 takım arasında)</div>
+                            <p class="event-desc">2 günlük bir CTF yarışmasıydı.</p>
+                            <div class="event-hosts">
+                                <strong>Organizasyon</strong>
+                                Norske Nøkkelsnikere (NNS), OtterSec, Zellic &amp; EPT
+                            </div>
+                        </div>
+                        <button type="button" class="evidence-thumb" data-gallery="nnsctf" aria-label="NNS CTF 2026 kanıt galerisini aç">
+                            <img src="pictures/NSSCTF26/score.webp" alt="NNS CTF 2026 puan kanıtı" loading="lazy" width="640" height="480">
+                        </button>
+                    </div>
                 </div>
 
-                <div class="org">
-                    <strong>Organizasyon</strong>
-                    <p>İvedik OSB, Teknopark Ankara İvedik OSB MTAL, GENÇTEK &amp; Teknopark Ankara</p>
-                </div>
-            </div>
-
-            <div>
-                <img
-                    src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/WOLFCTF26/score.png"
-                    alt="WOLFCTF'26 Başarı Kanıtı"
-                    loading="lazy" class="clickable-image" tabindex="0" role="button"
-                    onclick="openModal('wolfctf')"
-                >
-            </div>
-        </div>
-        <div class="achievement-container">
-            <div class="achievement-content">
-                <div class="achievement-date top-left">24-29 Temmuz 2026</div>
-
-                <div>
-                    <h2>Hack The Box - Cyber Apocalypse CTF 2026: The Salt Crown</h2>
-                    <p><strong>Uluslararası Siber Güvenlik Yarışması</strong></p>
-                    <p class="rank">95.'lik başarısı (6744 takım arasında)</p>
-                    <p class="desc">5 günlük bir CTF yarışmasıydı.</p>
+                <div class="timeline-item featured-item reveal">
+                    <div class="timeline-date mono">27 Ağustos 2026</div>
+                    <div class="timeline-body">
+                        <div class="timeline-content">
+                            <h3>PRATIK</h3>
+                            <p class="event-org">AltayCTF Eğitim &amp; Pratik Platformu</p>
+                            <div class="rank-badge"><span class="rank-num">1.</span>lik — Tüm zamanlar</div>
+                            <p class="event-desc">Süre sınırı yok.</p>
+                            <div class="event-hosts">
+                                <strong>Organizasyon</strong>
+                                AltaySec &amp; AltayCTF
+                            </div>
+                        </div>
+                        <button type="button" class="evidence-thumb" data-gallery="pratik" aria-label="PRATIK kanıt galerisini aç">
+                            <img src="pictures/PRATIKCTF26/profile.webp" alt="PRATIK profil kanıtı" loading="lazy" width="640" height="480">
+                        </button>
+                    </div>
                 </div>
 
-                <div class="org">
-                    <strong>Organizasyon</strong>
-                    <p>Hack The Box</p>
-                </div>
-            </div>
-
-            <div>
-                <img
-                    src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/HTBSaltCrown26/rank.jpg"
-                    alt="Cyber Apocalypse CTF 2026 Başarı Kanıtı"
-                    loading="lazy" class="clickable-image" tabindex="0" role="button"
-                    onclick="openModal('htbca26')"
-                >
-            </div>
-        </div>
-
-        <div class="achievement-container">
-            <div class="achievement-content">
-                <div class="achievement-date top-left">27 Ağustos 2026</div>
-
-                <div>
-                    <h2>PRATIK</h2>
-                    <p><strong>AltayCTF Eğitim &amp; Pratik Platformu</strong></p>
-                    <p class="rank">Tüm zamanlar 1.'lik başarısı</p>
-                    <p class="desc">Süre sınırı yok.</p>
+                <div class="timeline-item featured-item reveal">
+                    <div class="timeline-date mono">24–29 Temmuz 2026</div>
+                    <div class="timeline-body">
+                        <div class="timeline-content">
+                            <h3>Hack The Box — Cyber Apocalypse 2026</h3>
+                            <p class="event-org">The Salt Crown · Uluslararası Siber Güvenlik Yarışması</p>
+                            <div class="rank-badge"><span class="rank-num">95.</span>lik (6744 takım arasında) — Top %1.4</div>
+                            <p class="event-desc">5 günlük bir CTF yarışmasıydı.</p>
+                            <div class="event-hosts">
+                                <strong>Organizasyon</strong>
+                                Hack The Box
+                            </div>
+                        </div>
+                        <button type="button" class="evidence-thumb" data-gallery="htbca26" aria-label="Cyber Apocalypse 2026 kanıt galerisini aç">
+                            <img src="pictures/HTBSaltCrown26/rank.webp" alt="Cyber Apocalypse 2026 sıralama kanıtı" loading="lazy" width="640" height="480">
+                        </button>
+                    </div>
                 </div>
 
-                <div class="org">
-                    <strong>Organizasyon</strong>
-                    <p>AltaySec &amp; AltayCTF</p>
-                </div>
-            </div>
-
-            <div>
-                <img
-                    src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/PRATIKCTF26/profile.png"
-                    alt="PRATIK Başarı Kanıtı"
-                    loading="lazy" class="clickable-image" tabindex="0" role="button"
-                    onclick="openModal('pratik')"
-                >
-            </div>
-        </div>
-
-        <div class="achievement-container">
-            <div class="achievement-content">
-                <div class="achievement-date top-left">4-6 Eylül 2026</div>
-
-                <div>
-                    <h2>NNS CTF 2026</h2>
-                    <p><strong>Uluslararası Siber Güvenlik Yarışması</strong></p>
-                    <p class="rank">21.'lik başarısı (887 takım arasında)</p>
-                    <p class="desc">2 günlük bir CTF yarışmasıydı.</p>
+                <div class="timeline-item reveal">
+                    <div class="timeline-date mono">23 Haziran 2026</div>
+                    <div class="timeline-body">
+                        <div class="timeline-content">
+                            <h3>WOLFCTF'26</h3>
+                            <p class="event-org">Teknopark Ankara ve İvedik OSB CTF Yarışması</p>
+                            <div class="rank-badge"><span class="rank-num">11.</span>lik</div>
+                            <p class="event-desc">3 saatlik bir CTF yarışmasıydı.</p>
+                            <div class="event-hosts">
+                                <strong>Organizasyon</strong>
+                                İvedik OSB, Teknopark Ankara İvedik OSB MTAL, GENÇTEK &amp; Teknopark Ankara
+                            </div>
+                        </div>
+                        <button type="button" class="evidence-thumb" data-gallery="wolfctf" aria-label="WOLFCTF'26 kanıt galerisini aç">
+                            <img src="pictures/WOLFCTF26/score.webp" alt="WOLFCTF'26 kanıtı" loading="lazy" width="640" height="480">
+                        </button>
+                    </div>
                 </div>
 
-                <div class="org">
-                    <strong>Organizasyon</strong>
-                    <p>Norske Nøkkelsnikere (NNS), OtterSec, Zellic &amp; EPT</p>
-                </div>
-            </div>
-
-            <div>
-                <img
-                    src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/NSSCTF26/score.jpeg"
-                    alt="NNS CTF 2026 Başarı Kanıtı"
-                    loading="lazy" class="clickable-image" tabindex="0" role="button"
-                    onclick="openModal('nnsctf')"
-                >
-            </div>
-        </div>
-
-        <div class="achievement-container">
-            <div class="achievement-content">
-                <div class="achievement-date top-left">17-21 Eylül 2026</div>
-
-                <div>
-                    <h2>Hack The Box - Holmes CTF 2026: The Reichenbach Directive</h2>
-                    <p><strong>Uluslararası Siber Güvenlik Yarışması</strong></p>
-                    <p class="rank">22.'lik başarısı (5636 takım arasında) — Türk takımları arasında 1.'lik</p>
-                    <p class="desc">5 günlük bir CTF yarışmasıydı.</p>
+                <div class="timeline-item reveal">
+                    <div class="timeline-date mono">23 Haziran 2026</div>
+                    <div class="timeline-body">
+                        <div class="timeline-content">
+                            <h3>ITUCTF'26</h3>
+                            <p class="event-org">İstanbul Teknik Üniversitesi CTF Yarışması</p>
+                            <div class="rank-badge"><span class="rank-num">8.</span>lik</div>
+                            <p class="event-desc">8 saatlik bir CTF yarışmasıydı.</p>
+                            <div class="event-hosts">
+                                <strong>Organizasyon</strong>
+                                İstanbul Teknik Üniversitesi, ITU InfoSec, Sekur &amp; Siber Havadis
+                            </div>
+                        </div>
+                        <button type="button" class="evidence-thumb" data-gallery="ituctf" aria-label="ITUCTF'26 kanıt galerisini aç">
+                            <img src="pictures/ITUCTF26/scoreboard.webp" alt="ITUCTF'26 kanıtı" loading="lazy" width="640" height="480">
+                        </button>
+                    </div>
                 </div>
 
-                <div class="org">
-                    <strong>Organizasyon</strong>
-                    <p>Hack The Box</p>
-                </div>
-            </div>
-
-            <div>
-                <img
-                    src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/HTBHolmes26/rank.png"
-                    alt="Holmes CTF 2026 Başarı Kanıtı"
-                    loading="lazy" class="clickable-image" tabindex="0" role="button"
-                    onclick="openModal('htbholmes26')"
-                >
-            </div>
-        </div>
-
-        <div class="achievement-container">
-            <div class="achievement-content">
-                <div class="achievement-date top-left">19-20 Eylül 2026</div>
-
-                <div>
-                    <h2>WATCHLIST CTF</h2>
-                    <p><strong>Digital Investigation CTF</strong></p>
-                    <p class="rank">26.'lık başarısı (213 takım arasında)</p>
-                    <p class="desc">24 saatlik bir CTF yarışmasıydı.</p>
+                <div class="timeline-item reveal">
+                    <div class="timeline-date mono">27–28 Mart 2026</div>
+                    <div class="timeline-body">
+                        <div class="timeline-content">
+                            <h3>SKYDAYS</h3>
+                            <p class="event-org">Yıldız Teknik Üniversitesi CTF Yarışması</p>
+                            <div class="rank-badge"><span class="rank-num">3.</span>lük</div>
+                            <p class="event-desc">20 saatlik bir takım CTF yarışmasıydı.</p>
+                            <div class="event-hosts">
+                                <strong>Organizasyon</strong>
+                                SKYSEC &amp; Yıldız Teknik Üniversitesi
+                            </div>
+                        </div>
+                        <button type="button" class="evidence-thumb" data-gallery="skydays" aria-label="SKYDAYS kanıt galerisini aç">
+                            <img src="pictures/SKYDAYS26/prize.webp" alt="SKYDAYS kanıtı" loading="lazy" width="640" height="480">
+                        </button>
+                    </div>
                 </div>
 
-                <div class="org">
-                    <strong>Organizasyon</strong>
-                    <p>XposedOrNot</p>
+                <div class="timeline-item reveal">
+                    <div class="timeline-date mono">17 Aralık 2025</div>
+                    <div class="timeline-body">
+                        <div class="timeline-content">
+                            <h3>Türkiye Siber Güvenlik Kümelenmesi &amp; GençTek</h3>
+                            <p class="event-org">Liseler Arası Siber Güvenlik Yarışması</p>
+                            <div class="rank-badge"><span class="rank-num">5.</span>lik</div>
+                            <p class="event-desc">2 saatlik bir CTF yarışmasıydı.</p>
+                            <div class="event-hosts">
+                                <strong>Organizasyon</strong>
+                                Türkiye Siber Güvenlik Kümelenmesi &amp; GençTek
+                            </div>
+                        </div>
+                        <button type="button" class="evidence-thumb" data-gallery="tsgk" aria-label="TSGK CTF kanıt galerisini aç">
+                            <img src="pictures/TSGKCTF25/scoreboard.webp" alt="TSGK CTF kanıtı" loading="lazy" width="640" height="480">
+                        </button>
+                    </div>
                 </div>
-            </div>
 
-            <div>
-                <img
-                    src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/WATCHLIST26/rank.png"
-                    alt="WATCHLIST CTF Başarı Kanıtı"
-                    loading="lazy" class="clickable-image" tabindex="0" role="button"
-                    onclick="openModal('watchlist26')"
-                >
+                <div class="timeline-item reveal">
+                    <div class="timeline-date mono">28–29 Kasım 2025</div>
+                    <div class="timeline-body">
+                        <div class="timeline-content">
+                            <h3>Karadeniz Teknik Üniversitesi — BEiNG-WISE CTF</h3>
+                            <p class="event-org">Ulusal Siber Güvenlik Yarışması</p>
+                            <div class="rank-badge"><span class="rank-num">2.</span>lik</div>
+                            <p class="event-desc">24 saatlik bir CTF yarışmasıydı.</p>
+                            <div class="event-hosts">
+                                <strong>Organizasyon</strong>
+                                KTU, KTUSEC, Kosova Siber Ekibi, RISE &amp; BEiNG-WISE
+                            </div>
+                        </div>
+                        <button type="button" class="evidence-thumb" data-gallery="ktu" aria-label="KTU BEiNG-WISE CTF kanıt galerisini aç">
+                            <img src="pictures/KTUBW25/scoreboard.webp" alt="KTU BEiNG-WISE CTF kanıtı" loading="lazy" width="640" height="480">
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
 
-    <div class="modal" id="imageModal" tabindex="-1" onclick="closeModal(event)">
-        <button class="modal-close" onclick="closeModal()">✕</button>
-        <button class="modal-nav modal-prev" onclick="prevImage(event)">❮</button>
-        <img
-            src="https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/TSGKCTF25/scoreboard.png"
-            id="modalImage"
-            class="modal-image"
-            alt="Başarı Görseli"
-            onclick="event.stopPropagation()"
-        >
-        <button class="modal-nav modal-next" onclick="nextImage(event)">❯</button>
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Başarı kanıtı görüntüleyici">
+        <button type="button" class="lightbox-close" aria-label="Kapat">✕</button>
+        <button type="button" class="lightbox-nav lightbox-prev" aria-label="Önceki görsel">❮</button>
+        <figure class="lightbox-figure">
+            <img id="lightboxImage" src="" alt="">
+            <figcaption id="lightboxCaption" class="lightbox-caption"></figcaption>
+        </figure>
+        <button type="button" class="lightbox-nav lightbox-next" aria-label="Sonraki görsel">❯</button>
     </div>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="/">Ana Sayfa</a>
-                <a href="achievements.html">Başarılar</a>
-                <a href="certificates.html">Sertifikalar</a>
-                <a href="contact.html">İletişim</a>
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="brand">
+                        <img src="assets/images/favicon.png" alt="" width="30" height="30">
+                        TYA <span class="brand-tag">Cyber</span>
+                    </a>
+                    <p>Siber güvenlik, CTF ve yazılım geliştirme üzerine çalışan bir öğrencinin kişisel portfolyosu.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Site</h4>
+                    <ul>
+                        <li><a href="achievements.html">Başarılar</a></li>
+                        <li><a href="projects.html">Projeler</a></li>
+                        <li><a href="certificates.html">Sertifikalar</a></li>
+                        <li><a href="writeups.html">Writeups</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Bağlantılar</h4>
+                    <ul>
+                        <li><a href="https://github.com/yigitatmaca42" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                        <li><a href="https://www.linkedin.com/in/yi%C4%9Fit-atmaca-89844839a/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                        <li><a href="mailto:yigitatmaca42@gmail.com">E-posta</a></li>
+                        <li><a href="contact.html">İletişim Formu</a></li>
+                    </ul>
+                </div>
             </div>
-            <p>&copy; <span id="current-year"></span> Yiğit Atmaca. Tüm hakları saklıdır.</p>
-            <p style="margin-top: 0.5rem; color: #6d5dfc;">"Aklına birşey geldiyse yap, tereddütte kalma yoksa keşke dersin."</p>
+            <div class="footer-bottom">
+                <span>© <span id="current-year"></span> Yiğit Atmaca — İstanbul, TR · UTC+3</span>
+                <span class="quote">"Güvenlik, bir hedef değil, sürekli bir yolculuktur."</span>
+            </div>
         </div>
     </footer>
 
-    <script>
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-
-        const menuToggle = document.getElementById('menuToggle');
-        const mainNav = document.getElementById('mainNav');
-        const navOverlay = document.getElementById('navOverlay');
-
-        function closeMenu() {
-            menuToggle.classList.remove('active');
-            mainNav.classList.remove('active');
-            navOverlay.classList.remove('active');
-            menuToggle.setAttribute('aria-expanded', 'false');
-            document.body.style.overflow = '';
-        }
-
-        function toggleMenu() {
-            const isActive = mainNav.classList.toggle('active');
-            menuToggle.classList.toggle('active', isActive);
-            navOverlay.classList.toggle('active', isActive);
-            menuToggle.setAttribute('aria-expanded', String(isActive));
-            document.body.style.overflow = isActive ? 'hidden' : '';
-        }
-
-        menuToggle.addEventListener('click', toggleMenu);
-        navOverlay.addEventListener('click', closeMenu);
-        document.querySelectorAll('#mainNav a').forEach(link => {
-            link.addEventListener('click', closeMenu);
-        });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeMenu();
-        });
-
-
-        const galleries = {
-            tsgk: [
-                "https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/TSGKCTF25/scoreboard.png",
-                "https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/TSGKCTF25/top10.png"
-            ],
-            ktu: [
-                "https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/KTUBW25/scoreboard.png",
-                "https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/KTUBW25/team.png"
-            ],
-            skydays: [
-                "https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/SKYDAYS26/prize.jpeg",
-                "https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/SKYDAYS26/team.jpeg"
-            ],
-            ituctf: [
-                "https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/ITUCTF26/scoreboard.png",
-                "https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/ITUCTF26/score.png",
-                "https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/ITUCTF26/top10.png"
-            ],
-            wolfctf: [
-                "https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/WOLFCTF26/score.png",
-                "https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/WOLFCTF26/scoreboard.jpeg"    
-            ],
-            htbca26: [
-                "https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/HTBSaltCrown26/rank.jpg",
-                "https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/HTBSaltCrown26/team.jpg",
-                "https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/HTBSaltCrown26/info.jpg"
-            ],
-            pratik: [
-                "https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/PRATIKCTF26/profile.png",
-                "https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/PRATIKCTF26/scoreboard.png",
-                "https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/PRATIKCTF26/stats.png"
-            ],
-            nnsctf: [
-                "https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/NSSCTF26/score.jpeg"
-            ],
-            htbholmes26: [
-                "https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/HTBHolmes26/rank.png",
-                "https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/HTBHolmes26/team.png",
-                "https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/HTBHolmes26/info.jpg"
-            ],
-            watchlist26: [
-                "https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/WATCHLIST26/rank.png",
-                "https://github.com/yigitatmaca42/yigitatmaca42.github.io/raw/main/pictures/WATCHLIST26/team.png"
-            ]
-        };
-
-        let currentGallery = [];
-        let currentImageIndex = 0;
-
-        function openModal(galleryName) {
-            currentGallery = galleries[galleryName];
-            currentImageIndex = 0;
-            const modal = document.getElementById('imageModal');
-            modal.classList.add('active');
-            updateModalImage();
-            modal.focus();
-        }
-
-        function closeModal(event) {
-            if (event && event.target.id !== 'imageModal') return;
-            document.getElementById('imageModal').classList.remove('active');
-        }
-
-        function updateModalImage() {
-            document.getElementById('modalImage').src = currentGallery[currentImageIndex];
-        }
-
-        function nextImage(event) {
-            event.stopPropagation();
-            currentImageIndex = (currentImageIndex + 1) % currentGallery.length;
-            updateModalImage();
-        }
-
-        function prevImage(event) {
-            event.stopPropagation();
-            currentImageIndex = (currentImageIndex - 1 + currentGallery.length) % currentGallery.length;
-            updateModalImage();
-        }
-
-        document.addEventListener('keydown', function(event) {
-            const modal = document.getElementById('imageModal');
-            if (!modal.classList.contains('active')) return;
-
-            if (event.key === 'ArrowRight') {
-                event.preventDefault();
-                nextImage(event);
-            } else if (event.key === 'ArrowLeft') {
-                event.preventDefault();
-                prevImage(event);
-            } else if (event.key === 'Escape') {
-                closeModal();
-            }
-        });
-
-        document.querySelectorAll('.clickable-image').forEach(function(img) {
-            img.addEventListener('keydown', function(event) {
-                if (event.key === 'Enter' || event.key === ' ') {
-                    event.preventDefault();
-                    img.click();
-                }
-            });
-        });
-    </script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/gallery.js"></script>
 </body>
 </html>

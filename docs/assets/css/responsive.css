@@ -1,0 +1,120 @@
+/* =========================================================
+   Breakpoint overrides — mobile-first content, adjusted here
+   ========================================================= */
+
+@media (max-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 860px) {
+  .nav-desktop {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .timeline-item {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  .timeline-body {
+    grid-template-columns: 1fr;
+  }
+
+  .evidence-thumb {
+    order: -1;
+  }
+
+  .grid-2,
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-band {
+    padding: var(--space-7) var(--space-5);
+  }
+}
+
+@media (max-width: 640px) {
+  .page-header {
+    padding: var(--space-6) 0 var(--space-5);
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  .lightbox-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+  }
+
+  .lightbox-prev { left: var(--space-2); }
+  .lightbox-next { right: var(--space-2); }
+  .lightbox-close { top: var(--space-3); right: var(--space-3); }
+
+  .cert-filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: var(--space-2);
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .cert-filters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cert-filter {
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .hero-meta {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .stats-strip {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* No horizontal scroll, ever */
+html, body {
+  overflow-x: hidden;
+}
