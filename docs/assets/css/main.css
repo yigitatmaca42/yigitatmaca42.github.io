@@ -1070,15 +1070,25 @@ section + section,
 
 .case-study-media-logo {
   align-items: center;
+  justify-content: center;
 }
 
-.case-study-media-logo img {
-  width: 100%;
-  max-width: 180px;
-  margin: 0 auto;
-  border: none;
+.case-study-icon-tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 128px;
+  height: 128px;
   border-radius: var(--radius-md);
-  filter: drop-shadow(0 12px 32px rgba(77, 195, 255, 0.18));
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+}
+
+.case-study-icon-tile img {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+  border: none;
 }
 
 .featured-project-link {
