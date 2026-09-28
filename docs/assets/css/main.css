@@ -1073,18 +1073,10 @@ section + section,
 .case-study-icon {
   width: 46px;
   height: 46px;
+  object-fit: contain;
   border-radius: var(--radius-sm);
-  background: var(--accent-soft);
-  border: 1px solid var(--border-accent);
-  display: grid;
-  place-items: center;
-  color: var(--accent-text);
+  border: 1px solid var(--border);
   flex-shrink: 0;
-}
-
-.case-study-icon svg {
-  width: 22px;
-  height: 22px;
 }
 
 .case-study-media {
@@ -1115,18 +1107,10 @@ section + section,
 .featured-project-icon {
   width: 46px;
   height: 46px;
+  object-fit: contain;
   border-radius: var(--radius-sm);
-  background: var(--accent-soft);
-  border: 1px solid var(--border-accent);
-  display: grid;
-  place-items: center;
-  color: var(--accent-text);
+  border: 1px solid var(--border);
   flex-shrink: 0;
-}
-
-.featured-project-icon svg {
-  width: 22px;
-  height: 22px;
 }
 
 .case-study-body {
