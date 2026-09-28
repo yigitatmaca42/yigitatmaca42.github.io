@@ -1051,6 +1051,33 @@ section + section,
   overflow: hidden;
 }
 
+.case-study-solo {
+  grid-template-columns: 1fr;
+}
+
+.case-study-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.case-study-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-soft);
+  border: 1px solid var(--border-accent);
+  display: grid;
+  place-items: center;
+  color: var(--accent-text);
+  flex-shrink: 0;
+}
+
+.case-study-icon svg {
+  width: 26px;
+  height: 26px;
+}
+
 .case-study-media {
   position: relative;
   background: var(--bg-elevated);
@@ -1068,51 +1095,29 @@ section + section,
   width: 100%;
 }
 
-.case-study-media-logo {
-  align-items: center;
-  justify-content: center;
-}
-
-.case-study-icon-tile {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 128px;
-  height: 128px;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-strong);
-  background: var(--surface);
-}
-
-.case-study-icon-tile img {
-  width: 60%;
-  height: 60%;
-  object-fit: contain;
-  border: none;
-}
-
 .featured-project-link {
   display: grid;
-  grid-template-columns: 96px 1fr;
-  gap: var(--space-6);
+  grid-template-columns: 52px 1fr;
+  gap: var(--space-5);
   align-items: center;
   margin-bottom: var(--space-5);
 }
 
-.featured-project-thumb {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  aspect-ratio: 1 / 1;
+.featured-project-icon {
+  width: 52px;
+  height: 52px;
   border-radius: var(--radius-sm);
-  border: 1px solid var(--border-strong);
-  background: var(--bg-elevated);
+  background: var(--accent-soft);
+  border: 1px solid var(--border-accent);
+  display: grid;
+  place-items: center;
+  color: var(--accent-text);
+  flex-shrink: 0;
 }
 
-.featured-project-thumb img {
-  width: 70%;
-  height: 70%;
-  object-fit: contain;
+.featured-project-icon svg {
+  width: 26px;
+  height: 26px;
 }
 
 .case-study-body {
@@ -1144,6 +1149,10 @@ section + section,
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   margin-bottom: var(--space-6);
+}
+
+.case-study-solo .case-study-meta {
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .case-study-meta dt {

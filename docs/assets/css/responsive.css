@@ -59,10 +59,6 @@
     justify-items: center;
   }
 
-  .featured-project-thumb {
-    width: 96px;
-  }
-
   .footer-grid {
     grid-template-columns: 1fr;
   }
