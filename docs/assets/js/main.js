@@ -1,6 +1,8 @@
 (function () {
   'use strict';
 
+  document.body.classList.remove('noscript-fallback');
+
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- Footer year ---------- */
