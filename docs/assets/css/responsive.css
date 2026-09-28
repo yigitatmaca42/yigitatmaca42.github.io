@@ -53,6 +53,16 @@
     padding: var(--space-6) 0 var(--space-5);
   }
 
+  .featured-project-link {
+    grid-template-columns: 1fr;
+    text-align: center;
+    justify-items: center;
+  }
+
+  .featured-project-thumb {
+    width: 96px;
+  }
+
   .footer-grid {
     grid-template-columns: 1fr;
   }
