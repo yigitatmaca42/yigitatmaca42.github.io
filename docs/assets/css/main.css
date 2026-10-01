@@ -789,10 +789,6 @@ section + section,
   letter-spacing: 0.08em;
 }
 
-.timeline-content .event-hosts strong:not(:first-child) {
-  margin-top: 0.6rem;
-}
-
 .featured-item .rank-badge { color: #ffd479; }
 .featured-item .rank-badge::before {
   content: '★';
