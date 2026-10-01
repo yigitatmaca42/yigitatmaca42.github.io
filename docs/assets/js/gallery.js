@@ -2,6 +2,11 @@
   'use strict';
 
   var galleries = {
+    sunshinectf26: [
+      { src: 'pictures/SUNSHINECTF26/team.webp', alt: 'SunshineCTF 2026 AltayCTF takım sonucu: 27. sıra, 10153 puan' },
+      { src: 'pictures/SUNSHINECTF26/score.webp', alt: 'SunshineCTF 2026 skor tablosunda AltayCTF satırı' },
+      { src: 'pictures/SUNSHINECTF26/members.webp', alt: 'SunshineCTF 2026 AltayCTF takım üyeleri ve puanları' }
+    ],
     tsgk: [
       { src: 'pictures/TSGKCTF25/scoreboard.webp', alt: 'TSGK CTF skor tablosu' },
       { src: 'pictures/TSGKCTF25/top10.webp', alt: 'TSGK CTF ilk 10 sıralaması' }
